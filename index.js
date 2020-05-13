@@ -1,19 +1,7 @@
-// In index.js of a new project
-const { Navigation } = require('react-native-navigation');
+const {Navigation} = require('react-native-navigation');
 const React = require('react');
 const { View, Text, Button, StyleSheet } = require('react-native');
 
-
-// Settings screen declaration - this is the screen we'll be pushing into the stack
-const SettingsScreen = () => {
-  return (
-    <View style={[styles.root, styles.settings]}>
-      <Text>Settings Screen</Text>
-    </View>
-  );
-};
-
-// Home screen declaration
 const HomeScreen = (props) => {
   return (
     <View style={styles.root}>
@@ -23,26 +11,40 @@ const HomeScreen = (props) => {
         color='#710ce3'
         onPress={() => Navigation.push(props.componentId, {
           component: {
-            name: 'Settings',
-            options: {
-              topBar: {
-                title: {
-                  text: 'Settings'
-                }
-              }
-            }
+            name: 'Settings'
           }
-        })}/>
+        })} />
     </View>
   );
 };
 HomeScreen.options = {
   topBar: {
     title: {
-      text: 'Home',
+      text: 'Home'
     }
+  },
+  bottomTab: {
+    text: 'Home'
   }
 };
+
+const SettingsScreen = () => {
+  return (
+    <View style={styles.root}>
+      <Text>Settings Screen</Text>
+    </View>
+  );
+}
+SettingsScreen.options = {
+  topBar: {
+    title: {
+      text: 'Settings'
+    }
+  },
+  bottomTab: {
+    text: 'Settings'
+  }
+}
 
 Navigation.registerComponent('Home', () => HomeScreen);
 Navigation.registerComponent('Settings', () => SettingsScreen);
@@ -62,15 +64,36 @@ Navigation.events().registerAppLaunchedListener(async () => {
       background: {
         color: '#4d089a'
       }
+    },
+    bottomTab: {
+      fontSize: 14,
+      selectedFontSize: 14
     }
   });
   await Navigation.setRoot({
     root: {
-      stack: {
+      bottomTabs: {
         children: [
           {
-            component: {
-              name: 'Home'
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: 'Home'
+                  }
+                },
+              ]
+            }
+          },
+          {
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: 'Settings'
+                  }
+                }
+              ]
             }
           }
         ]
@@ -78,7 +101,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
     }
   });
 });
-
 
 const styles = StyleSheet.create({
   root: {
