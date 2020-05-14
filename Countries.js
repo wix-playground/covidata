@@ -56,8 +56,11 @@ const CountryItem = (props) => {
 };
 
 export const ConditionalBadge = (props) => {
-  return (
-    <Badge
+  return ( props.recoveries
+    ? <Badge
+        label={`+${Number(props.new_confirmed)}`}
+        backgroundColor={props.new_confirmed > 0 ? 'green' : 'orange'}/>
+    : <Badge
       label={`+${Number(props.new_confirmed)}`}
       backgroundColor={props.new_confirmed > 0 ? 'red' : 'green'}/>
   );
@@ -97,7 +100,6 @@ class CountriesScreen extends Component {
       .then(response => response.json())
       .then(json => {
         let data = json['Countries'];
-        console.log(data);
         for (let country of data) {
           countries.push(
             new CountrySummary(
