@@ -51,7 +51,7 @@ Navigation.registerComponent('CountryDetailScreen', () => CountryDetailScreen)
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setDefaultOptions({
     statusBar: {
-      backgroundColor: '#4d089a',
+      backgroundColor: '#faa211',
     },
     topBar: {
       title: {
@@ -61,7 +61,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
         color: 'white',
       },
       background: {
-        color: '#4d089a',
+        color: '#faa211',
       },
     },
     bottomTab: {

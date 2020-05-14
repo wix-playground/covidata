@@ -7,6 +7,8 @@ import {Dimensions} from 'react-native';
 
 const emoji = require('country-to-emoji-flag');
 
+let NUMBER_OF_DAYS_MAX = 15;
+
 export class CountryDetailScreen extends Component {
   constructor(props) {
     super(props);
@@ -48,8 +50,19 @@ export class CountryDetailScreen extends Component {
         <Card center padding={10} margin={10}>
           <LineChart
             data={{
-              labels: this.state.labels,
-              datasets: [{data: this.state.data}]}}
+              labels: this.state.labels.slice(
+                Math.max(
+                  this.state.labels.length-NUMBER_OF_DAYS_MAX, 0
+                )
+              ),
+              datasets: [{
+                data:
+                  this.state.data.slice(
+                    Math.max(
+                      this.state.data.length-NUMBER_OF_DAYS_MAX, 0
+                    )
+                  )
+              }]}}
             width={Dimensions.get("window").width-40}
             height={300}
             center
@@ -71,8 +84,6 @@ export class CountryDetailScreen extends Component {
         </Card>
         </View>
     )
-
-
   }
 
   async getCountryDetail() {
