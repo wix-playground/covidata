@@ -1,31 +1,39 @@
 const {Navigation} = require('react-native-navigation');
-const React = require('react');
-const { View, Text, Button, StyleSheet } = require('react-native');
+import React, {Component} from 'react';
 
-const HomeScreen = (props) => {
-  return (
-    <View style={styles.root}>
-      <Text>Hello React Native Navigation 👋</Text>
-      <Button
-        title='Push Settings Screen'
-        color='#710ce3'
-        onPress={() => Navigation.push(props.componentId, {
-          component: {
-            name: 'Settings'
-          }
-        })} />
-    </View>
-  );
-};
+const {StyleSheet} = require('react-native');
+import {View, Text, Card, Button} from 'react-native-ui-lib';
+
+
+class HomeScreen extends Component {
+  render() {
+    return (
+      <View flex padding-page>
+        <Text heading marginB-s4>Hello React Native Navigation 👋</Text>
+        <Card height={100} center padding-card marginB-s4>
+          <Text body>This is an example card </Text>
+        </Card>
+        <Button
+          label="Button" text70 white background-orange30
+          onPress={() => Navigation.push(this.props.componentId, {
+            component: {
+              name: 'Settings',
+            },
+          })}/>
+      </View>
+    );
+  }
+}
+
 HomeScreen.options = {
   topBar: {
     title: {
-      text: 'Home'
-    }
+      text: 'Home',
+    },
   },
   bottomTab: {
-    text: 'Home'
-  }
+    text: 'Home',
+  },
 };
 
 const SettingsScreen = () => {
@@ -34,43 +42,44 @@ const SettingsScreen = () => {
       <Text>Settings Screen</Text>
     </View>
   );
-}
+};
 SettingsScreen.options = {
   topBar: {
     title: {
-      text: 'Settings'
-    }
+      text: 'Settings',
+    },
   },
   bottomTab: {
-    text: 'Settings'
-  }
-}
+    text: 'Settings',
+  },
+};
 
 Navigation.registerComponent('Home', () => HomeScreen);
 Navigation.registerComponent('Settings', () => SettingsScreen);
 
+
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setDefaultOptions({
     statusBar: {
-      backgroundColor: '#4d089a'
+      backgroundColor: '#4d089a',
     },
     topBar: {
       title: {
-        color: 'white'
+        color: 'white',
       },
       backButton: {
-        color: 'white'
+        color: 'white',
       },
       background: {
-        color: '#4d089a'
-      }
+        color: '#4d089a',
+      },
     },
     bottomTab: {
       fontSize: 14,
-      selectedFontSize: 14
-    }
+      selectedFontSize: 14,
+    },
   });
-  await Navigation.setRoot({
+  Navigation.setRoot({
     root: {
       bottomTabs: {
         children: [
@@ -79,26 +88,26 @@ Navigation.events().registerAppLaunchedListener(async () => {
               children: [
                 {
                   component: {
-                    name: 'Home'
-                  }
+                    name: 'Home',
+                  },
                 },
-              ]
-            }
+              ],
+            },
           },
           {
             stack: {
               children: [
                 {
                   component: {
-                    name: 'Settings'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
+                    name: 'Settings',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
   });
 });
 
@@ -107,6 +116,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'whitesmoke'
-  }
+    backgroundColor: 'whitesmoke',
+  },
 });
