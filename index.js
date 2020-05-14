@@ -1,29 +1,37 @@
+import {CountryDetailScreen} from './CountryDetail';
+
 const {Navigation} = require('react-native-navigation');
 import React, {Component} from 'react';
-
 const {StyleSheet} = require('react-native');
-import {View, Text, Card, Button} from 'react-native-ui-lib';
+import {View, Text, Card, Button, Badge, ListItem} from 'react-native-ui-lib';
+import CountriesScreen from './Countries';
 
+export let API_ROOT = 'https://api.covid19api.com';
 
 class HomeScreen extends Component {
   render() {
     return (
       <View flex padding-page>
-        <Text heading marginB-s4>Hello React Native Navigation 👋</Text>
-        <Card height={100} center padding-card marginB-s4>
-          <Text body>This is an example card </Text>
-        </Card>
-        <Button
-          label="Button" text70 white background-orange30
-          onPress={() => Navigation.push(this.props.componentId, {
-            component: {
-              name: 'Settings',
-            },
-          })}/>
+        <View>
+          <Text marginB-s4 marginT-s4>🌍 Global</Text>
+          <StatViewRow statLabel={'☣️ ACTIVE'} activeTotal={'789K'} activeNew={'+20K'}/>
+          <StatViewRow statLabel={'🏥 RECOVERED'} activeTotal={'789K'} activeNew={'+20K'}/>
+          <StatViewRow statLabel={'😵 DEAD'} activeTotal={'789K'} activeNew={'+20K'}/>
+        </View>
       </View>
     );
   }
 }
+
+const StatViewRow = (props) => {
+  return (
+    <View padding={10} flexDirection={'row'}>
+      <Text flex-1>{props.statLabel}</Text>
+      <Text>{props.activeTotal}</Text>
+      <Badge label={props.activeNew} backgroundColor={'red'}/>
+    </View>
+  );
+};
 
 HomeScreen.options = {
   topBar: {
@@ -36,27 +44,9 @@ HomeScreen.options = {
   },
 };
 
-const SettingsScreen = () => {
-  return (
-    <View style={styles.root}>
-      <Text>Settings Screen</Text>
-    </View>
-  );
-};
-SettingsScreen.options = {
-  topBar: {
-    title: {
-      text: 'Settings',
-    },
-  },
-  bottomTab: {
-    text: 'Settings',
-  },
-};
-
 Navigation.registerComponent('Home', () => HomeScreen);
-Navigation.registerComponent('Settings', () => SettingsScreen);
-
+Navigation.registerComponent('CountriesScreen', () => CountriesScreen);
+Navigation.registerComponent('CountryDetailScreen', () => CountryDetailScreen)
 
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setDefaultOptions({
@@ -99,7 +89,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
               children: [
                 {
                   component: {
-                    name: 'Settings',
+                    name: 'CountriesScreen',
                   },
                 },
               ],
@@ -109,13 +99,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
       },
     },
   });
-});
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'whitesmoke',
-  },
 });
