@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {View, ListItem, Badge} from 'react-native-ui-lib';
-import {FlatList, Text} from 'react-native';
+import {View} from 'react-native-ui-lib';
+import {FlatList} from 'react-native';
 import {API_ROOT} from './index';
-
-const {Navigation} = require('react-native-navigation');
-const emoji = require('country-to-emoji-flag');
+import {CountryRow} from './src/components/CountryRow';
 
 class CountrySummary {
   constructor(
@@ -30,42 +28,6 @@ class CountrySummary {
   }
 }
 
-const CountryItem = (props) => {
-  return (
-    <ListItem paddingL-15 paddingR-15
-              onPress={() => Navigation.push(props.componentId, {
-                component: {
-                  name: 'CountryDetailScreen',
-                  passProps: {
-                    country: props.country,
-                  }
-                },
-              })}>
-      <ListItem flex-1>
-        <ListItem.Part>
-          <Text>{emoji(props.country.country_code)}  </Text>
-          <Text>{props.country.name}</Text>
-        </ListItem.Part>
-      </ListItem>
-      <ListItem.Part>
-        <Text>{props.country.total_confirmed}   </Text>
-        <ConditionalBadge new_confirmed={props.country.new_confirmed}/>
-      </ListItem.Part>
-    </ListItem>
-  );
-};
-
-export const ConditionalBadge = (props) => {
-  return ( props.recoveries
-    ? <Badge
-        label={`+${Number(props.new_confirmed)}`}
-        backgroundColor={props.new_confirmed > 0 ? 'green' : 'orange'}/>
-    : <Badge
-      label={`+${Number(props.new_confirmed)}`}
-      backgroundColor={props.new_confirmed > 0 ? 'red' : 'green'}/>
-  );
-};
-
 class CountriesScreen extends Component {
 
   constructor(props) {
@@ -84,11 +46,13 @@ class CountriesScreen extends Component {
       <View>
         <FlatList
           data={this.state.countries}
-          renderItem={({item}) => <CountryItem componentId={this.props.componentId} country={item}/>}
+          renderItem={({item}) =>
+            <CountryRow componentId={this.props.componentId} country={item}/>}
           keyExtractor={((item) => item.slug)}
           ItemSeparatorComponent={() => {
             return (
-              <View style={{height: 1, width: '100%', backgroundColor: '#CEDCCE'}}/>);
+              <View
+                style={{height: 1, width: '100%', backgroundColor: '#CEDCCE'}}/>);
           }}/>
       </View>
     );
