@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Card, Switch} from 'react-native-ui-lib';
 import {CountryDetailCard, CasesChangeGraph} from '../components/CountryDetailDashboard';
 import {API_ROOT} from '../../index';
+import {ScrollView} from 'react-native';
 
 export class CountryDetailScreen extends Component {
   constructor(props) {
@@ -17,16 +18,21 @@ export class CountryDetailScreen extends Component {
   }
   render() {
     return (
-      <View flex>
+      <ScrollView flex>
         <CountryDetailCard country={this.state.country}/>
         <Card flexDirection={'row'} style={{alignSelf: 'stretch'}} padding={20} margin={10}>
-          <Text flex text60BO>Track</Text>
+          <Text flex text60BO>⭐️  Track</Text>
           <Switch offColor={'red'} onColor={'green'} disabled={true}/>
         </Card>
-        <Card center padding={20} margin={10}>
-          <CasesChangeGraph labels={this.state.labels} data={this.state.data}/>
+        <Card padding={20} margin={10} flexDirection={'column'}>
+          <View>
+            <Text text60M style={{marginBottom: 30}}>🗓️  Recent data</Text>
+          </View>
+          <View>
+            <CasesChangeGraph labels={this.state.labels} data={this.state.data}/>
+          </View>
         </Card>
-      </View>
+      </ScrollView>
     )
   }
 
@@ -40,11 +46,9 @@ export class CountryDetailScreen extends Component {
           let date = new Date(Date.parse(dataPoint["Date"]));
           labels.push(`${date.getDate()}/${date.getMonth()}`);
           data.push(dataPoint["Confirmed"]);
-          console.log(data)
         }
         this.setState({labels: labels, data: data});
       })
-      .then(() => console.log())
       .catch(error => console.error(error));
   }
 

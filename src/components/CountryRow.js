@@ -1,6 +1,6 @@
 import {ListItem, View} from 'react-native-ui-lib';
 import {Text} from 'react-native';
-import {ConditionalBadge} from './Badge';
+import {ConditionalBadge} from './ConditionalBadge';
 import React from 'react';
 const {Navigation} = require('react-native-navigation');
 

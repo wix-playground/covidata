@@ -1,7 +1,7 @@
 import {CountryDetailScreen} from './src/screens/CountryDetailScreen';
 import React from 'react';
 import {Badge, Text, View} from 'react-native-ui-lib';
-import CountriesScreen from './Countries';
+import CountriesScreen from './src/screens/CountryListScreen';
 import {HomeScreen} from './src/screens/HomeScreen';
 const {Navigation} = require('react-native-navigation');
 

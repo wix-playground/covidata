@@ -1,46 +1,20 @@
 import React, {Component} from 'react';
 import {View} from 'react-native-ui-lib';
 import {FlatList} from 'react-native';
-import {API_ROOT} from './index';
-import {CountryRow} from './src/components/CountryRow';
-
-class CountrySummary {
-  constructor(
-    name,
-    slug,
-    country_code,
-    total_confirmed,
-    new_confirmed,
-    new_deaths,
-    total_deaths,
-    new_recovered,
-    total_recovered,
-  ) {
-    this.name = name;
-    this.slug = slug;
-    this.country_code = country_code;
-    this.total_confirmed = total_confirmed;
-    this.new_confirmed = new_confirmed;
-    this.new_deaths = new_deaths;
-    this.total_deaths = total_deaths;
-    this.new_recovered = new_recovered;
-    this.total_recovered = total_recovered;
-  }
-}
+import {API_ROOT} from '../../index';
+import {CountryRow} from '../components/CountryRow';
+import {CountrySummary} from '../utils/CountrySummary';
 
 class CountriesScreen extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       countries: [],
     };
   }
-
   componentDidMount() {
     this.updateCountries();
   }
-
   render() {
     return (
       <View>
@@ -58,9 +32,9 @@ class CountriesScreen extends Component {
     );
   }
 
-  async updateCountries() {
+  updateCountries() {
     let countries = [];
-    await fetch(`${API_ROOT}/summary`)
+    fetch(`${API_ROOT}/summary`)
       .then(response => response.json())
       .then(json => {
         let data = json['Countries'];

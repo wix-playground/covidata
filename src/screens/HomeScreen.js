@@ -1,18 +1,50 @@
 import React, {Component} from 'react';
 import {Badge, Text, View} from 'react-native-ui-lib';
+import {API_ROOT} from '../../index';
+import {CountrySummary} from '../utils/CountrySummary';
+import {CountryDetailCard} from '../components/CountryDetailDashboard';
 
 export class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      globalData: 
+        new CountrySummary('','','','','','','','',''),
+    };
+  }
+
+  componentDidMount() {
+    this.updateGlobal();
+  }
+
   render() {
     return (
       <View flex padding-page>
-        <View>
-          <Text marginB-s4 marginT-s4>🌍 Global</Text>
-          <StatViewRow statLabel={'☣️ ACTIVE'} activeTotal={'789K'} activeNew={'+20K'}/>
-          <StatViewRow statLabel={'🏥 RECOVERED'} activeTotal={'789K'} activeNew={'+20K'}/>
-          <StatViewRow statLabel={'😵 DEAD'} activeTotal={'789K'} activeNew={'+20K'}/>
-        </View>
+        <CountryDetailCard country={this.state.globalData}/>
       </View>
     );
+  }
+
+  updateGlobal() {
+    fetch(`${API_ROOT}/summary`)
+      .then(response => response.json())
+      .then(json => {
+        let data = json['Global'];
+        let globalData = (
+          new CountrySummary(
+            'Global',
+            '',
+            '',
+            data['TotalConfirmed'],
+            data['NewConfirmed'],
+            data['NewDeaths'],
+            data['TotalDeaths'],
+            data['NewRecovered'],
+            data['TotalRecovered'])
+        );
+        this.setState({globalData: globalData});
+      })
+      .catch(error => console.error(error));
   }
 }
 
@@ -25,6 +57,7 @@ const StatViewRow = (props) => {
     </View>
   );
 };
+
 
 HomeScreen.options = {
   topBar: {
