@@ -5,7 +5,8 @@ import {API_ROOT} from '../../index';
 import {CountryRow} from '../components/CountryRow';
 import {CountrySummary} from '../utils/CountrySummary';
 
-class CountriesScreen extends Component {
+class CountryListScreen extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +16,7 @@ class CountriesScreen extends Component {
   componentDidMount() {
     this.updateCountries();
   }
+
   render() {
     return (
       <View>
@@ -58,7 +60,7 @@ class CountriesScreen extends Component {
   }
 }
 
-CountriesScreen.options = {
+CountryListScreen.options = {
   topBar: {
     title: {
       text: 'Countries',
@@ -70,4 +72,4 @@ CountriesScreen.options = {
 };
 
 
-export default CountriesScreen;
+export default CountryListScreen;
