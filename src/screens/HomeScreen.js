@@ -3,13 +3,15 @@ import {View} from 'react-native-ui-lib';
 import {API_ROOT} from '../../index';
 import {CountrySummary} from '../utils/CountrySummary';
 import {CountryDetailCard} from '../components/CountryDetailCard';
+import {ScrollView} from 'react-native';
 
 export class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      globalData: 
-        new CountrySummary(),
+      globalData: undefined,
+      countries: [],
+      tracked_slugs: [],
     };
   }
 
@@ -19,9 +21,19 @@ export class HomeScreen extends Component {
 
   render() {
     return (
-      <View flex padding-page>
+      <ScrollView flex padding-page>
         <CountryDetailCard country={this.state.globalData}/>
-      </View>
+        <View>
+          <View style={{
+            marginLeft: 50,
+            marginRight: 50,
+            marginTop: 10,
+            marginBottom: 10,
+            backgroundColor: '#d1d0d1',
+            height: 1,
+          }}/>
+        </View>
+      </ScrollView>
     );
   }
 
@@ -29,20 +41,39 @@ export class HomeScreen extends Component {
     fetch(`${API_ROOT}/summary`)
       .then(response => response.json())
       .then(json => {
-        let data = json['Global'];
-        let globalData = (
+        const globalData = json['Global'];
+        let global = (
           new CountrySummary(
             'Global',
             '',
             '',
-            data['TotalConfirmed'],
-            data['NewConfirmed'],
-            data['NewDeaths'],
-            data['TotalDeaths'],
-            data['NewRecovered'],
-            data['TotalRecovered'])
+            globalData['TotalConfirmed'],
+            globalData['NewConfirmed'],
+            globalData['NewDeaths'],
+            globalData['TotalDeaths'],
+            globalData['NewRecovered'],
+            globalData['TotalRecovered'])
         );
-        this.setState({globalData: globalData});
+        let countries = [];
+        const data = json['Countries'];
+        for (let country of data) {
+          countries.push(
+            new CountrySummary(
+              country['Country'],
+              country['Slug'],
+              country['CountryCode'],
+              country['TotalConfirmed'],
+              country['NewConfirmed'],
+              country['NewDeaths'],
+              country['TotalDeaths'],
+              country['NewRecovered'],
+              country['TotalRecovered']),
+          );
+        }
+        this.setState({
+          globalData: global,
+          countries: countries,
+        });
       })
       .catch(error => console.error(error));
   }

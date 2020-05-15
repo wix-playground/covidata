@@ -9,21 +9,21 @@ export const CountryDetailCard = (props) => {
   return (
     <Card padding={10} margin={10} style={{alignSelf: 'stretch'}}>
       <View margin={10}>
-        <Text uppercase={true} text30H>{tryEmoji(props.country.country_code)} {props.country.name}
+        <Text uppercase={true} text30H>{tryEmoji(props.country?.country_code)} {props.country?.name}
         </Text>
       </View>
       <StatDetailRow
         stat_name={'Confirmed'}
-        stat_total={props.country.total_confirmed}
-        stat_new={props.country.new_confirmed} />
+        stat_total={props.country?.total_confirmed}
+        stat_new={props.country?.new_confirmed} />
       <StatDetailRow
         stat_name={'Deaths'}
-        stat_total={props.country.total_deaths}
-        stat_new={props.country.new_deaths} />
+        stat_total={props.country?.total_deaths}
+        stat_new={props.country?.new_deaths} />
       <StatDetailRow
         stat_name={'Recoveries'}
-        stat_total={props.country.total_recovered}
-        stat_new={props.country.new_recovered}
+        stat_total={props.country?.total_recovered}
+        stat_new={props.country?.new_recovered}
         recoveries={true} />
     </Card>
   );
