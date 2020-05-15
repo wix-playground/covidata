@@ -9,7 +9,7 @@ export class HomeScreen extends Component {
     super(props);
     this.state = {
       globalData: 
-        new CountrySummary('','','','','','','','',''),
+        new CountrySummary(),
     };
   }
 
