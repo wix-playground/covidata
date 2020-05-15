@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Badge, Text, View} from 'react-native-ui-lib';
+import {View} from 'react-native-ui-lib';
 import {API_ROOT} from '../../index';
 import {CountrySummary} from '../utils/CountrySummary';
-import {CountryDetailCard} from '../components/CountryDetailDashboard';
+import {CountryDetailCard} from '../components/CountryDetailCard';
 
 export class HomeScreen extends Component {
   constructor(props) {
@@ -47,17 +47,6 @@ export class HomeScreen extends Component {
       .catch(error => console.error(error));
   }
 }
-
-const StatViewRow = (props) => {
-  return (
-    <View padding={10} flexDirection={'row'}>
-      <Text flex-1>{props.statLabel}</Text>
-      <Text>{props.activeTotal}</Text>
-      <Badge label={props.activeNew} backgroundColor={'red'}/>
-    </View>
-  );
-};
-
 
 HomeScreen.options = {
   topBar: {

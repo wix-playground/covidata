@@ -1,6 +1,5 @@
 import {CountryDetailScreen} from './src/screens/CountryDetailScreen';
 import React from 'react';
-import {Badge, Text, View} from 'react-native-ui-lib';
 import CountriesScreen from './src/screens/CountryListScreen';
 import {HomeScreen} from './src/screens/HomeScreen';
 const {Navigation} = require('react-native-navigation');
@@ -46,6 +45,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
                   },
                 },
               ],
+              options: {
+                bottomTab: {
+                }
+              }
             },
           },
           {
@@ -57,6 +60,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
                   },
                 },
               ],
+              options: {
+                bottomTab: {
+                }
+              }
             },
           },
         ],
