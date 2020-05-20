@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {View} from 'react-native-ui-lib';
-import {API_ROOT} from '../../index';
 import {CountrySummary} from '../utils/CountrySummary';
 import {CountryDetailCard} from '../components/CountryDetailCard';
 import {ScrollView} from 'react-native';
+import {API_ROOT} from '../../env';
 
 export class HomeScreen extends Component {
   constructor(props) {

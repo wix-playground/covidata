@@ -1,14 +1,14 @@
 import {LineChart} from 'react-native-chart-kit';
 import {Dimensions} from 'react-native';
 import React from 'react';
-import {NUMBER_OF_DAYS_MAX} from './CountryDetailCard';
+import {MAX_HISTORY_DAYS} from '../../env';
 
 export const CasesChangeGraph = (props) => {
   return (
     <LineChart
       data={{
-        labels: sliceToNLast(props.labels, NUMBER_OF_DAYS_MAX),
-        datasets: [{data: sliceToNLast(props.data, NUMBER_OF_DAYS_MAX)}],
+        labels: sliceToNLast(props.labels, MAX_HISTORY_DAYS),
+        datasets: [{data: sliceToNLast(props.data, MAX_HISTORY_DAYS)}],
       }}
       width={Dimensions.get('window').width - 80}
       height={300}

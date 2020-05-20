@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text, Card, Switch} from 'react-native-ui-lib';
 import {CountryDetailCard} from '../components/CountryDetailCard';
-import {API_ROOT} from '../../index';
 import {ScrollView} from 'react-native';
 import {CasesChangeGraph} from '../components/CasesChangeGraph';
+import {API_ROOT} from '../../env';
 
 export class CountryDetailScreen extends Component {
   constructor(props) {

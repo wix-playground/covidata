@@ -4,13 +4,9 @@ import CountryListScreen from './src/screens/CountryListScreen';
 import {HomeScreen} from './src/screens/HomeScreen';
 const {Navigation} = require('react-native-navigation');
 
-export let API_ROOT = 'https://api.covid19api.com';
-
 Navigation.registerComponent('Home', () => HomeScreen);
 Navigation.registerComponent('CountriesScreen', () => CountryListScreen);
 Navigation.registerComponent('CountryDetailScreen', () => CountryDetailScreen)
-
-
 
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setDefaultOptions({

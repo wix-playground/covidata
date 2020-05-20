@@ -2,6 +2,7 @@ const detox = require('detox');
 const config = require('../package.json').detox;
 const adapter = require('detox/runners/jest/adapter');
 const specReporter = require('detox/runners/jest/specReporter');
+const {start, stop} = require('../fake-server/server')
 
 // Set the default timeout
 jest.setTimeout(120000);
@@ -13,6 +14,11 @@ jasmine.getEnv().addReporter(adapter);
 jasmine.getEnv().addReporter(specReporter);
 
 beforeAll(async () => {
+  try {
+    await start()
+  } catch(e) {
+    // fake server launched manually
+  }
   await detox.init(config);
 }, 300000);
 
@@ -32,6 +38,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
+  await stop();
   await adapter.afterAll();
   await detox.cleanup();
 });

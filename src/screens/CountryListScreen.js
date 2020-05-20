@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {View} from 'react-native-ui-lib';
 import {FlatList} from 'react-native';
-import {API_ROOT} from '../../index';
 import {CountryRow} from '../components/CountryRow';
 import {CountrySummary} from '../utils/CountrySummary';
+import {API_ROOT} from '../../env';
 
 class CountryListScreen extends Component {
 
