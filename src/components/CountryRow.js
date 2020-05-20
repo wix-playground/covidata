@@ -16,8 +16,9 @@ export const CountryRow = (props) => {
                     country: props.country,
                   },
                 },
-              })}>
-      <View centerH flex flexDirection={'row'}>
+              })}
+    >
+      <View centerH flex flexDirection={'row'} testID={props.country.slug}>
         <Text>{emoji(props.country.country_code)}  </Text>
         <Text>{props.country.name}</Text>
       </View>

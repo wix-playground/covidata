@@ -13,19 +13,8 @@ Navigation.registerComponent('CountryDetailScreen', () => CountryDetailScreen)
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setDefaultOptions({
     statusBar: {
-      backgroundColor: 'black',
-      style: 'light'
-    },
-    topBar: {
-      title: {
-        color: 'white',
-      },
-      backButton: {
-        color: 'white',
-      },
-      background: {
-        color: 'black',
-      },
+      backgroundColor: 'white',
+      style: 'dark'
     },
     bottomTab: {
       fontSize: 14,
@@ -47,6 +36,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
               ],
               options: {
                 bottomTab: {
+                  testID: "home_tab_button"
                 }
               }
             },
@@ -62,6 +52,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
               ],
               options: {
                 bottomTab: {
+                  testID: "countries_tab_button"
                 }
               }
             },

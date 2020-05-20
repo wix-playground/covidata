@@ -40,7 +40,7 @@ export class CountryDetailScreen extends Component {
   async getCountryDetail() {
     let labels = [];
     let data = [];
-    await fetch(`${API_ROOT}/live/country/${this.state.country.slug}`)
+    await fetch(`${API_ROOT}/dayone/country/${this.state.country.slug}`)
       .then(response => response.json())
       .then(json => {
         for (let dataPoint of json) {

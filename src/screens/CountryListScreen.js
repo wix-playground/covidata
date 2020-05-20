@@ -21,6 +21,7 @@ class CountryListScreen extends Component {
     return (
       <View>
         <FlatList
+          testID={'flat_list'}
           data={this.state.countries}
           renderItem={({item}) =>
             <CountryRow componentId={this.props.componentId} country={item}/>}
