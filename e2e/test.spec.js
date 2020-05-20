@@ -10,6 +10,13 @@ describe('Example', () => {
     await expect(element(by.text('Recoveries'))).toBeVisible();
   });
 
+  it('should fetch the global information from the server', async () => {
+    await expect(element(by.id('country_name_global'))).toHaveText("🌍 GLOBAL");
+    await expect(element(by.id('global_Confirmed_total'))).toHaveText("4,977,471");
+    await expect(element(by.id('global_Deaths_total'))).toHaveText("329,513");
+    await expect(element(by.id('global_Recoveries_total'))).toHaveText("1,838,344");
+  });
+
   it('should show countries screen after tapping the Countries tab', async () => {
     await element(by.id('countries_tab_button')).tap();
     await expect(element(by.id('flat_list'))).toBeVisible();

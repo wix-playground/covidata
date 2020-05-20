@@ -45,7 +45,7 @@ export class HomeScreen extends Component {
         let global = (
           new CountrySummary(
             'Global',
-            '',
+            'global',
             '',
             globalData['TotalConfirmed'],
             globalData['NewConfirmed'],

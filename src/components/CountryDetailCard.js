@@ -5,25 +5,37 @@ import {StatDetailRow} from './StatDetailRow';
 const emoji = require('country-to-emoji-flag');
 
 export const CountryDetailCard = (props) => {
+  const country = props.country;
   return (
-    <Card padding={10} margin={10} style={{alignSelf: 'stretch'}}>
-      <View margin={10}>
-        <Text uppercase={true} text30H>{tryEmoji(props.country?.country_code)} {props.country?.name}
+    <Card
+      padding={10}
+      margin={10}
+      style={{alignSelf: 'stretch'}}>
+      <View
+        margin={10}>
+        <Text
+          uppercase={true}
+          text30H
+          testID={`country_name_${country?.slug}`}>
+          {tryEmoji(country?.country_code)} {country?.name}
         </Text>
       </View>
       <StatDetailRow
         stat_name={'Confirmed'}
-        stat_total={props.country?.total_confirmed}
-        stat_new={props.country?.new_confirmed} />
+        stat_total={country?.total_confirmed}
+        stat_new={country?.new_confirmed}
+        testID_prefix={country?.slug}/>
       <StatDetailRow
         stat_name={'Deaths'}
-        stat_total={props.country?.total_deaths}
-        stat_new={props.country?.new_deaths} />
+        stat_total={country?.total_deaths}
+        stat_new={country?.new_deaths}
+        testID_prefix={country?.slug}/>
       <StatDetailRow
         stat_name={'Recoveries'}
-        stat_total={props.country?.total_recovered}
-        stat_new={props.country?.new_recovered}
-        recoveries={true} />
+        stat_total={country?.total_recovered}
+        stat_new={country?.new_recovered}
+        recoveries={true}
+        testID_prefix={country?.slug}/>
     </Card>
   );
 };
