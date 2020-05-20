@@ -10,6 +10,8 @@ Navigation.registerComponent('Home', () => HomeScreen);
 Navigation.registerComponent('CountriesScreen', () => CountryListScreen);
 Navigation.registerComponent('CountryDetailScreen', () => CountryDetailScreen)
 
+
+
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setDefaultOptions({
     statusBar: {
