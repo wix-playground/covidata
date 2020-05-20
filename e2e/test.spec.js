@@ -15,6 +15,9 @@ describe('Example', () => {
     await expect(element(by.id('global_Confirmed_total'))).toHaveText("4,977,471");
     await expect(element(by.id('global_Deaths_total'))).toHaveText("329,513");
     await expect(element(by.id('global_Recoveries_total'))).toHaveText("1,838,344");
+    // await expect(element(by.id('global_Confirmed_new'))).toHaveLabel("+96840");
+    // await expect(element(by.id('global_Deaths_new'))).toHaveLabel("+5089");
+    // await expect(element(by.id('global_Recoveries_new'))).toHaveLabel("+52120");
   });
 
   it('should show countries screen after tapping the Countries tab', async () => {

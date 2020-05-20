@@ -23,7 +23,7 @@ export class CountryDetailScreen extends Component {
         <CountryDetailCard country={this.state.country}/>
         <Card flexDirection={'row'} style={{alignSelf: 'stretch'}} padding={20} margin={10}>
           <Text flex text60BO>⭐️  Track</Text>
-          <Switch offColor={'red'} onColor={'green'} disabled={true}/>
+          <Switch testID={'tracking_switch'} offColor={'red'} onColor={'green'} disabled={true}/>
         </Card>
         <Card padding={20} margin={10} flexDirection={'column'}>
           <View>
