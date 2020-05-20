@@ -3,7 +3,7 @@ import React from 'react';
 import {StatDetailRow} from './StatDetailRow';
 
 const emoji = require('country-to-emoji-flag');
-export const NUMBER_OF_DAYS_MAX = 15;
+export const NUMBER_OF_DAYS_MAX = 20;
 
 export const CountryDetailCard = (props) => {
   return (

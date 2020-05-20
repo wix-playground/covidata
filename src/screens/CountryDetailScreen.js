@@ -40,12 +40,12 @@ export class CountryDetailScreen extends Component {
   async getCountryDetail() {
     let labels = [];
     let data = [];
-    await fetch(`${API_ROOT}/dayone/country/${this.state.country.slug}`)
+    await fetch(`${API_ROOT}/total/dayone/country/${this.state.country.slug}`)
       .then(response => response.json())
       .then(json => {
         for (let dataPoint of json) {
           let date = new Date(Date.parse(dataPoint["Date"]));
-          labels.push(`${date.getDate()}/${date.getMonth()}`);
+          labels.push(`${date.getDate()}/${+date.getMonth()+1}`);
           data.push(dataPoint["Confirmed"]);
         }
         this.setState({labels: labels, data: data});
