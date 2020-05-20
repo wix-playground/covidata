@@ -20,7 +20,7 @@ describe('Tracking functionality', () => {
       const toggleSwitch = element(by.id('tracking_switch'));
       const initialValue = toggleSwitch.valueOf();
       await toggleSwitch.tap();
-      await expect(toggleSwitch).toHaveValue(!initialValue);
+      await expect(toggleSwitch).toHaveValue(`${+!initialValue}`);
     });
 
   });
