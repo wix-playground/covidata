@@ -15,6 +15,12 @@ describe('Example', () => {
     await expect(element(by.id('flat_list'))).toBeVisible();
   });
 
+  it('should open home after tapping Home on the bottom tab interface', async () => {
+    await element(by.id('countries_tab_button')).tap();
+    await element(by.id('home_tab_button')).tap();
+    await expect(element(by.text('Confirmed'))).toBeVisible();
+  });
+
   it('should have Zimbabwe as the last element fetched in Countries tab', async () => {
     await element(by.id('countries_tab_button')).tap();
     await expect(element(by.id('flat_list'))).toBeVisible();
