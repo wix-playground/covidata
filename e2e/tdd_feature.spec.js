@@ -16,11 +16,24 @@ describe('Tracking functionality', () => {
       await expect(toggleSwitch).toBeVisible();
     });
 
-    it('should be toggle tracking switch on press', async () => {
+    it('should toggle tracking switch on press', async () => {
       const toggleSwitch = element(by.id('tracking_switch'));
-      const initialValue = toggleSwitch.valueOf();
+      await expect(toggleSwitch).toHaveValue('0');
       await toggleSwitch.tap();
-      await expect(toggleSwitch).toHaveValue(`${+!initialValue}`);
+      await expect(toggleSwitch).toHaveValue('1');
+    });
+
+  });
+
+  describe('home screen', () => {
+
+    it('should show the tracked country on the home screen', async () => {
+      await element(by.id('countries_tab_button')).tap();
+      await element(by.id('afghanistan')).tap();
+      const toggleSwitch = element(by.id('tracking_switch'));
+      await toggleSwitch.tap();
+      await element(by.id('home_tab_button')).tap();
+      await expect(element.by.id('country_name_afghanistan')).toBeVisible();
     });
 
   });

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, Card, Switch} from 'react-native-ui-lib';
+import {View, Text, Card} from 'react-native-ui-lib';
 import {CountryDetailCard} from '../components/CountryDetailCard';
-import {ScrollView} from 'react-native';
+import {ScrollView, Switch} from 'react-native';
 import {CasesChangeGraph} from '../components/CasesChangeGraph';
 import {API_ROOT} from '../../env';
 
@@ -12,6 +12,7 @@ export class CountryDetailScreen extends Component {
       country: this.props.country,
       labels: [],
       data: [0],
+      track: false,
     }
   }
   componentDidMount() {
@@ -23,7 +24,10 @@ export class CountryDetailScreen extends Component {
         <CountryDetailCard country={this.state.country}/>
         <Card flexDirection={'row'} style={{alignSelf: 'stretch'}} padding={20} margin={10}>
           <Text flex text60BO>⭐️  Track</Text>
-          <Switch testID={'tracking_switch'} offColor={'red'} onColor={'green'}/>
+          <Switch
+            testID={'tracking_switch'}
+            value={this.state.track}
+            onValueChange={(value) => {this.setState({track: value})}}/>
         </Card>
         <Card padding={20} margin={10} flexDirection={'column'}>
           <View>
