@@ -56,6 +56,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "setupFiles": [
+      "./jest.init.js"
     ]
   },
   "detox": {

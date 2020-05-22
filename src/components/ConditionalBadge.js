@@ -1,15 +1,23 @@
 import {Badge} from 'react-native-ui-lib';
-import React from 'react';
+import React, {Component} from 'react';
 
-export const ConditionalBadge = (props) => {
-  return (props.recoveries
-      ? <Badge
-        label={`+${Number(props.new_confirmed)}`}
-        backgroundColor={props.new_confirmed > 0 ? 'green' : 'orange'}
-        testID={props.testID}/>
-      : <Badge
-        label={`+${Number(props.new_confirmed)}`}
-        backgroundColor={props.new_confirmed > 0 ? 'red' : 'green'}
-        testID={props.testID}/>
-  );
-};
+export class ConditionalBadge extends Component{
+  constructor(props) {
+    super(props);
+  }
+  render () {
+    return (<Badge
+      label={`+${Number(this.props.new_confirmed)}`}
+      backgroundColor={this.getBadgeColor(this.props.new_confirmed, this.props.recoveries)}
+      testID={this.props.testID}/>);
+  }
+  getBadgeColor(number, recoveries = false) {
+    return recoveries
+      ? (number > 0
+        ? 'green'
+        : 'orange')
+      : (number > 0
+        ? 'red'
+        : 'green');
+  }
+}
