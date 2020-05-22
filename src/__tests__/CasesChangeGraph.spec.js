@@ -2,6 +2,8 @@ import {CasesChangeGraph} from '../components/CasesChangeGraph';
 
 describe('Tests for graph building functionality', () => {
   describe('Logic for obtaining last N data points for graph', () => {
+    // would it make sense for sliceToNLast be separated from the component?
+    // and have it's own unit tests
     const casesChangeGraph = new CasesChangeGraph();
     it('should return [] for an empty dataset', () => {
       expect(casesChangeGraph.sliceToNLast([], 0)).toEqual([]);
