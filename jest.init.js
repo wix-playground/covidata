@@ -10,4 +10,4 @@ jest.mock('react-native', () => {
   return reactNative;
 });
 
-jest.mock('react-native-ui-lib', () => mockFull(['Badge']))
+jest.mock('react-native-ui-lib', () => mockFull(['Badge', 'Text', 'View']))

@@ -1,5 +1,4 @@
 import {ConditionalBadge} from '../components/ConditionalBadge';
-import React from 'react';
 const {toJSON, renderComponent} = require('react-component-driver');
 
 describe('ConditionalBadge style application', () => {
