@@ -6,9 +6,6 @@ import {CountrySummary} from '../utils/CountrySummary';
 import {API_ROOT} from '../../env';
 
 // separation of concerns, same as home screen.
-// arrow functions used for components, you must be aware of the effect
-// it may have on the app's performance. here's a reference for explanation:
-// https://www.youtube.com/watch?v=WFoNIgtqrGI&amp;t=
 
 class CountryListScreen extends Component {
 
@@ -31,6 +28,9 @@ class CountryListScreen extends Component {
           renderItem={({item}) =>
             <CountryRow componentId={this.props.componentId} country={item}/>}
           keyExtractor={((item) => item.slug)}
+          // arrow functions used for components, you must be aware of the effect
+          // it may have on the app's performance. here's a reference for explanation:
+          // https://www.youtube.com/watch?v=WFoNIgtqrGI&amp;t=
           ItemSeparatorComponent={() => {
             return (
               <View
