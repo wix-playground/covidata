@@ -9,10 +9,10 @@ describe('Tests for a single statistics row', () => {
     const stat_total = 1234;
     const stat_new = 4321;
     const testID_prefix = "test";
-    const json = toJSON(renderComponent(StatDetailRow,
-      {stat_name, stat_total, stat_new, testID_prefix}));
+    const json = toJSON(renderComponent(StatDetailRow, {stat_name, stat_total, stat_new, testID_prefix}));
     expect(filterByTestID('test_name', json)[0].children[0]).toEqual(stat_name);
     expect(filterByTestID('test_name_total', json)[0].children[0]).toEqual(stat_total.toLocaleString());
     expect(filterByTestID('test_name_new', json)[0].props.label).toEqual('+' + stat_new);
   });
+
 });
