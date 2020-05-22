@@ -5,6 +5,11 @@ import {CountryDetailCard} from '../components/CountryDetailCard';
 import {ScrollView} from 'react-native';
 import {API_ROOT} from '../../env';
 
+// eslint / prettier integration is recommended as most of the screen is
+// cluttered with warings :-)
+// again separation of concerns: styles and API
+// for api I suggest having a wrapper with very clear API methods
+
 export class HomeScreen extends Component {
   constructor(props) {
     super(props);

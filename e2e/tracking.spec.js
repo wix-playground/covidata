@@ -1,6 +1,8 @@
 describe('Tracking functionality', () => {
 
   beforeEach(async () => {
+    // be aware of the side note: https://github.com/wix/Detox/blob/master/docs/APIRef.DeviceObjectAPI.md#devicereloadreactnative
+    // we usually stick to launchApp
     await device.reloadReactNative();
   });
 

@@ -5,6 +5,11 @@ import {ScrollView, Switch} from 'react-native';
 import {CasesChangeGraph} from '../components/CasesChangeGraph';
 import {API_ROOT} from '../../env';
 
+// separation of concerns, same as home screen.
+// furthermore, since react is a new concept, please refer
+// to (if you haven't already):
+// https://reactjs.org/docs/react-component.html
+
 export class CountryDetailScreen extends Component {
   constructor(props) {
     super(props);
