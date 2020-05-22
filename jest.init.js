@@ -1,3 +1,6 @@
+import {jestHelpers} from 'react-test-renderer-utils';
+const {mockFull} = jestHelpers;
+
 jest.mock('react-native', () => {
   const reactNative = jest.requireActual('react-native');
   reactNative.NativeModules.StatusBarManager.getHeight = jest.fn();
@@ -6,3 +9,5 @@ jest.mock('react-native', () => {
     .mockResolvedValue(false);
   return reactNative;
 });
+
+jest.mock('react-native-ui-lib', () => mockFull(['Badge']))

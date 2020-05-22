@@ -11,8 +11,8 @@ export class CasesChangeGraph extends Component {
     return (
       <LineChart
         data={{
-          labels: this.sliceToNLast(props.labels, MAX_HISTORY_DAYS),
-          datasets: [{data: this.sliceToNLast(props.data, MAX_HISTORY_DAYS)}],
+          labels: this.sliceToNLast(this.props.labels, MAX_HISTORY_DAYS),
+          datasets: [{data: this.sliceToNLast(this.props.data, MAX_HISTORY_DAYS)}],
         }}
         width={Dimensions.get('window').width - 80}
         height={300}
