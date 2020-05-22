@@ -5,6 +5,7 @@ import {StatDetailRow} from './StatDetailRow';
 const emoji = require('country-to-emoji-flag');
 
 export const CountryDetailCard = (props) => {
+  /* in such cases use destructuring: export const CountryDetailCard = ({country}) => ... or const {country} = props */
   const country = props.country;
   return (
     <Card
@@ -14,6 +15,7 @@ export const CountryDetailCard = (props) => {
       <View
         margin={10}>
         <Text
+          /* this can be used as `uppercase` only (true can be omitted) */
           uppercase={true}
           text30H
           testID={`country_name_${country?.slug}`}>

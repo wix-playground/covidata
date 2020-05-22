@@ -27,6 +27,7 @@ export class CountryDetailScreen extends Component {
           <Switch
             testID={'tracking_switch'}
             value={this.state.track}
+            /* avoid passing anonymous functions, create class methods where possible */
             onValueChange={(value) => {this.setState({track: value})}}/>
         </Card>
         <Card padding={20} margin={10} flexDirection={'column'}>

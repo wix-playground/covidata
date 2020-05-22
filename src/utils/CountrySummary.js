@@ -1,3 +1,4 @@
+/* I don't think you need class for this case, simple object would be enough */
 export class CountrySummary {
   constructor(
     name = '',

@@ -4,9 +4,11 @@ import React, {Component} from 'react';
 import {MAX_HISTORY_DAYS} from '../../env';
 
 export class CasesChangeGraph extends Component {
+  /* empty constructor can be omitted */
   constructor(props) {
     super(props)
   }
+  /* separate methods with new lines :) */
   render() {
     return (
       <LineChart
@@ -29,6 +31,7 @@ export class CasesChangeGraph extends Component {
       />
     );
   }
+  /* this looks like a util function for manipulating data, can be moved outside of component */
   sliceToNLast(data, n) {
     return data.slice(Math.max(data.length-n, 0));
   }

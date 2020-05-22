@@ -23,6 +23,11 @@ class CountryListScreen extends Component {
         <FlatList
           testID={'flat_list'}
           data={this.state.countries}
+          /*
+            avoid passing anonymous functions to renderItem as they cause unnecessary re-renders
+            create a class method renderItem = ({item}) => ... and then use it: renderItem={this.renderItem}
+            same can be done for keyExtractor and ItemSeparatorComponent
+          */
           renderItem={({item}) =>
             <CountryRow componentId={this.props.componentId} country={item}/>}
           keyExtractor={((item) => item.slug)}

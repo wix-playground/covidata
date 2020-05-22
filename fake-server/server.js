@@ -28,6 +28,7 @@ server.get('*', (req, res, next) => {
 
 const app = http.createServer(server)
 
+/* you can write export const start ... instead of having module.exports = { start, ... } */
 const start = () => new Promise((resolve, reject) => {
   app.on('error', error => {
     log(error)
