@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { MAX_HISTORY_DAYS } from '../../env'
-import { sliceToNLast } from '../utils/helper_methods'
+import { sliceToNLast } from '../utils/helper-methods'
 
 export const CasesChangeGraph = ({ labels, data }) => {
   return (

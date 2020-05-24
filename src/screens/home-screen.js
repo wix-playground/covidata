@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native-ui-lib'
-import { CountrySummary } from '../utils/CountrySummary'
-import { CountryDetailCard } from '../components/CountryDetailCard'
+import { CountrySummary } from '../utils/country-summary'
+import { CountryDetailCard } from '../components/country-detail-card'
 import { ScrollView } from 'react-native'
 import { API_ROOT } from '../../env'
 

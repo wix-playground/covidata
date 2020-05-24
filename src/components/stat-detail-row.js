@@ -1,5 +1,5 @@
 import {Text, View} from 'react-native-ui-lib';
-import {ConditionalBadge} from './ConditionalBadge';
+import {ConditionalBadge} from './conditional-badge';
 import React from 'react';
 import PropTypes from 'prop-types'
 

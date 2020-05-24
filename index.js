@@ -1,6 +1,6 @@
-import { CountryDetailScreen } from './src/screens/CountryDetailScreen'
-import { CountryListScreen } from './src/screens/CountryListScreen'
-import { HomeScreen } from './src/screens/HomeScreen'
+import { CountryDetailScreen } from './src/screens/country-detail-screen'
+import { CountryListScreen } from './src/screens/country-list-screen'
+import { HomeScreen } from './src/screens/home-screen'
 const { Navigation } = require('react-native-navigation')
 
 Navigation.registerComponent('Home', () => HomeScreen)

@@ -1,8 +1,8 @@
 import React from 'react'
 import { View } from 'react-native-ui-lib'
 import { FlatList } from 'react-native'
-import { CountryRow } from '../components/CountryRow'
-import { CountrySummary } from '../utils/CountrySummary'
+import { CountryRow } from '../components/country-row'
+import { CountrySummary } from '../utils/country-summary'
 import { API_ROOT } from '../../env'
 import PropTypes from 'prop-types'
 

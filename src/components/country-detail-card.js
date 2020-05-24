@@ -1,7 +1,7 @@
 import {Card, Text, View} from 'react-native-ui-lib';
 import React from 'react';
-import {StatDetailRow} from './StatDetailRow';
-import {tryEmoji} from '../utils/helper_methods';
+import {StatDetailRow} from './stat-detail-row';
+import {tryEmoji} from '../utils/helper-methods';
 
 export const CountryDetailCard = ({country}) => {
   return (

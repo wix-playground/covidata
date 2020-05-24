@@ -1,9 +1,9 @@
 import { ListItem, View } from 'react-native-ui-lib'
 import { Text } from 'react-native'
-import { ConditionalBadge } from './ConditionalBadge'
+import { ConditionalBadge } from './conditional-badge'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { tryEmoji } from '../utils/helper_methods'
+import { tryEmoji } from '../utils/helper-methods'
 const { Navigation } = require('react-native-navigation')
 
 export const CountryRow = ({ componentId, country }) => {

@@ -1,5 +1,5 @@
-import { ConditionalBadge } from '../components/ConditionalBadge'
-import { getBadgeColor } from '../utils/helper_methods'
+import { ConditionalBadge } from '../components/conditional-badge'
+import { getBadgeColor } from '../utils/helper-methods'
 const { toJSON, renderComponent } = require('react-component-driver')
 
 describe('ConditionalBadge style application', () => {

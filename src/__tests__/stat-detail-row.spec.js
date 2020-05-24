@@ -1,4 +1,4 @@
-import { StatDetailRow } from '../components/StatDetailRow'
+import { StatDetailRow } from '../components/stat-detail-row'
 import React from 'react'
 const { toJSON, renderComponent, filterByTestID } = require('react-component-driver')
 

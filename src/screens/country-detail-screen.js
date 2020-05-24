@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, Card } from 'react-native-ui-lib'
-import { CountryDetailCard } from '../components/CountryDetailCard'
+import { CountryDetailCard } from '../components/country-detail-card'
 import { ScrollView, Switch } from 'react-native'
-import { CasesChangeGraph } from '../components/CasesChangeGraph'
+import { CasesChangeGraph } from '../components/cases-change-graph'
 import { API_ROOT } from '../../env'
 import PropTypes from 'prop-types'
 

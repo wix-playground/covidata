@@ -1,4 +1,4 @@
-import { sliceToNLast } from '../utils/helper_methods'
+import { sliceToNLast } from '../utils/helper-methods'
 
 describe('Logic for obtaining last N data points for graph', () => {
   it('should return [] for an empty dataset', () => {
