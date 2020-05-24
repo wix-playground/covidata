@@ -1,23 +1,23 @@
 export class CountrySummary {
-  constructor(
+  constructor (
     name = '',
     slug = '',
-    country_code = '',
-    total_confirmed = '',
-    new_confirmed = '',
-    new_deaths = '',
-    total_deaths = '',
-    new_recovered = '',
-    total_recovered = '',
+    countryCode = '',
+    totalConfirmed = '',
+    newConfirmed = '',
+    newDeaths = '',
+    totalDeaths = '',
+    newRecovered = '',
+    totalRecovered = ''
   ) {
-    this.name = name;
-    this.slug = slug;
-    this.country_code = country_code;
-    this.total_confirmed = total_confirmed;
-    this.new_confirmed = new_confirmed;
-    this.new_deaths = new_deaths;
-    this.total_deaths = total_deaths;
-    this.new_recovered = new_recovered;
-    this.total_recovered = total_recovered;
+    this.name = name
+    this.slug = slug
+    this.countryCode = countryCode
+    this.totalConfirmed = totalConfirmed
+    this.newConfirmed = newConfirmed
+    this.newDeaths = newDeaths
+    this.totalDeaths = totalDeaths
+    this.newRecovered = newRecovered
+    this.totalRecovered = totalRecovered
   }
 }

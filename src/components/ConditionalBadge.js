@@ -1,23 +1,17 @@
-import {Badge} from 'react-native-ui-lib';
-import React, {Component} from 'react';
+import { Badge } from 'react-native-ui-lib'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { getBadgeColor } from '../utils/helper_methods'
 
-export class ConditionalBadge extends Component{
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    return (<Badge
-      label={`+${Number(this.props.new_confirmed)}`}
-      backgroundColor={this.getBadgeColor(this.props.new_confirmed, this.props.recoveries)}
-      testID={this.props.testID}/>);
-  }
-  getBadgeColor(number, recoveries = false) {
-    return recoveries
-      ? (number > 0
-        ? 'green'
-        : 'orange')
-      : (number > 0
-        ? 'red'
-        : 'green');
-  }
+export const ConditionalBadge = ({ newConfirmed, testID, recoveries }) => {
+  return (<Badge
+    label={`+${Number(newConfirmed)}`}
+    backgroundColor={getBadgeColor(newConfirmed, recoveries)}
+    testID={testID}/>)
+}
+
+ConditionalBadge.propTypes = {
+  newConfirmed: PropTypes.number,
+  testID: PropTypes.string,
+  recoveries: PropTypes.bool
 }

@@ -1,11 +1,10 @@
-import {CountryDetailScreen} from './src/screens/CountryDetailScreen';
-import React from 'react';
-import CountryListScreen from './src/screens/CountryListScreen';
-import {HomeScreen} from './src/screens/HomeScreen';
-const {Navigation} = require('react-native-navigation');
+import { CountryDetailScreen } from './src/screens/CountryDetailScreen'
+import { CountryListScreen } from './src/screens/CountryListScreen'
+import { HomeScreen } from './src/screens/HomeScreen'
+const { Navigation } = require('react-native-navigation')
 
-Navigation.registerComponent('Home', () => HomeScreen);
-Navigation.registerComponent('CountriesScreen', () => CountryListScreen);
+Navigation.registerComponent('Home', () => HomeScreen)
+Navigation.registerComponent('CountriesScreen', () => CountryListScreen)
 Navigation.registerComponent('CountryDetailScreen', () => CountryDetailScreen)
 
 Navigation.events().registerAppLaunchedListener(async () => {
@@ -16,10 +15,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
     },
     bottomTab: {
       fontSize: 14,
-      selectedFontSize: 14,
-    },
-  });
-  Navigation.setRoot({
+      selectedFontSize: 14
+    }
+  })
+  await Navigation.setRoot({
     root: {
       bottomTabs: {
         children: [
@@ -28,35 +27,35 @@ Navigation.events().registerAppLaunchedListener(async () => {
               children: [
                 {
                   component: {
-                    name: 'Home',
-                  },
-                },
+                    name: 'Home'
+                  }
+                }
               ],
               options: {
                 bottomTab: {
-                  testID: "home_tab_button"
+                  testID: 'home_tab_button'
                 }
               }
-            },
+            }
           },
           {
             stack: {
               children: [
                 {
                   component: {
-                    name: 'CountriesScreen',
-                  },
-                },
+                    name: 'CountriesScreen'
+                  }
+                }
               ],
               options: {
                 bottomTab: {
-                  testID: "countries_tab_button"
+                  testID: 'countries_tab_button'
                 }
               }
-            },
-          },
-        ],
-      },
-    },
-  });
-});
+            }
+          }
+        ]
+      }
+    }
+  })
+})

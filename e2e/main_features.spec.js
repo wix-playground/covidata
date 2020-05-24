@@ -1,7 +1,7 @@
 describe('Main features', () => {
 
   beforeEach(async () => {
-    await device.reloadReactNative();
+    await device.launchApp();
   });
 
   it('should fetch and display the global information from the server', async () => {

@@ -1,11 +1,9 @@
 import {Card, Text, View} from 'react-native-ui-lib';
 import React from 'react';
 import {StatDetailRow} from './StatDetailRow';
+import {tryEmoji} from '../utils/helper_methods';
 
-const emoji = require('country-to-emoji-flag');
-
-export const CountryDetailCard = (props) => {
-  const country = props.country;
+export const CountryDetailCard = ({country}) => {
   return (
     <Card
       padding={10}
@@ -14,37 +12,29 @@ export const CountryDetailCard = (props) => {
       <View
         margin={10}>
         <Text
-          uppercase={true}
+          uppercase
           text30H
           testID={`country_name_${country?.slug}`}>
-          {tryEmoji(country?.country_code)} {country?.name}
+          {tryEmoji(country?.countryCode)} {country?.name}
         </Text>
       </View>
       <StatDetailRow
         stat_name={'Confirmed'}
-        stat_total={country?.total_confirmed}
-        stat_new={country?.new_confirmed}
+        stat_total={country?.totalConfirmed}
+        stat_new={country?.newConfirmed}
         testID_prefix={country?.slug}/>
       <StatDetailRow
         stat_name={'Deaths'}
-        stat_total={country?.total_deaths}
-        stat_new={country?.new_deaths}
+        stat_total={country?.totalDeaths}
+        stat_new={country?.newDeaths}
         testID_prefix={country?.slug}/>
       <StatDetailRow
         stat_name={'Recoveries'}
-        stat_total={country?.total_recovered}
-        stat_new={country?.new_recovered}
+        stat_total={country?.totalRecovered}
+        stat_new={country?.newRecovered}
         recoveries={true}
         testID_prefix={country?.slug}/>
     </Card>
   );
 };
-
-function tryEmoji(code) {
-  try {
-    return emoji(code);
-  } catch(e) {
-    return "🌍"
-  }
-}
 

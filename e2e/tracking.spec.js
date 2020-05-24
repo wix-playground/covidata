@@ -1,7 +1,7 @@
 describe('Tracking functionality', () => {
 
   beforeEach(async () => {
-    await device.reloadReactNative();
+    await device.launchApp();
   });
 
   describe('home screen', () => {
