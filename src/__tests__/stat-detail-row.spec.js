@@ -13,6 +13,7 @@ describe('Tests for a single statistics row', () => {
       stat_new: statNew,
       testID_prefix: testIDPrefix
     }))
+
     expect(filterByTestID('test_name', json)[0].children[0]).toEqual(statName)
     expect(filterByTestID('test_name_total', json)[0].children[0]).toEqual(statTotal.toLocaleString())
     expect(filterByTestID('test_name_new', json)[0].props.label).toEqual('+' + statNew)

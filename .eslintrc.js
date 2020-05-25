@@ -1,11 +1,14 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true
+    es6: true,
+    'jasmine': true
   },
   extends: [
     'plugin:react/recommended',
-    'standard'
+    'standard',
+    'eslint:recommended',
+    'plugin:jasmine/recommended'
   ],
   globals: {
     Atomics: 'readonly',
@@ -19,7 +22,7 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react'
+    'react', 'jasmine'
   ],
   rules: {
   }
