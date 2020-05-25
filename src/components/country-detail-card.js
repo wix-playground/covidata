@@ -16,7 +16,7 @@ export const CountryDetailCard = ({country}) => {
           uppercase
           text30H
           testID={`country_name_${country?.slug}`}>
-          {tryEmoji(country?.countryCode)} {country?.name}
+          {`${tryEmoji(country?.countryCode)} ${country?.name}`}
         </Text>
       </View>
       <StatDetailRow
