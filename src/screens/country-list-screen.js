@@ -3,7 +3,7 @@ import { CountryRow } from '../components/country-row'
 import { CountrySummary } from '../utils/country-summary'
 import { API_ROOT } from '../../env'
 import PropTypes from 'prop-types'
-import { CountryListScreenComp } from '../components/country-list-screen-comp';
+import { CountryListScreenComp } from '../components/country-list-screen-comp'
 
 export class CountryListScreen extends React.Component {
   constructor (props) {
@@ -48,17 +48,6 @@ export class CountryListScreen extends React.Component {
         this.setState({ countries: countries })
       })
       .catch(error => console.error(error))
-  }
-}
-
-CountryListScreen.options = {
-  topBar: {
-    title: {
-      text: 'Countries'
-    }
-  },
-  bottomTab: {
-    text: 'Countries'
   }
 }
 

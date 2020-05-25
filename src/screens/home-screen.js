@@ -61,14 +61,3 @@ export class HomeScreen extends React.Component {
   }
 }
 
-HomeScreen.options = {
-  topBar: {
-    title: {
-      text: 'Home'
-    }
-  },
-  bottomTab: {
-    text: 'Home'
-  }
-}
-

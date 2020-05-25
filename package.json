@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "fake-server": "node fake-server",
+    "start-e2e": "RN_SRC_EXT=e2e.js react-native start",
+    "test-e2e": "detox test --configuration ios.sim.debug"
   },
   "dependencies": {
     "@react-native-community/blur": "^3.6.0",
@@ -15,6 +18,7 @@
     "@react-native-community/netinfo": "^5.9.0",
     "country-to-emoji-flag": "^1.0.0",
     "express": "^4.17.1",
+    "http": "0.0.1-security",
     "jetifier": "^1.6.5",
     "prop-types": "^15.7.2",
     "react": "16.11.0",
@@ -54,6 +58,16 @@
     "react-test-renderer": "16.11.0",
     "react-test-renderer-utils": "^2.1.0",
     "typescript": "^3.8.3"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "module:metro-react-native-babel-preset"
+        ],
+        "retainLines": true
+      }
+    }
   },
   "jest": {
     "preset": "react-native",

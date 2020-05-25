@@ -23,13 +23,21 @@ function setRoot () {
               children: [
                 {
                   component: {
-                    name: 'Home'
+                    name: 'Home',
+                    options: {
+                      topBar: {
+                        title: {
+                          text: 'Home'
+                        }
+                      }
+                    }
                   }
                 }
               ],
               options: {
                 bottomTab: {
-                  testID: 'home_tab_button'
+                  testID: 'home_tab_button',
+                  text: 'Home'
                 }
               }
             }
@@ -39,13 +47,21 @@ function setRoot () {
               children: [
                 {
                   component: {
-                    name: 'CountriesScreen'
+                    name: 'CountriesScreen',
+                    options: {
+                      topBar: {
+                        title: {
+                          text: 'Countries'
+                        }
+                      }
+                    }
                   }
                 }
               ],
               options: {
                 bottomTab: {
-                  testID: 'countries_tab_button'
+                  testID: 'countries_tab_button',
+                  text: 'Countries'
                 }
               }
             }
@@ -65,4 +81,3 @@ function setDefaultNavigationOptions () {
     }
   })
 }
-

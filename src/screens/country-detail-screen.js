@@ -22,7 +22,7 @@ export class CountryDetailScreen extends React.Component {
     return (<CountryDetailScreenComp
       country={this.state.country}
       track={this.state.track}
-      onValueChange={this.onValueChange}
+      onValueChange={this.onValueChange.bind(this)}
       labels={this.state.labels}
       data={this.state.data}/>)
   }

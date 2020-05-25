@@ -1,19 +1,16 @@
-import { PORT } from '../env.e2e'
 const http = require('http')
 const express = require('express')
 const server = express()
-const chalk = require('chalk')
 
-const LOG_PREFIX = chalk.white.bgBlue.bold('Fake server:') + ' '
+const PORT = 1234
+const LOG_PREFIX = ('Fake server: ')
 const log = message => console.log(LOG_PREFIX + message)
 
 server.get('/summary', (req, res) => {
-  log('request for summary')
   res.send(require('./data/summary.json'))
 })
 
-server.get('/total/dayone/country/:countryslug', (req, res) => {
-  log(`request for details of ${req.params.countryslug.toUpperCase()}`)
+server.get('/total/dayone/country/:countrySlug', (req, res) => {
   res.send(require('./data/country.json'))
 })
 
@@ -28,7 +25,7 @@ server.get('*', (req, res, next) => {
 
 const app = http.createServer(server)
 
-export const start = () => new Promise((resolve, reject) => {
+const start = () => new Promise((resolve, reject) => {
   app.on('error', error => {
     log(error)
     reject(error)
@@ -40,6 +37,9 @@ export const start = () => new Promise((resolve, reject) => {
   })
 })
 
-export const stop = () => {
+const stop = () => {
   app.close()
 }
+
+// export of type "export const ..." did not work. keeping this for now
+module.exports = { start, stop }

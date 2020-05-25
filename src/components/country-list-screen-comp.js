@@ -1,6 +1,7 @@
-import {FlatList, StyleSheet} from 'react-native';
-import {View} from 'react-native-ui-lib';
-import React from 'react';
+import { FlatList, StyleSheet } from 'react-native'
+import { View } from 'react-native-ui-lib'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export const CountryListScreenComp = ({ countries, renderItem }) => {
   return (
@@ -31,3 +32,8 @@ const style = StyleSheet.create({
     backgroundColor: '#CEDCCE'
   }
 })
+
+CountryListScreenComp.propTypes = {
+  countries: PropTypes.array,
+  renderItem: PropTypes.func
+}
