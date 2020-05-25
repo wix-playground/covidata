@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Card } from 'react-native-ui-lib'
 import { CountryDetailCard } from '../components/country-detail-card'
-import { ScrollView, Switch } from 'react-native'
+import { ScrollView, Switch, StyleSheet } from 'react-native'
 import { CasesChangeGraph } from '../components/cases-change-graph'
 import { API_ROOT } from '../../env'
 import PropTypes from 'prop-types'
@@ -25,7 +25,7 @@ export class CountryDetailScreen extends React.Component {
     return (
       <ScrollView flex>
         <CountryDetailCard country={this.state.country}/>
-        <Card flexDirection={'row'} style={{ alignSelf: 'stretch' }} padding={20} margin={10}>
+        <Card flexDirection={'row'} style={styles.trackCard} padding={20} margin={10}>
           <Text flex text60BO>⭐️  Track</Text>
           <Switch
             testID={'tracking_switch'}
@@ -34,7 +34,7 @@ export class CountryDetailScreen extends React.Component {
         </Card>
         <Card padding={20} margin={10} flexDirection={'column'}>
           <View>
-            <Text text60M style={{ marginBottom: 30 }}>🗓️  Recent data</Text>
+            <Text text60M style={styles.cardTitle}>🗓️  Recent data</Text>
           </View>
           <View>
             <CasesChangeGraph labels={this.state.labels} data={this.state.data}/>
@@ -68,3 +68,12 @@ export class CountryDetailScreen extends React.Component {
 CountryDetailScreen.propTypes = {
   country: PropTypes.object
 }
+
+const styles = StyleSheet.create({
+  trackCard: {
+    alignSelf: 'stretch'
+  },
+  cardTitle: {
+    marginBottom: 30
+  }
+})

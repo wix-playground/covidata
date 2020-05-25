@@ -1,5 +1,6 @@
 import {Card, Text, View} from 'react-native-ui-lib';
 import React from 'react';
+import {StyleSheet} from 'react-native'
 import {StatDetailRow} from './stat-detail-row';
 import {tryEmoji} from '../utils/helper-methods';
 
@@ -8,7 +9,7 @@ export const CountryDetailCard = ({country}) => {
     <Card
       padding={10}
       margin={10}
-      style={{alignSelf: 'stretch'}}>
+      style={styles.align}>
       <View
         margin={10}>
         <Text
@@ -38,3 +39,8 @@ export const CountryDetailCard = ({country}) => {
   );
 };
 
+const styles = StyleSheet.create({
+  align: {
+    alignSelf: 'stretch'
+  }
+})

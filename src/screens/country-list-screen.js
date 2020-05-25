@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native-ui-lib'
-import { FlatList } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import { CountryRow } from '../components/country-row'
 import { CountrySummary } from '../utils/country-summary'
 import { API_ROOT } from '../../env'
@@ -41,7 +41,7 @@ export class CountryListScreen extends React.Component {
   }
 
   separator () {
-    return (<View style={{ height: 1, width: '100%', backgroundColor: '#CEDCCE' }}/>)
+    return (<View style={style.separator}/>)
   }
 
   updateCountries () {
@@ -84,3 +84,11 @@ CountryListScreen.options = {
 CountryListScreen.propTypes = {
   componentId: PropTypes.string
 }
+
+const style = StyleSheet.create({
+  separator: {
+    height: 1,
+    width: '100%',
+    backgroundColor: '#CEDCCE'
+  }
+})

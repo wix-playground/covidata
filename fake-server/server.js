@@ -1,4 +1,4 @@
-import {PORT} from '../env.e2e'
+import { PORT } from '../env.e2e'
 const http = require('http')
 const express = require('express')
 const server = express()

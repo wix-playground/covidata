@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native-ui-lib'
 import { CountrySummary } from '../utils/country-summary'
 import { CountryDetailCard } from '../components/country-detail-card'
-import { ScrollView } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { API_ROOT } from '../../env'
 
 export class HomeScreen extends React.Component {
@@ -22,14 +22,7 @@ export class HomeScreen extends React.Component {
       <ScrollView flex padding-page>
         <CountryDetailCard country={this.state.globalData}/>
         <View>
-          <View style={{
-            marginLeft: 50,
-            marginRight: 50,
-            marginTop: 10,
-            marginBottom: 10,
-            backgroundColor: '#d1d0d1',
-            height: 1
-          }}/>
+          <View style={styles.divider}/>
         </View>
       </ScrollView>
     )
@@ -41,7 +34,7 @@ export class HomeScreen extends React.Component {
       .then(json => {
         const globalData = json.Global
         const global = (
-          new CountrySummary(
+          CountrySummary(
             'Global',
             'global',
             '',
@@ -56,7 +49,7 @@ export class HomeScreen extends React.Component {
         const countriesData = json.Countries
         for (const country of countriesData) {
           countries.push(
-            new CountrySummary(
+            CountrySummary(
               country.Country,
               country.Slug,
               country.CountryCode,
@@ -87,3 +80,14 @@ HomeScreen.options = {
     text: 'Home'
   }
 }
+
+const styles = StyleSheet.create({
+  divider: {
+    marginLeft: 50,
+    marginRight: 50,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: '#d1d0d1',
+    height: 1
+  }
+});
