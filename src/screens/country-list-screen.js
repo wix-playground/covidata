@@ -1,10 +1,9 @@
 import React from 'react'
-import { View } from 'react-native-ui-lib'
-import { FlatList, StyleSheet } from 'react-native'
 import { CountryRow } from '../components/country-row'
 import { CountrySummary } from '../utils/country-summary'
 import { API_ROOT } from '../../env'
 import PropTypes from 'prop-types'
+import { CountryListScreenComp } from '../components/country-list-screen-comp';
 
 export class CountryListScreen extends React.Component {
   constructor (props) {
@@ -19,29 +18,11 @@ export class CountryListScreen extends React.Component {
   }
 
   render () {
-    return (
-      <View>
-        <FlatList
-          testID={'flat_list'}
-          data={this.state.countries}
-          renderItem={this.renderItem.bind(this)}
-          keyExtractor={this.keyExtractor}
-          ItemSeparatorComponent={this.separator}
-        />
-      </View>
-    )
+    return (<CountryListScreenComp countries={this.state.countries} renderItem={this.renderItem.bind(this)}/>)
   }
 
   renderItem ({ item }) {
     return (<CountryRow componentId={this.props.componentId} country={item}/>)
-  }
-
-  keyExtractor (item) {
-    return item.slug
-  }
-
-  separator () {
-    return (<View style={style.separator}/>)
   }
 
   updateCountries () {
@@ -84,11 +65,3 @@ CountryListScreen.options = {
 CountryListScreen.propTypes = {
   componentId: PropTypes.string
 }
-
-const style = StyleSheet.create({
-  separator: {
-    height: 1,
-    width: '100%',
-    backgroundColor: '#CEDCCE'
-  }
-})

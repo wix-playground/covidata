@@ -1,9 +1,7 @@
 import React from 'react'
-import { View } from 'react-native-ui-lib'
 import { CountrySummary } from '../utils/country-summary'
-import { CountryDetailCard } from '../components/country-detail-card'
-import { ScrollView, StyleSheet } from 'react-native'
 import { API_ROOT } from '../../env'
+import {HomeScreenComp} from '../components/home-screen-comp';
 
 export class HomeScreen extends React.Component {
 
@@ -18,14 +16,7 @@ export class HomeScreen extends React.Component {
   }
 
   render () {
-    return (
-      <ScrollView flex padding-page>
-        <CountryDetailCard country={this.state.globalData}/>
-        <View>
-          <View style={styles.divider}/>
-        </View>
-      </ScrollView>
-    )
+    return (<HomeScreenComp globalData={this.state.globalData}/>)
   }
 
   getData () {
@@ -81,13 +72,3 @@ HomeScreen.options = {
   }
 }
 
-const styles = StyleSheet.create({
-  divider: {
-    marginLeft: 50,
-    marginRight: 50,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#d1d0d1',
-    height: 1
-  }
-});

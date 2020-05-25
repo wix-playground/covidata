@@ -1,5 +1,4 @@
 import { StatDetailRow } from '../components/stat-detail-row'
-import React from 'react'
 const { toJSON, renderComponent, filterByTestID } = require('react-component-driver')
 
 describe('Tests for a single statistics row', () => {
