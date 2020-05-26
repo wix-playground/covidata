@@ -1,7 +1,7 @@
 import { waitForElement } from 'react-native-testing-library'
 import { CountryListScreen } from '../screens/country-list-screen'
 import { filterByTestID, getTextNodes, renderComponent } from 'react-component-driver'
-import { CountryListScreenDriver } from './util/country-list-screen-driver'
+import { CountryListScreenDriver } from '../utils/country-list-screen-driver'
 
 describe('should behave correctly in the country list screen', () => {
   it('should create a list of countries on fetch', async () => {

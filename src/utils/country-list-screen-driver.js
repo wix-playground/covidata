@@ -1,5 +1,5 @@
 import { ComponentDriver } from 'react-component-driver'
-import { CountryListScreen } from '../../screens/country-list-screen'
+import { CountryListScreen } from '../screens/country-list-screen'
 import { Navigation } from 'react-native-navigation'
 const { _ } = require('lodash')
 
