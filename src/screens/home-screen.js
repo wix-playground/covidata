@@ -1,7 +1,7 @@
 import React from 'react'
 import { CountrySummary } from '../utils/country-summary'
 import { API_ROOT } from '../../env'
-import {HomeScreenComp} from '../components/home-screen-comp';
+import { HomeScreenComp } from '../components/home-screen-comp'
 
 export class HomeScreen extends React.Component {
 

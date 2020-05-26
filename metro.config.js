@@ -5,4 +5,4 @@ module.exports = {
       ? process.env.RN_SRC_EXT.split(',').concat(defaultSourceExts)
       : defaultSourceExts
   }
-};
+}
