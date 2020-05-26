@@ -29,6 +29,6 @@ export const CasesChangeGraph = ({ labels, data }) => {
 }
 
 CasesChangeGraph.propTypes = {
-  labels: PropTypes.array.isRequired,
-  data: PropTypes.array.isRequired
+  labels: PropTypes.array,
+  data: PropTypes.array
 }

@@ -15,11 +15,12 @@
   "dependencies": {
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/datetimepicker": "^2.4.0",
-    "@react-native-community/netinfo": "^5.9.0",
+    "@react-native-community/netinfo": "^5.9.1",
     "country-to-emoji-flag": "^1.0.0",
     "express": "^4.17.1",
     "http": "0.0.1-security",
     "jetifier": "^1.6.5",
+    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "16.11.0",
     "react-component-driver": "^0.10.0",
@@ -27,7 +28,7 @@
     "react-native-chart-kit": "^5.5.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-navigation": "^6.6.2",
-    "react-native-reanimated": "^1.8.0",
+    "react-native-reanimated": "^1.9.0",
     "react-native-svg": "^12.1.0",
     "react-native-testing-library": "^1.14.0",
     "react-native-ui-lib": "^5.8.0",
@@ -45,7 +46,10 @@
     "@types/react-test-renderer": "16.9.2",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-jest": "^24.9.0",
+    "babel-loader": "^8.1.0",
     "chalk": "^4.0.0",
     "detox": "^16.5.1",
     "eslint": "^7.1.0",
@@ -89,7 +93,8 @@
       "node"
     ],
     "transform": {
-      "node_modules/react-native/.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+      "node_modules/react-native/.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "node_modules/react-native-chart-kit/.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
     "setupFiles": [
       "./jest.init.js"

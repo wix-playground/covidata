@@ -1,7 +1,7 @@
 const emoji = require('country-to-emoji-flag')
 
 export function sliceToNLast (data, n) {
-  return data.slice(Math.max(data.length - n, 0))
+  return data ? data.slice(Math.max(data.length - n, 0)) : []
 }
 
 export function getBadgeColor (number, recoveries = false) {

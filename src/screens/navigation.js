@@ -8,9 +8,9 @@ export function setUpNavigation () {
 }
 
 export function registerComponents () {
-  Navigation.registerComponent('Home', () => require('./screens/home-screen').HomeScreen)
-  Navigation.registerComponent('CountriesScreen', () => require('./screens/country-list-screen').CountryListScreen)
-  Navigation.registerComponent('CountryDetailScreen', () => require('./screens/country-detail-screen').CountryDetailScreen)
+  Navigation.registerComponent('Home', () => require('./home-screen').HomeScreen)
+  Navigation.registerComponent('CountriesScreen', () => require('./country-list-screen').CountryListScreen)
+  Navigation.registerComponent('CountryDetailScreen', () => require('./country-detail-screen').CountryDetailScreen)
 }
 
 function setRoot () {
