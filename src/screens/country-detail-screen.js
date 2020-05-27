@@ -19,6 +19,17 @@ export class CountryDetailScreen extends React.Component {
   }
 
   render () {
+    /*
+       .bind will create new function every render
+       you either need to use arrow function (onValueChange = value => ...) or use .bind in constructor
+       constructor (props) {
+         super(props)
+         ...
+         this.onValueChange = this.onValueChange.bind(this)
+       }
+
+       in Events we use arrow functions as constructors are basically not needed (state assignment can be moved outside of it)
+    */
     return (<CountryDetailScreenComp
       country={this.state.country}
       track={this.state.track}
@@ -34,6 +45,18 @@ export class CountryDetailScreen extends React.Component {
   async getCountryDetail () {
     const labels = []
     const data = []
+    /*
+      to keep components more clear, I would suggest moving API logic out of them, e.g.:
+
+      import {getCountryDetail} from '../utils/api
+
+      ...
+
+      async getCountryDetail () {
+        const {labels, data} = await getCountryDetail(this.state.country.slug)
+        this.setState({ labels, data })
+      }
+    */
     await fetch(`${API_ROOT}/total/dayone/country/${this.state.country.slug}`)
       .then(response => response.json())
       .then(json => {

@@ -20,6 +20,7 @@ export const CountryDetailCard = ({country}) => {
         </Text>
       </View>
       <StatDetailRow
+        /* use camelCase for props */
         stat_name={'Confirmed'}
         stat_total={country?.totalConfirmed}
         stat_new={country?.newConfirmed}

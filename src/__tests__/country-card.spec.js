@@ -57,6 +57,7 @@ describe('tests for the country card views', () => {
     expect(json2.props.backgroundColor).toEqual('green')
     expect(json2.props.label).toEqual('+0')
 
+    /* json2, json3 doesn't tell a lot - this test could be separated into 3 different cases with descriptive `it`s */
     const json3 = toJSON(renderComponent(ConditionalBadge, { newConfirmed: 0, testID: 'cond', recoveries: true }))
 
     expect(json3.props.backgroundColor).toEqual('orange')

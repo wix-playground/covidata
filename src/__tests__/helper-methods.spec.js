@@ -18,6 +18,11 @@ describe('tests for helper methods', () => {
   })
 
   describe('backgroundColor for ConditionalBadge logic tests', () => {
+    /*
+      as these unit tests are very fast, there's no need in having multi assertions in one test
+      you can have 'should return "green" for 0 deaths' and 'should return "green" for > 0 recoveries'
+      this makes it easier to catch what's exactly failing
+    */
     it('should return "green" for 0 deaths/cases OR > 0 recoveries', () => {
       expect(getBadgeColor(0)).toEqual('green')
       expect(getBadgeColor(10, true)).toEqual('green')

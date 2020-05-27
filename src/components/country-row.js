@@ -7,6 +7,7 @@ import { tryEmoji } from '../utils/helper-methods'
 const { Navigation } = require('react-native-navigation')
 
 export const CountryRow = ({ componentId, country }) => {
+  /* I would move Navigation.push outside (e.g. navigation utils, navigateToCountryDetails(country)) */
   return (
     <ListItem paddingL-15 paddingR-15
       testID={`${country.slug}_row`}

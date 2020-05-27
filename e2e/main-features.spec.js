@@ -23,5 +23,6 @@ describe('Main features', () => {
   it('should open Country details screen on country selected', async () => {
     await element(by.id('countries_tab_button')).tap()
     await element(by.id('afghanistan')).tap()
+    /* there should probably be some verification of country details screen */
   })
 })

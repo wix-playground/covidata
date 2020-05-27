@@ -3,6 +3,7 @@ const { Navigation } = require('react-native-navigation')
 export function setUpNavigation () {
   Navigation.events().registerAppLaunchedListener(async () => {
     setDefaultNavigationOptions()
+    /* await in this case does nothing as you need to return from setRoot or have await before Navigation.setRoot */
     await setRoot()
   })
 }
