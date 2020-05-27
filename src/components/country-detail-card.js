@@ -4,6 +4,9 @@ import {StyleSheet} from 'react-native'
 import {StatDetailRow} from './stat-detail-row';
 import {tryEmoji} from '../utils/helper-methods';
 
+// home-screen-comp has globalData defined as props,
+// while this screen could really use defined props that
+// are being used inside this component
 export const CountryDetailCard = ({country}) => {
   return (
     <Card

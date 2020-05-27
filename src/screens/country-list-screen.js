@@ -27,6 +27,7 @@ export class CountryListScreen extends React.Component {
 
   updateCountries () {
     const countries = []
+    // same comment as in home-screen regarding API
     fetch(`${API_ROOT}/summary`)
       .then(response => response.json())
       .then(json => {

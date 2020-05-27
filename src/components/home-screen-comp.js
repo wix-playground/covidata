@@ -28,4 +28,7 @@ const styles = StyleSheet.create({
 
 HomeScreenComp.propTypes = {
   globalData: PropTypes.object
+  // globalData could have specified fields that are most valuable
+  // to you in the code. just saying that globalData is an object
+  // doesnt provide much value
 }

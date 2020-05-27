@@ -3,6 +3,8 @@ import { CountryListScreen } from '../screens/country-list-screen'
 import { Navigation } from 'react-native-navigation'
 const { _ } = require('lodash')
 
+// test utils should be separate from your regular utils in production code,
+// as tests and their utils are not used in production
 export class CountryListScreenDriver extends ComponentDriver {
   constructor () {
     super(CountryListScreen)

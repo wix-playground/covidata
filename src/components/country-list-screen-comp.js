@@ -7,6 +7,8 @@ export const CountryListScreenComp = ({ countries, renderItem }) => {
   return (
     <View>
       <FlatList
+        // moving testIDs to separate file and using them as constants would 
+        // help you in both component tests and e2es
         testID={'flat_list'}
         data={countries}
         renderItem={renderItem}

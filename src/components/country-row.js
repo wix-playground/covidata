@@ -10,8 +10,11 @@ export const CountryRow = ({ componentId, country }) => {
   return (
     <ListItem paddingL-15 paddingR-15
       testID={`${country.slug}_row`}
+      // could onPress be a constant?
       onPress={() => Navigation.push(componentId, {
         component: {
+          // it is easy to get lost with strings, constants
+          // are more reliable for screenIds, same as testIds
           name: 'CountryDetailScreen',
           passProps: {
             country: country

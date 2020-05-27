@@ -20,6 +20,11 @@ export class HomeScreen extends React.Component {
   }
 
   getData () {
+    // same comment as previously. I suggest having a separate
+    // file wrapping your API requests. The following could
+    // be replaced by a clear and readable CovidApi.getSummary()
+    // or similar
+    // getData could have a more descriptive name
     fetch(`${API_ROOT}/summary`)
       .then(response => response.json())
       .then(json => {

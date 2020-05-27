@@ -34,6 +34,7 @@ export class CountryDetailScreen extends React.Component {
   async getCountryDetail () {
     const labels = []
     const data = []
+    // same comment as in home-screen regarding api
     await fetch(`${API_ROOT}/total/dayone/country/${this.state.country.slug}`)
       .then(response => response.json())
       .then(json => {
