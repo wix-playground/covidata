@@ -1,6 +1,6 @@
-import {Provider} from 'react-redux';
-import React from 'react';
-import {store} from '../redux/reducers';
+import { Provider } from 'react-redux'
+import React from 'react'
+import { store } from '../redux/configure-store'
 
 const { Navigation } = require('react-native-navigation')
 

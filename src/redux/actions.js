@@ -1,11 +1,31 @@
-import { COUNTRIES_UPDATED } from './constants'
+export const FETCH_SUMMARY_SUCCESS = 'FETCH_SUMMARY_SUCCESS'
+export const FETCH_COUNTRY_DATA_SUCCESS = 'FETCH_COUNTRY_DATA_SUCCESS'
+export const FETCH_FAILURE = 'FETCH_FAILURE'
 
-export const updateCountries = (countries, globalData) => {
+export const fetchSummarySuccess = (countries, globalData) => {
   return {
-    type: COUNTRIES_UPDATED,
+    type: FETCH_SUMMARY_SUCCESS,
     payload: {
-      countries: countries,
-      globalData: globalData
+      countries,
+      globalData
     }
+  }
+}
+
+export const fetchCountryDataSuccess = (labels, data) => {
+  return {
+    type: FETCH_COUNTRY_DATA_SUCCESS,
+    payload: {
+      labels,
+      data
+    }
+  }
+}
+
+export const fetchFailure = (error) => {
+  console.log(FETCH_FAILURE)
+  return {
+    type: FETCH_FAILURE,
+    error: error
   }
 }

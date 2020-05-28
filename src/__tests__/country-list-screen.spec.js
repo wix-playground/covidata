@@ -1,14 +1,13 @@
-import { waitForElement } from 'react-native-testing-library'
 import { CountryListScreen } from '../screens/country-list-screen'
 import { filterByTestID, getTextNodes, renderComponent } from 'react-component-driver'
-import { CountryListScreenDriver } from '../utils/country-list-screen-driver'
+import { CountryListScreenDriver } from './utils/country-list-screen-driver'
+import { extractCountries } from '../api/fetch-summary'
+
+const countries = extractCountries(require('../../fake-server/data/summary.json')).countries
 
 describe('should behave correctly in the country list screen', () => {
   it('should create a list of countries on fetch', async () => {
-    const comp = renderComponent(CountryListScreen)
-    await waitForElement(() =>
-
-      expect(fetch).toHaveBeenCalledTimes(1))
+    const comp = renderComponent(CountryListScreen, { countries })
 
     const countries10 = filterByTestID(/.*_row/, comp)
 
@@ -19,13 +18,14 @@ describe('should behave correctly in the country list screen', () => {
   })
 
   it('should open the country detail page on flat list item press', async () => {
+    const countries = extractCountries(require('../../fake-server/data/summary.json')).countries
     const driver = new CountryListScreenDriver()
+    driver.setProps({ countries })
     await driver.renderAsync()
 
     const countrySlug = 'afghanistan'
-    const allCountryData = driver.getByID('flat_list').props.data
-    const countryData = allCountryData.filter((node) => node.slug === countrySlug)[0]
 
+    const countryData = driver.getCountryData(countrySlug)
     driver.tapCountry(countrySlug)
 
     expect(driver.openedCountryScreenWith(countryData)).toBeTruthy()

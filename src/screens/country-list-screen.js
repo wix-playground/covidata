@@ -5,13 +5,6 @@ import { connect } from 'react-redux'
 import { CountryListScreenComp } from '../components/country-list-screen-comp'
 
 export class CountryListScreen extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      countries: []
-    }
-  }
-
   render () {
     return (<CountryListScreenComp
       countries={this.props.countries}
@@ -22,7 +15,6 @@ export class CountryListScreen extends React.Component {
   renderItem ({ item }) {
     return (<CountryRow componentId={this.props.componentId} country={item}/>)
   }
-
 }
 
 CountryListScreen.propTypes = {

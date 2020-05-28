@@ -1,68 +1,26 @@
-import React from 'react';
-import {CountrySummary} from '../utils/country-summary';
-import {API_ROOT} from '../../env';
-import HomeScreenComp from '../components/home-screen-comp';
+import React from 'react'
+import HomeScreenComp from '../components/home-screen-comp'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import {updateCountries} from '../redux/actions';
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import { fetchSummary } from '../api/fetch-summary'
 
 export class HomeScreen extends React.Component {
-  componentDidMount() {
-    this.getData();
+  componentDidMount () {
+    this.props.fetchSummary()
   }
 
-  render() {
-    return (<HomeScreenComp/>);
-  }
-
-  getData() {
-    fetch(`${API_ROOT}/summary`)
-      .then(response => response.json())
-      .then(json => {
-        const globalData = json.Global;
-        const global = (
-          CountrySummary(
-            'Global',
-            'global',
-            '',
-            globalData.TotalConfirmed,
-            globalData.NewConfirmed,
-            globalData.NewDeaths,
-            globalData.TotalDeaths,
-            globalData.NewRecovered,
-            globalData.TotalRecovered)
-        );
-        const countries = [];
-        const countriesData = json.Countries;
-        for (const country of countriesData) {
-          countries.push(
-            CountrySummary(
-              country.Country,
-              country.Slug,
-              country.CountryCode,
-              country.TotalConfirmed,
-              country.NewConfirmed,
-              country.NewDeaths,
-              country.TotalDeaths,
-              country.NewRecovered,
-              country.TotalRecovered),
-          );
-        }
-        this.props.updateCountries(countries, global);
-      })
-      .catch(error => console.error(error));
+  render () {
+    return (<HomeScreenComp/>)
   }
 }
 
 HomeScreen.propTypes = {
-  updateCountries: PropTypes.func
+  fetchSummary: PropTypes.func
 }
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    updateCountries,
-  }, dispatch)
-);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchSummary: fetchSummary
+}, dispatch)
 
 export default connect(null, mapDispatchToProps)(HomeScreen)

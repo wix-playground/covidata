@@ -9,7 +9,7 @@ const { Navigation } = require('react-native-navigation')
 export const CountryRow = ({ componentId, country }) => {
   return (
     <ListItem paddingL-15 paddingR-15
-      testID={`${country.slug}_row`}
+      testID={`${country.Slug}_row`}
       onPress={() => Navigation.push(componentId, {
         component: {
           name: 'CountryDetailScreen',
@@ -19,13 +19,13 @@ export const CountryRow = ({ componentId, country }) => {
         }
       })}
     >
-      <View centerH flex flexDirection={'row'} testID={country.slug}>
-        <Text>{tryEmoji(country.countryCode)}  </Text>
-        <Text>{country.name}</Text>
+      <View centerH flex flexDirection={'row'} testID={country.Slug}>
+        <Text>{tryEmoji(country.CountryCode)}  </Text>
+        <Text>{country.Country}</Text>
       </View>
       <View centerH flexDirection={'row'}>
-        <Text>{country.totalConfirmed?.toLocaleString()}   </Text>
-        <ConditionalBadge newConfirmed={country.newConfirmed}/>
+        <Text>{country.TotalConfirmed?.toLocaleString()}   </Text>
+        <ConditionalBadge newConfirmed={country.NewConfirmed}/>
       </View>
     </ListItem>
   )
