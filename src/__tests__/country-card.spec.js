@@ -5,9 +5,9 @@ import {
   TEST_ID_COUNTRY_NAME,
   TEST_ID_STAT_PREFIX_NAME,
   TEST_ID_STAT_PREFIX_NAME_NEW,
-  TEST_ID_STAT_PREFIX_NAME_TOTAL,
-} from '../test-ids';
-import {CONFIRMED, DEATHS, RECOVERIES} from '../strings';
+  TEST_ID_STAT_PREFIX_NAME_TOTAL
+} from '../test-ids'
+import { CONFIRMED, DEATHS, RECOVERIES } from '../strings'
 
 const { toJSON, renderComponent, filterByTestID } = require('react-component-driver')
 

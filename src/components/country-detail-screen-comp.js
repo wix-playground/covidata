@@ -4,8 +4,8 @@ import { Card, Text, View } from 'react-native-ui-lib'
 import { CasesChangeGraph } from './cases-change-graph'
 import React from 'react'
 import PropTypes from 'prop-types'
-import {TEST_ID_TRACKING_SWITCH} from '../test-ids';
-import {RECENT_DATA, TRACK} from '../strings';
+import { TEST_ID_TRACKING_SWITCH } from '../test-ids'
+import { RECENT_DATA, TRACK } from '../strings'
 
 export const CountryDetailScreenComp = ({ country, track, onValueChange, labels, data }) => {
   return (
