@@ -1,4 +1,4 @@
-import { setUpNavigation, registerComponents } from './src/screens/navigation'
+import {registerComponents, setUpNavigation} from './src/screens/navigation';
 
 const launch = () => {
   registerComponents()
@@ -6,3 +6,4 @@ const launch = () => {
 }
 
 launch()
+

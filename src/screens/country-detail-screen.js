@@ -2,6 +2,8 @@ import React from 'react'
 import { API_ROOT } from '../../env'
 import PropTypes from 'prop-types'
 import { CountryDetailScreenComp } from '../components/country-detail-screen-comp'
+import { connect } from 'react-redux'
+
 
 export class CountryDetailScreen extends React.Component {
   constructor (props) {
@@ -51,3 +53,5 @@ export class CountryDetailScreen extends React.Component {
 CountryDetailScreen.propTypes = {
   country: PropTypes.object
 }
+
+export default connect()(CountryDetailScreen)

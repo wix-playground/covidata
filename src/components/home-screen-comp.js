@@ -2,17 +2,20 @@ import { CountryDetailCard } from './country-detail-card'
 import { View } from 'react-native-ui-lib'
 import { ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-export const HomeScreenComp = ({ globalData }) => {
-  return (
-    <ScrollView flex padding-page>
-      <CountryDetailCard country={globalData}/>
-      <View>
-        <View style={styles.divider}/>
-      </View>
-    </ScrollView>
-  )
+export class HomeScreenComp extends React.Component {
+  render() {
+    return (
+      <ScrollView flex padding-page>
+        <CountryDetailCard country={this.props.globalData}/>
+        <View>
+          <View style={styles.divider}/>
+        </View>
+      </ScrollView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -29,3 +32,11 @@ const styles = StyleSheet.create({
 HomeScreenComp.propTypes = {
   globalData: PropTypes.object
 }
+
+const mapStateToProps = state => {
+  return {
+    globalData: state.globalData
+  }
+}
+
+export default connect(mapStateToProps, null)(HomeScreenComp)
