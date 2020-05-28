@@ -24,15 +24,15 @@ describe('tests for the country card views', () => {
 
   it('correctly passes data to a card and constructs the necessary views', () => {
     const country = {
-      name: 'Lithuania',
-      countryCode: 'LT',
-      slug: 'lithuania',
-      totalConfirmed: 1,
-      newConfirmed: 2,
-      totalDeaths: 3,
-      newDeaths: 4,
-      totalRecovered: 5,
-      newRecovered: 6
+      Country: 'Lithuania',
+      CountryCode: 'LT',
+      Slug: 'lithuania',
+      TotalConfirmed: 1,
+      NewConfirmed: 2,
+      TotalDeaths: 3,
+      NewDeaths: 4,
+      TotalRecovered: 5,
+      NewRecovered: 6
     }
 
     const card = toJSON(renderComponent(CountryDetailCard, { country }))

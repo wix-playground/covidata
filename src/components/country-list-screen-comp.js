@@ -18,7 +18,7 @@ export const CountryListScreenComp = ({ countries, renderItem }) => {
 }
 
 const keyExtractor = (item) => {
-  return item.slug
+  return item.Slug
 }
 
 const separator = () => {

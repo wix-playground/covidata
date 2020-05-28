@@ -1,11 +1,20 @@
 import { ComponentDriver } from 'react-component-driver'
-import { CountryListScreen } from '../screens/country-list-screen'
+import { CountryListScreen } from '../../screens/country-list-screen'
 import { Navigation } from 'react-native-navigation'
 const { _ } = require('lodash')
 
 export class CountryListScreenDriver extends ComponentDriver {
   constructor () {
     super(CountryListScreen)
+  }
+
+  getCountryData (countrySlug) {
+    const allCountryData = this.getListData()
+    return allCountryData.filter((node) => node.Slug === countrySlug)[0]
+  }
+
+  getListData () {
+    return this.getByID('flat_list').props.data
   }
 
   didPushScreenWithProps (screenName, props) {

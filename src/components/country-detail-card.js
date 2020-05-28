@@ -15,26 +15,26 @@ export const CountryDetailCard = ({country}) => {
         <Text
           uppercase
           text30H
-          testID={`country_name_${country?.slug}`}>
-          {`${tryEmoji(country?.countryCode)} ${country?.name}`}
+          testID={`country_name_${country.Slug || "global"}`}>
+          {`${tryEmoji(country?.CountryCode)} ${country?.Country || "Global"}`}
         </Text>
       </View>
       <StatDetailRow
         stat_name={'Confirmed'}
-        stat_total={country?.totalConfirmed}
-        stat_new={country?.newConfirmed}
-        testID_prefix={country?.slug}/>
+        stat_total={country?.TotalConfirmed}
+        stat_new={country?.NewConfirmed}
+        testID_prefix={country?.Slug || "global"}/>
       <StatDetailRow
         stat_name={'Deaths'}
-        stat_total={country?.totalDeaths}
-        stat_new={country?.newDeaths}
-        testID_prefix={country?.slug}/>
+        stat_total={country?.TotalDeaths}
+        stat_new={country?.NewDeaths}
+        testID_prefix={country?.Slug || "global"}/>
       <StatDetailRow
         stat_name={'Recoveries'}
-        stat_total={country?.totalRecovered}
-        stat_new={country?.newRecovered}
+        stat_total={country?.TotalRecovered}
+        stat_new={country?.NewRecovered}
         recoveries={true}
-        testID_prefix={country?.slug}/>
+        testID_prefix={country?.Slug || "global"}/>
     </Card>
   );
 };

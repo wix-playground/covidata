@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 export class HomeScreenComp extends React.Component {
-  render() {
+  render () {
     return (
       <ScrollView flex padding-page>
         <CountryDetailCard country={this.props.globalData}/>
@@ -39,4 +39,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(HomeScreenComp)
+export default connect(mapStateToProps)(HomeScreenComp)
