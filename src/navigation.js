@@ -1,8 +1,8 @@
-import {Provider} from 'react-redux';
-import React from 'react';
-import {store} from './redux/configure-store';
-import {TEST_ID_COUNTRIES_TAB_BUTTON, TEST_ID_HOME_TAB_BUTTON} from './test-ids';
-import {COUNTRIES, COUNTRIES_SCREEN, COUNTRY_DETAIL_SCREEN, HOME, HOME_SCREEN} from './strings';
+import { Provider } from 'react-redux'
+import React from 'react'
+import { store } from './redux/configure-store'
+import { TEST_ID_COUNTRIES_TAB_BUTTON, TEST_ID_HOME_TAB_BUTTON } from './test-ids'
+import { COUNTRIES, COUNTRIES_SCREEN, COUNTRY_DETAIL_SCREEN, HOME, HOME_SCREEN } from './strings'
 
 const { Navigation } = require('react-native-navigation')
 

@@ -1,12 +1,12 @@
-import {Card, Text, View} from 'react-native-ui-lib';
-import React from 'react';
-import {StyleSheet} from 'react-native'
-import {StatDetailRow} from './stat-detail-row';
-import {tryEmoji} from '../utils/helper-methods';
-import {TEST_ID_COUNTRY_NAME, TEST_ID_COUNTRY_SLUG} from '../test-ids';
-import {CONFIRMED, DEATHS, GLOBAL, RECOVERIES} from '../strings';
+import { Card, Text, View } from 'react-native-ui-lib'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+import { StatDetailRow } from './stat-detail-row'
+import { tryEmoji } from '../utils/helper-methods'
+import { TEST_ID_COUNTRY_NAME, TEST_ID_COUNTRY_SLUG } from '../test-ids'
+import { CONFIRMED, DEATHS, GLOBAL, RECOVERIES } from '../strings'
 
-export const CountryDetailCard = ({country}) => {
+export const CountryDetailCard = ({ country }) => {
   return (
     <Card
       padding={10}
@@ -38,8 +38,8 @@ export const CountryDetailCard = ({country}) => {
         recoveries={true}
         testID_prefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
     </Card>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   align: {
