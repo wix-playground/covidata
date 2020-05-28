@@ -40,7 +40,18 @@ const styles = StyleSheet.create({
 })
 
 CountryDetailScreenComp.propTypes = {
-  country: PropTypes.object,
+  country: PropTypes.shape({
+    Country: PropTypes.string,
+    CountryCode: PropTypes.string,
+    Slug: PropTypes.string,
+    NewConfirmed: PropTypes.number,
+    TotalConfirmed: PropTypes.number,
+    NewDeaths: PropTypes.number,
+    TotalDeaths: PropTypes.number,
+    NewRecovered: PropTypes.number,
+    TotalRecovered: PropTypes.number,
+    Date: PropTypes.string
+  }),
   track: PropTypes.bool,
   onValueChange: PropTypes.func,
   labels: PropTypes.array,
