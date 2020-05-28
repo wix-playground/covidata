@@ -6,6 +6,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { TEST_ID_TRACKING_SWITCH } from '../test-ids'
 import { RECENT_DATA, TRACK } from '../strings'
+import { countryPropTypes } from '../prop-types'
 
 export const CountryDetailScreenComp = ({ country, track, onValueChange, labels, data }) => {
   return (
@@ -40,18 +41,7 @@ const styles = StyleSheet.create({
 })
 
 CountryDetailScreenComp.propTypes = {
-  country: PropTypes.shape({
-    Country: PropTypes.string,
-    CountryCode: PropTypes.string,
-    Slug: PropTypes.string,
-    NewConfirmed: PropTypes.number,
-    TotalConfirmed: PropTypes.number,
-    NewDeaths: PropTypes.number,
-    TotalDeaths: PropTypes.number,
-    NewRecovered: PropTypes.number,
-    TotalRecovered: PropTypes.number,
-    Date: PropTypes.string
-  }),
+  country: countryPropTypes,
   track: PropTypes.bool,
   onValueChange: PropTypes.func,
   labels: PropTypes.array,
