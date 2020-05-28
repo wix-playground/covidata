@@ -12,15 +12,7 @@ export const CountryRow = ({ componentId, country }) => {
   return (
     <ListItem paddingL-15 paddingR-15
       testID={TEST_ID_COUNTRY_ROW(country.Slug)}
-      onPress={() => Navigation.push(componentId, {
-        component: {
-          name: COUNTRY_DETAIL_SCREEN,
-          passProps: {
-            country: country
-          }
-        }
-      })}
-    >
+      onPress={() => pushCountryDetailScreen(componentId, country)}>
       <View centerH flex flexDirection={'row'} testID={TEST_ID_COUNTRY_SLUG(country.Slug)}>
         <Text>{tryEmoji(country.CountryCode)}  </Text>
         <Text>{country.Country}</Text>
@@ -33,7 +25,29 @@ export const CountryRow = ({ componentId, country }) => {
   )
 }
 
+const pushCountryDetailScreen = (componentId, country) => {
+  Navigation.push(componentId, {
+    component: {
+      name: COUNTRY_DETAIL_SCREEN,
+      passProps: {
+        country: country
+      }
+    }
+  })
+}
+
 CountryRow.propTypes = {
   componentId: PropTypes.string,
-  country: PropTypes.object
+  country: PropTypes.shape({
+    Country: PropTypes.string,
+    CountryCode: PropTypes.string,
+    Slug: PropTypes.string,
+    NewConfirmed: PropTypes.number,
+    TotalConfirmed: PropTypes.number,
+    NewDeaths: PropTypes.number,
+    TotalDeaths: PropTypes.number,
+    NewRecovered: PropTypes.number,
+    TotalRecovered: PropTypes.number,
+    Date: PropTypes.string
+  })
 }

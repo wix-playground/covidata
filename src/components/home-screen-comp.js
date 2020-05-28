@@ -30,7 +30,14 @@ const styles = StyleSheet.create({
 })
 
 HomeScreenComp.propTypes = {
-  globalData: PropTypes.object
+  globalData: PropTypes.shape({
+    NewConfirmed: PropTypes.number,
+    TotalConfirmed: PropTypes.number,
+    NewDeaths: PropTypes.number,
+    TotalDeaths: PropTypes.number,
+    NewRecovered: PropTypes.number,
+    TotalRecovered: PropTypes.number
+  })
 }
 
 const mapStateToProps = state => {
