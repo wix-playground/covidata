@@ -4,21 +4,23 @@ import { Card, Text, View } from 'react-native-ui-lib'
 import { CasesChangeGraph } from './cases-change-graph'
 import React from 'react'
 import PropTypes from 'prop-types'
+import {TEST_ID_TRACKING_SWITCH} from '../test-ids';
+import {RECENT_DATA, TRACK} from '../strings';
 
 export const CountryDetailScreenComp = ({ country, track, onValueChange, labels, data }) => {
   return (
     <ScrollView flex>
       <CountryDetailCard country={country}/>
       <Card flexDirection={'row'} style={styles.trackCard} padding={20} margin={10}>
-        <Text flex text60BO>⭐️  Track</Text>
+        <Text flex text60BO>{TRACK}</Text>
         <Switch
-          testID={'tracking_switch'}
+          testID={TEST_ID_TRACKING_SWITCH}
           value={track}
           onValueChange={onValueChange}/>
       </Card>
       <Card padding={20} margin={10} flexDirection={'column'}>
         <View>
-          <Text text60M style={styles.cardTitle}>🗓️  Recent data</Text>
+          <Text text60M style={styles.cardTitle}>{RECENT_DATA}</Text>
         </View>
         <View>
           <CasesChangeGraph labels={labels} data={data}/>

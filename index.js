@@ -1,4 +1,4 @@
-import {registerComponents, setUpNavigation} from './src/screens/navigation';
+import {registerComponents, setUpNavigation} from './src/navigation';
 
 const launch = () => {
   registerComponents()
