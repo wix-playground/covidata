@@ -1,3 +1,7 @@
+import {Provider} from 'react-redux';
+import React from 'react';
+import {store} from '../redux/reducers';
+
 const { Navigation } = require('react-native-navigation')
 
 export function setUpNavigation () {
@@ -8,9 +12,24 @@ export function setUpNavigation () {
 }
 
 export function registerComponents () {
-  Navigation.registerComponent('Home', () => require('./home-screen').HomeScreen)
-  Navigation.registerComponent('CountriesScreen', () => require('./country-list-screen').CountryListScreen)
-  Navigation.registerComponent('CountryDetailScreen', () => require('./country-detail-screen').CountryDetailScreen)
+  const HomeScreen = require('./home-screen').default
+  const CountryListScreen = require('./country-list-screen').default
+  const CountryDetailScreen = require('./country-detail-screen').default
+  Navigation.registerComponent('Home', () => (props) => (
+    <Provider store={store}>
+      <HomeScreen {...props} />
+    </Provider>
+  ), () => HomeScreen)
+  Navigation.registerComponent('CountriesScreen', () => (props) => (
+    <Provider store={store}>
+      <CountryListScreen {...props} />
+    </Provider>
+  ), () => CountryListScreen)
+  Navigation.registerComponent('CountryDetailScreen', () => (props) => (
+    <Provider store={store}>
+      <CountryDetailScreen {...props} />
+    </Provider>
+  ), () => CountryDetailScreen)
 }
 
 function setRoot () {

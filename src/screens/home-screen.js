@@ -1,29 +1,26 @@
-import React from 'react'
-import { CountrySummary } from '../utils/country-summary'
-import { API_ROOT } from '../../env'
-import { HomeScreenComp } from '../components/home-screen-comp'
+import React from 'react';
+import {CountrySummary} from '../utils/country-summary';
+import {API_ROOT} from '../../env';
+import HomeScreenComp from '../components/home-screen-comp';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import {updateCountries} from '../redux/actions';
+import PropTypes from 'prop-types'
 
 export class HomeScreen extends React.Component {
-
-  state = {
-    globalData: undefined,
-    countries: [],
-    trackedSlugs: []
+  componentDidMount() {
+    this.getData();
   }
 
-  componentDidMount () {
-    this.getData()
+  render() {
+    return (<HomeScreenComp/>);
   }
 
-  render () {
-    return (<HomeScreenComp globalData={this.state.globalData}/>)
-  }
-
-  getData () {
+  getData() {
     fetch(`${API_ROOT}/summary`)
       .then(response => response.json())
       .then(json => {
-        const globalData = json.Global
+        const globalData = json.Global;
         const global = (
           CountrySummary(
             'Global',
@@ -35,9 +32,9 @@ export class HomeScreen extends React.Component {
             globalData.TotalDeaths,
             globalData.NewRecovered,
             globalData.TotalRecovered)
-        )
-        const countries = []
-        const countriesData = json.Countries
+        );
+        const countries = [];
+        const countriesData = json.Countries;
         for (const country of countriesData) {
           countries.push(
             CountrySummary(
@@ -49,15 +46,23 @@ export class HomeScreen extends React.Component {
               country.NewDeaths,
               country.TotalDeaths,
               country.NewRecovered,
-              country.TotalRecovered)
-          )
+              country.TotalRecovered),
+          );
         }
-        this.setState({
-          globalData: global,
-          countries: countries
-        })
+        this.props.updateCountries(countries, global);
       })
-      .catch(error => console.error(error))
+      .catch(error => console.error(error));
   }
 }
 
+HomeScreen.propTypes = {
+  updateCountries: PropTypes.func
+}
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    updateCountries,
+  }, dispatch)
+);
+
+export default connect(null, mapDispatchToProps)(HomeScreen)

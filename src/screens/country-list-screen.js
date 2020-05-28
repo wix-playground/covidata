@@ -1,8 +1,7 @@
 import React from 'react'
 import { CountryRow } from '../components/country-row'
-import { CountrySummary } from '../utils/country-summary'
-import { API_ROOT } from '../../env'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { CountryListScreenComp } from '../components/country-list-screen-comp'
 
 export class CountryListScreen extends React.Component {
@@ -13,44 +12,28 @@ export class CountryListScreen extends React.Component {
     }
   }
 
-  componentDidMount () {
-    this.updateCountries()
-  }
-
   render () {
-    return (<CountryListScreenComp countries={this.state.countries} renderItem={this.renderItem.bind(this)}/>)
+    return (<CountryListScreenComp
+      countries={this.props.countries}
+      renderItem={this.renderItem.bind(this)}
+    />)
   }
 
   renderItem ({ item }) {
     return (<CountryRow componentId={this.props.componentId} country={item}/>)
   }
 
-  updateCountries () {
-    const countries = []
-    fetch(`${API_ROOT}/summary`)
-      .then(response => response.json())
-      .then(json => {
-        const data = json.Countries
-        for (const country of data) {
-          countries.push(
-            new CountrySummary(
-              country.Country,
-              country.Slug,
-              country.CountryCode,
-              country.TotalConfirmed,
-              country.NewConfirmed,
-              country.NewDeaths,
-              country.TotalDeaths,
-              country.NewRecovered,
-              country.TotalRecovered)
-          )
-        }
-        this.setState({ countries: countries })
-      })
-      .catch(error => console.error(error))
-  }
 }
 
 CountryListScreen.propTypes = {
-  componentId: PropTypes.string
+  componentId: PropTypes.string,
+  countries: PropTypes.array
 }
+
+const mapStateToProps = state => {
+  return {
+    countries: state.countries
+  }
+}
+
+export default connect(mapStateToProps)(CountryListScreen)
