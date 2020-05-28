@@ -8,7 +8,7 @@ export class CountryListScreen extends React.Component {
   render () {
     return (<CountryListScreenComp
       countries={this.props.countries}
-      renderItem={this.renderItem.bind(this)}
+      renderItem={(item) => this.renderItem(item)}
     />)
   }
 
