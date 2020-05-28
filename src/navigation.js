@@ -1,6 +1,8 @@
-import { Provider } from 'react-redux'
-import React from 'react'
-import { store } from '../redux/configure-store'
+import {Provider} from 'react-redux';
+import React from 'react';
+import {store} from './redux/configure-store';
+import {TEST_ID_COUNTRIES_TAB_BUTTON, TEST_ID_HOME_TAB_BUTTON} from './test-ids';
+import {COUNTRIES, COUNTRIES_SCREEN, COUNTRY_DETAIL_SCREEN, HOME, HOME_SCREEN} from './strings';
 
 const { Navigation } = require('react-native-navigation')
 
@@ -12,20 +14,20 @@ export function setUpNavigation () {
 }
 
 export function registerComponents () {
-  const HomeScreen = require('./home-screen').default
-  const CountryListScreen = require('./country-list-screen').default
-  const CountryDetailScreen = require('./country-detail-screen').default
-  Navigation.registerComponent('Home', () => (props) => (
+  const HomeScreen = require('./screens/home-screen').default
+  const CountryListScreen = require('./screens/country-list-screen').default
+  const CountryDetailScreen = require('./screens/country-detail-screen').default
+  Navigation.registerComponent(HOME_SCREEN, () => (props) => (
     <Provider store={store}>
       <HomeScreen {...props} />
     </Provider>
   ), () => HomeScreen)
-  Navigation.registerComponent('CountriesScreen', () => (props) => (
+  Navigation.registerComponent(COUNTRIES_SCREEN, () => (props) => (
     <Provider store={store}>
       <CountryListScreen {...props} />
     </Provider>
   ), () => CountryListScreen)
-  Navigation.registerComponent('CountryDetailScreen', () => (props) => (
+  Navigation.registerComponent(COUNTRY_DETAIL_SCREEN, () => (props) => (
     <Provider store={store}>
       <CountryDetailScreen {...props} />
     </Provider>
@@ -42,11 +44,11 @@ function setRoot () {
               children: [
                 {
                   component: {
-                    name: 'Home',
+                    name: HOME_SCREEN,
                     options: {
                       topBar: {
                         title: {
-                          text: 'Home'
+                          text: HOME
                         }
                       }
                     }
@@ -55,8 +57,8 @@ function setRoot () {
               ],
               options: {
                 bottomTab: {
-                  testID: 'home_tab_button',
-                  text: 'Home'
+                  testID: TEST_ID_HOME_TAB_BUTTON,
+                  text: HOME
                 }
               }
             }
@@ -66,11 +68,11 @@ function setRoot () {
               children: [
                 {
                   component: {
-                    name: 'CountriesScreen',
+                    name: COUNTRIES_SCREEN,
                     options: {
                       topBar: {
                         title: {
-                          text: 'Countries'
+                          text: COUNTRIES
                         }
                       }
                     }
@@ -79,8 +81,8 @@ function setRoot () {
               ],
               options: {
                 bottomTab: {
-                  testID: 'countries_tab_button',
-                  text: 'Countries'
+                  testID: TEST_ID_COUNTRIES_TAB_BUTTON,
+                  text: COUNTRIES
                 }
               }
             }

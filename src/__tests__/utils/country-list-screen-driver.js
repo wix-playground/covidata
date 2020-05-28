@@ -1,6 +1,8 @@
 import { ComponentDriver } from 'react-component-driver'
 import { CountryListScreen } from '../../screens/country-list-screen'
 import { Navigation } from 'react-native-navigation'
+import {TEST_ID_COUNTRY_ROW, TEST_ID_FLAT_LIST} from '../../test-ids';
+import {COUNTRY_DETAIL_SCREEN} from '../../strings';
 const { _ } = require('lodash')
 
 export class CountryListScreenDriver extends ComponentDriver {
@@ -14,7 +16,7 @@ export class CountryListScreenDriver extends ComponentDriver {
   }
 
   getListData () {
-    return this.getByID('flat_list').props.data
+    return this.getByID(TEST_ID_FLAT_LIST).props.data
   }
 
   didPushScreenWithProps (screenName, props) {
@@ -25,13 +27,13 @@ export class CountryListScreenDriver extends ComponentDriver {
 
   openedCountryScreenWith (countryObj) {
     return this.didPushScreenWithProps(
-      'CountryDetailScreen',
+      COUNTRY_DETAIL_SCREEN,
       { country: countryObj }
     )
   }
 
   tapCountry (countrySlug) {
-    this.getByID(`${countrySlug}_row`).props.onPress()
+    this.getByID(TEST_ID_COUNTRY_ROW(countrySlug)).props.onPress()
     return this
   }
 }

@@ -3,6 +3,8 @@ import React from 'react';
 import {StyleSheet} from 'react-native'
 import {StatDetailRow} from './stat-detail-row';
 import {tryEmoji} from '../utils/helper-methods';
+import {TEST_ID_COUNTRY_NAME, TEST_ID_COUNTRY_SLUG} from '../test-ids';
+import {CONFIRMED, DEATHS, GLOBAL, RECOVERIES} from '../strings';
 
 export const CountryDetailCard = ({country}) => {
   return (
@@ -15,26 +17,26 @@ export const CountryDetailCard = ({country}) => {
         <Text
           uppercase
           text30H
-          testID={`country_name_${country.Slug || "global"}`}>
-          {`${tryEmoji(country?.CountryCode)} ${country?.Country || "Global"}`}
+          testID={TEST_ID_COUNTRY_NAME(country.Slug)}>
+          {`${tryEmoji(country.CountryCode)} ${country.Country || GLOBAL}`}
         </Text>
       </View>
       <StatDetailRow
-        stat_name={'Confirmed'}
-        stat_total={country?.TotalConfirmed}
-        stat_new={country?.NewConfirmed}
-        testID_prefix={country?.Slug || "global"}/>
+        stat_name={CONFIRMED}
+        stat_total={country.TotalConfirmed}
+        stat_new={country.NewConfirmed}
+        testID_prefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
       <StatDetailRow
-        stat_name={'Deaths'}
-        stat_total={country?.TotalDeaths}
-        stat_new={country?.NewDeaths}
-        testID_prefix={country?.Slug || "global"}/>
+        stat_name={DEATHS}
+        stat_total={country.TotalDeaths}
+        stat_new={country.NewDeaths}
+        testID_prefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
       <StatDetailRow
-        stat_name={'Recoveries'}
-        stat_total={country?.TotalRecovered}
-        stat_new={country?.NewRecovered}
+        stat_name={RECOVERIES}
+        stat_total={country.TotalRecovered}
+        stat_new={country.NewRecovered}
         recoveries={true}
-        testID_prefix={country?.Slug || "global"}/>
+        testID_prefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
     </Card>
   );
 };

@@ -2,12 +2,13 @@ import { FlatList, StyleSheet } from 'react-native'
 import { View } from 'react-native-ui-lib'
 import React from 'react'
 import PropTypes from 'prop-types'
+import {TEST_ID_FLAT_LIST} from '../test-ids';
 
 export const CountryListScreenComp = ({ countries, renderItem }) => {
   return (
     <View>
       <FlatList
-        testID={'flat_list'}
+        testID={TEST_ID_FLAT_LIST}
         data={countries}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
