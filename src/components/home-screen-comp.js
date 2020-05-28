@@ -3,7 +3,7 @@ import { View } from 'react-native-ui-lib'
 import { ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { globalDataPropTypes } from '../prop-types'
 
 export class HomeScreenComp extends React.Component {
   render () {
@@ -30,14 +30,7 @@ const styles = StyleSheet.create({
 })
 
 HomeScreenComp.propTypes = {
-  globalData: PropTypes.shape({
-    NewConfirmed: PropTypes.number,
-    TotalConfirmed: PropTypes.number,
-    NewDeaths: PropTypes.number,
-    TotalDeaths: PropTypes.number,
-    NewRecovered: PropTypes.number,
-    TotalRecovered: PropTypes.number
-  })
+  globalData: globalDataPropTypes
 }
 
 const mapStateToProps = state => {

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { tryEmoji } from '../utils/helper-methods'
 import {TEST_ID_COUNTRY_ROW, TEST_ID_COUNTRY_SLUG} from '../test-ids';
 import {COUNTRY_DETAIL_SCREEN} from '../strings';
+import {countryPropTypes} from '../prop-types';
 const { Navigation } = require('react-native-navigation')
 
 export const CountryRow = ({ componentId, country }) => {
@@ -38,16 +39,5 @@ const pushCountryDetailScreen = (componentId, country) => {
 
 CountryRow.propTypes = {
   componentId: PropTypes.string,
-  country: PropTypes.shape({
-    Country: PropTypes.string,
-    CountryCode: PropTypes.string,
-    Slug: PropTypes.string,
-    NewConfirmed: PropTypes.number,
-    TotalConfirmed: PropTypes.number,
-    NewDeaths: PropTypes.number,
-    TotalDeaths: PropTypes.number,
-    NewRecovered: PropTypes.number,
-    TotalRecovered: PropTypes.number,
-    Date: PropTypes.string
-  })
+  country: countryPropTypes
 }
