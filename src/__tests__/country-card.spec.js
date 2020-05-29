@@ -11,17 +11,17 @@ import { CONFIRMED, DEATHS, RECOVERIES } from '../strings'
 
 const { toJSON, renderComponent, filterByTestID } = require('react-component-driver')
 
-describe('tests for the country card views', () => {
+describe('Country card views', () => {
   it('should display the stat name, comma-separated value, new case badge in a single stat row', () => {
     const statName = 'name'
     const statTotal = 1234
     const statNew = 4321
     const testIDPrefix = 'test'
     const row = toJSON(renderComponent(StatDetailRow, {
-      stat_name: statName,
-      stat_total: statTotal,
-      stat_new: statNew,
-      testID_prefix: testIDPrefix
+      statName: statName,
+      statTotal: statTotal,
+      statNew: statNew,
+      testIdPrefix: testIDPrefix
     }))
 
     expect(filterByTestID(TEST_ID_STAT_PREFIX_NAME(testIDPrefix, statName), row)[0].children[0]).toEqual(statName)
@@ -53,20 +53,26 @@ describe('tests for the country card views', () => {
     expect(filterByTestID(TEST_ID_STAT_PREFIX_NAME_NEW(country.Slug, RECOVERIES), card)[0].props.label).toEqual('+6')
   })
 
-  it('ConditionalBadge should be coloured and have + prepended to the label', () => {
-    const json = toJSON(renderComponent(ConditionalBadge, { newConfirmed: 1, testID: 'cond' }))
+  describe('ConditionalBadge should be coloured and have + prepended to the label', () => {
+    it('correctly chooses label and BackgroundColor as red', () => {
+      const redCondJSON = toJSON(renderComponent(ConditionalBadge, { newConfirmed: 1, testID: 'cond' }))
 
-    expect(json.props.backgroundColor).toEqual('red')
-    expect(json.props.label).toEqual('+1')
+      expect(redCondJSON.props.backgroundColor).toEqual('red')
+      expect(redCondJSON.props.label).toEqual('+1')
+    })
 
-    const json2 = toJSON(renderComponent(ConditionalBadge, { newConfirmed: 0, testID: 'cond' }))
+    it('correctly chooses label and BackgroundColor as green', () => {
+      const greenCondJSON = toJSON(renderComponent(ConditionalBadge, { newConfirmed: 0, testID: 'cond' }))
 
-    expect(json2.props.backgroundColor).toEqual('green')
-    expect(json2.props.label).toEqual('+0')
+      expect(greenCondJSON.props.backgroundColor).toEqual('green')
+      expect(greenCondJSON.props.label).toEqual('+0')
+    })
 
-    const json3 = toJSON(renderComponent(ConditionalBadge, { newConfirmed: 0, testID: 'cond', recoveries: true }))
+    it('correctly chooses label and BackgroundColor as orange', () => {
+      const orangeCondJSON = toJSON(renderComponent(ConditionalBadge, { newConfirmed: 0, testID: 'cond', recoveries: true }))
 
-    expect(json3.props.backgroundColor).toEqual('orange')
-    expect(json3.props.label).toEqual('+0')
+      expect(orangeCondJSON.props.backgroundColor).toEqual('orange')
+      expect(orangeCondJSON.props.label).toEqual('+0')
+    })
   })
 })

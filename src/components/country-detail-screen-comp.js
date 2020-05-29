@@ -8,7 +8,7 @@ import { TEST_ID_TRACKING_SWITCH } from '../test-ids'
 import { RECENT_DATA, TRACK } from '../strings'
 import { countryPropTypes } from '../prop-types'
 
-export const CountryDetailScreenComp = ({ country, track, onValueChange, labels, data }) => {
+export const CountryDetailScreenComp = React.memo(function CountryDetailsScreenComp ({ country, track, onValueChange, labels, data }) {
   return (
     <ScrollView flex>
       <CountryDetailCard country={country}/>
@@ -29,7 +29,7 @@ export const CountryDetailScreenComp = ({ country, track, onValueChange, labels,
       </Card>
     </ScrollView>
   )
-}
+})
 
 const styles = StyleSheet.create({
   trackCard: {

@@ -1,7 +1,7 @@
 import { getBadgeColor, sliceToNLast } from '../utils/helper-methods'
 
-describe('tests for helper methods', () => {
-  describe('logic for obtaining last N data points for graph', () => {
+describe('Helper methods', () => {
+  describe('Logic for obtaining last N data points for graph', () => {
     it('should return [] for an empty dataset', () => {
       expect(sliceToNLast([], 0)).toEqual([])
       expect(sliceToNLast([], 1)).toEqual([])
@@ -17,14 +17,20 @@ describe('tests for helper methods', () => {
     })
   })
 
-  describe('backgroundColor for ConditionalBadge logic tests', () => {
-    it('should return "green" for 0 deaths/cases OR > 0 recoveries', () => {
+  describe('BackgroundColor for ConditionalBadge logic', () => {
+    it('should return "green" for 0 deaths/cases', () => {
       expect(getBadgeColor(0)).toEqual('green')
+    })
+
+    it('should return "green" for > 0 recoveries', () => {
       expect(getBadgeColor(10, true)).toEqual('green')
     })
 
-    it('should return "red" ("orange") for > 0 deaths/cases (0 recoveries)', () => {
+    it('should return "red" for > 0 deaths/cases', () => {
       expect(getBadgeColor(1)).toEqual('red')
+    })
+
+    it('should return "orange" for 0 recoveries', () => {
       expect(getBadgeColor(0, true)).toEqual('orange')
     })
   })

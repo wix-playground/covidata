@@ -7,7 +7,7 @@ import { TEST_ID_COUNTRY_NAME, TEST_ID_COUNTRY_SLUG } from '../test-ids'
 import { CONFIRMED, DEATHS, GLOBAL, RECOVERIES } from '../strings'
 import { countryPropTypes } from '../prop-types'
 
-export const CountryDetailCard = ({ country }) => {
+export const CountryDetailCard = React.memo(function CountryDetailCard ({ country }) {
   return (
     <Card
       padding={10}
@@ -23,24 +23,24 @@ export const CountryDetailCard = ({ country }) => {
         </Text>
       </View>
       <StatDetailRow
-        stat_name={CONFIRMED}
-        stat_total={country.TotalConfirmed}
-        stat_new={country.NewConfirmed}
-        testID_prefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
+        statName={CONFIRMED}
+        statTotal={country.TotalConfirmed}
+        statNew={country.NewConfirmed}
+        testIdPrefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
       <StatDetailRow
-        stat_name={DEATHS}
-        stat_total={country.TotalDeaths}
-        stat_new={country.NewDeaths}
-        testID_prefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
+        statName={DEATHS}
+        statTotal={country.TotalDeaths}
+        statNew={country.NewDeaths}
+        testIdPrefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
       <StatDetailRow
-        stat_name={RECOVERIES}
-        stat_total={country.TotalRecovered}
-        stat_new={country.NewRecovered}
+        statName={RECOVERIES}
+        statTotal={country.TotalRecovered}
+        statNew={country.NewRecovered}
         recoveries={true}
-        testID_prefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
+        testIdPrefix={TEST_ID_COUNTRY_SLUG(country.Slug)}/>
     </Card>
   )
-}
+})
 
 CountryDetailCard.propTypes = {
   country: countryPropTypes

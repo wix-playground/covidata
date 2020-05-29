@@ -5,7 +5,7 @@ import React from 'react'
 import { MAX_HISTORY_DAYS } from '../../env'
 import { sliceToNLast } from '../utils/helper-methods'
 
-export const CasesChangeGraph = ({ labels, data }) => {
+export const CasesChangeGraph = React.memo(function CasesChangeGraph ({ labels, data }) {
   return (
     <LineChart
       data={{
@@ -26,7 +26,7 @@ export const CasesChangeGraph = ({ labels, data }) => {
       }}
     />
   )
-}
+})
 
 CasesChangeGraph.propTypes = {
   labels: PropTypes.array,

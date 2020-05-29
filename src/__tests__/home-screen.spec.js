@@ -1,7 +1,7 @@
 import { store } from '../redux/configure-store'
 import { HomeScreenDriver } from './utils/home-screen-driver'
 
-describe('should behave correctly in the home screen', () => {
+describe('Home screen', () => {
   it('should store, process and display global data on fetch', async () => {
     const driver = new HomeScreenDriver(store)
     await driver.renderAsync()

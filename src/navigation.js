@@ -9,7 +9,7 @@ const { Navigation } = require('react-native-navigation')
 export function setUpNavigation () {
   Navigation.events().registerAppLaunchedListener(async () => {
     setDefaultNavigationOptions()
-    await setRoot()
+    setRoot()
   })
 }
 
