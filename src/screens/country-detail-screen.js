@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { countryPropTypes } from '../prop-types'
 import { fetchCountryStatsAction } from '../redux/actions'
+import { LoaderScreen } from 'react-native-ui-lib'
 
 export class CountryDetailScreen extends React.Component {
   constructor (props) {
@@ -22,12 +23,15 @@ export class CountryDetailScreen extends React.Component {
   }
 
   render () {
-    return (<CountryDetailScreenComp
-      country={this.state.country}
-      track={this.state.track}
-      onValueChange={this.onValueChange}
-      labels={this.props.labels}
-      data={this.props.data}/>)
+    return (this.props.pending
+      ? <LoaderScreen overlay/>
+      : <CountryDetailScreenComp
+        country={this.state.country}
+        track={this.state.track}
+        onValueChange={this.onValueChange}
+        labels={this.props.labels}
+        data={this.props.data}/>
+    )
   }
 
   onValueChange (value) {
@@ -39,12 +43,14 @@ CountryDetailScreen.propTypes = {
   country: countryPropTypes,
   fetchCountryStatsAction: PropTypes.func,
   labels: PropTypes.array,
-  data: PropTypes.array
+  data: PropTypes.array,
+  pending: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
   data: state.data,
-  labels: state.labels
+  labels: state.labels,
+  pending: state.pending
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

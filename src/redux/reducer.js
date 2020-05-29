@@ -7,7 +7,7 @@ export const initialState = {
   error: null,
   labels: [],
   data: [0],
-  pending: false
+  pending: true
 }
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
