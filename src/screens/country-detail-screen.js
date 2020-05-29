@@ -4,6 +4,7 @@ import { CountryDetailScreenComp } from '../components/country-detail-screen-com
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchCountryData } from '../api/fetch-country-data'
+import { countryPropTypes } from '../prop-types'
 
 export class CountryDetailScreen extends React.Component {
   constructor (props) {
@@ -35,7 +36,7 @@ export class CountryDetailScreen extends React.Component {
 }
 
 CountryDetailScreen.propTypes = {
-  country: PropTypes.object,
+  country: countryPropTypes,
   fetchCountryData: PropTypes.func,
   labels: PropTypes.array,
   data: PropTypes.array
