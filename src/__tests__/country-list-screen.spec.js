@@ -1,27 +1,31 @@
-import { CountryListScreen } from '../screens/country-list-screen'
-import { filterByTestID, getTextNodes, renderComponent } from 'react-component-driver'
 import { CountryListScreenDriver } from './utils/country-list-screen-driver'
 import { extractCountries } from '../api/fetch-summary'
 
 const countries = extractCountries(require('../../fake-server/data/summary.json')).countries
 
 describe('Country list screen', () => {
+  let driver
+
+  beforeEach(async () => {
+    driver = new CountryListScreenDriver()
+    driver.setProps({ countries })
+    await driver.renderAsync()
+  })
+
   it('should create a list of countries on fetch', async () => {
-    const comp = renderComponent(CountryListScreen, { countries })
+    const countrySlug = 'afghanistan'
 
-    const countries10 = filterByTestID(/.*_row/, comp)
+    const countries = driver.getRenderedCountries()
 
-    expect(countries10.length).toEqual(10) // 10 initial renders
-    expect(getTextNodes(countries10[0])).toContain('🇦🇫')
-    expect(getTextNodes(countries10[0])).toContain('Afghanistan')
-    expect(getTextNodes(countries10[0])).toContain('7,653')
+    expect(countries.length).toEqual(10) // 10 initial renders
+
+    expect(driver.containsCountry(countries, countrySlug)).toBeTruthy()
+    expect(driver.containsText(countries, '🇦🇫')).toBeTruthy()
+    expect(driver.containsText(countries, 'Afghanistan')).toBeTruthy()
+    expect(driver.containsText(countries, '7,653')).toBeTruthy()
   })
 
   it('should open the country detail page on flat list item press', async () => {
-    const driver = new CountryListScreenDriver()
-    driver.setProps({ countries })
-    await driver.renderAsync()
-
     const countrySlug = 'afghanistan'
 
     const countryData = driver.getCountryData(countrySlug)

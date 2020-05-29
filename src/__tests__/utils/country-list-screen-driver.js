@@ -1,4 +1,4 @@
-import { ComponentDriver } from 'react-component-driver'
+import { ComponentDriver, getTextNodes } from 'react-component-driver'
 import { CountryListScreen } from '../../screens/country-list-screen'
 import { Navigation } from 'react-native-navigation'
 import { TEST_ID_COUNTRY_ROW, TEST_ID_FLAT_LIST } from '../../test-ids'
@@ -30,6 +30,18 @@ export class CountryListScreenDriver extends ComponentDriver {
       COUNTRY_DETAIL_SCREEN,
       { country: countryObj }
     )
+  }
+
+  getRenderedCountries () {
+    return this.filterByID(/.*_row/)
+  }
+
+  containsCountry (countries, countrySlug) {
+    return this.filterByID(`${countrySlug}_row`).length
+  }
+
+  containsText (countries, text) {
+    return getTextNodes(countries).includes(text)
   }
 
   tapCountry (countrySlug) {
