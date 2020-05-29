@@ -9,7 +9,7 @@ import {COUNTRY_DETAIL_SCREEN} from '../strings';
 import {countryPropTypes} from '../prop-types';
 const { Navigation } = require('react-native-navigation')
 
-export const CountryRow = ({ componentId, country }) => {
+export const CountryRow = React.memo(function CountryRow ({ componentId, country }) {
   return (
     <ListItem paddingL-15 paddingR-15
       testID={TEST_ID_COUNTRY_ROW(country.Slug)}
@@ -24,7 +24,7 @@ export const CountryRow = ({ componentId, country }) => {
       </View>
     </ListItem>
   )
-}
+})
 
 const pushCountryDetailScreen = (componentId, country) => {
   Navigation.push(componentId, {

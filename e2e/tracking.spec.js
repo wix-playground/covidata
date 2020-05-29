@@ -2,8 +2,8 @@ import {
   TEST_ID_COUNTRIES_TAB_BUTTON,
   TEST_ID_COUNTRY_NAME,
   TEST_ID_HOME_TAB_BUTTON,
-  TEST_ID_TRACKING_SWITCH,
-} from '../src/test-ids';
+  TEST_ID_TRACKING_SWITCH
+} from '../src/test-ids'
 
 describe('Tracking functionality', () => {
   beforeEach(async () => {
@@ -17,7 +17,9 @@ describe('Tracking functionality', () => {
       const toggleSwitch = element(by.id(TEST_ID_TRACKING_SWITCH))
       await toggleSwitch.tap()
       await element(by.id(TEST_ID_HOME_TAB_BUTTON)).tap()
-      await expect(element.by.id(TEST_ID_COUNTRY_NAME('afghanistan'))).toBeVisible()
+      await
+
+      expect(element.by.id(TEST_ID_COUNTRY_NAME('afghanistan'))).toBeVisible()
     })
   })
 })

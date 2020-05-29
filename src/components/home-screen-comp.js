@@ -5,7 +5,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { globalDataPropTypes } from '../prop-types'
 
-export class HomeScreenComp extends React.Component {
+export class HomeScreenComp extends React.PureComponent {
   render () {
     return (
       <ScrollView flex padding-page>

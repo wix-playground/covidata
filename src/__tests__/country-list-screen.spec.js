@@ -5,7 +5,7 @@ import { extractCountries } from '../api/fetch-summary'
 
 const countries = extractCountries(require('../../fake-server/data/summary.json')).countries
 
-describe('should behave correctly in the country list screen', () => {
+describe('Country list screen', () => {
   it('should create a list of countries on fetch', async () => {
     const comp = renderComponent(CountryListScreen, { countries })
 
@@ -18,7 +18,6 @@ describe('should behave correctly in the country list screen', () => {
   })
 
   it('should open the country detail page on flat list item press', async () => {
-    const countries = extractCountries(require('../../fake-server/data/summary.json')).countries
     const driver = new CountryListScreenDriver()
     driver.setProps({ countries })
     await driver.renderAsync()
