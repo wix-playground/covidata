@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { CountryDetailScreenComp } from '../components/country-detail-screen-comp'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchCountryData } from '../api/fetch-country-data'
 import { countryPropTypes } from '../prop-types'
+import { fetchCountryStatsAction } from '../redux/actions'
 
 export class CountryDetailScreen extends React.Component {
   constructor (props) {
@@ -18,7 +18,7 @@ export class CountryDetailScreen extends React.Component {
 
   componentDidMount () {
     const countrySlug = this.state.country.Slug
-    this.props.fetchCountryData(countrySlug)
+    this.props.fetchCountryStatsAction(countrySlug)
   }
 
   render () {
@@ -37,7 +37,7 @@ export class CountryDetailScreen extends React.Component {
 
 CountryDetailScreen.propTypes = {
   country: countryPropTypes,
-  fetchCountryData: PropTypes.func,
+  fetchCountryStatsAction: PropTypes.func,
   labels: PropTypes.array,
   data: PropTypes.array
 }
@@ -48,7 +48,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCountryData: fetchCountryData
+  fetchCountryStatsAction: fetchCountryStatsAction
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryDetailScreen)
