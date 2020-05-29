@@ -1,5 +1,4 @@
 import { API_ROOT } from '../../env'
-import { fetchCountryDataSuccess } from '../redux/actions'
 
 export default class covidApi {
   static async getSummary () {
