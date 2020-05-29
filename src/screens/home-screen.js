@@ -3,11 +3,11 @@ import HomeScreenComp from '../components/home-screen-comp'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchSummary } from '../api/fetch-summary'
+import { fetchSummaryAction } from '../redux/actions'
 
 export class HomeScreen extends React.Component {
   componentDidMount () {
-    this.props.fetchSummary()
+    this.props.fetchSummaryAction()
   }
 
   render () {
@@ -16,11 +16,11 @@ export class HomeScreen extends React.Component {
 }
 
 HomeScreen.propTypes = {
-  fetchSummary: PropTypes.func
+  fetchSummaryAction: PropTypes.func
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchSummary: fetchSummary
+  fetchSummaryAction: fetchSummaryAction
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(HomeScreen)

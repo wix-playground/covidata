@@ -1,12 +1,13 @@
 import { CountryListScreenDriver } from './utils/country-list-screen-driver'
-import { extractCountries } from '../api/fetch-summary'
-
-const countries = extractCountries(require('../../fake-server/data/summary.json')).countries
+import covidApi from '../api/covid-api'
 
 describe('Country list screen', () => {
   let driver
+  let countries
 
   beforeEach(async () => {
+    const data = await covidApi.getSummary()
+    countries = data.countries
     driver = new CountryListScreenDriver()
     driver.setProps({ countries })
     await driver.renderAsync()
