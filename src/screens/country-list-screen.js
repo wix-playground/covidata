@@ -5,10 +5,15 @@ import { connect } from 'react-redux'
 import { CountryListScreenComp } from '../components/country-list-screen-comp'
 
 export class CountryListScreen extends React.Component {
+  constructor (props) {
+    super(props)
+    this.renderItem = this.renderItem.bind(this)
+  }
+
   render () {
     return (<CountryListScreenComp
       countries={this.props.countries}
-      renderItem={(item) => this.renderItem(item)}
+      renderItem={this.renderItem}
     />)
   }
 
