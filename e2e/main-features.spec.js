@@ -12,15 +12,16 @@ describe('Main features', () => {
   })
 
   it('should fetch and display the global information from the server', async () => {
+    const globalSlug = GLOBAL.toLowerCase()
     await
 
     expect(element(by.text(CONFIRMED))).toBeVisible()
     await expect(element(by.text(DEATHS))).toBeVisible()
     await expect(element(by.text(RECOVERIES))).toBeVisible()
-    await expect(element(by.id(TEST_ID_COUNTRY_NAME(GLOBAL)))).toHaveText('🌍 GLOBAL')
-    await expect(element(by.id(TEST_ID_STAT_PREFIX_NAME_TOTAL(GLOBAL, CONFIRMED)))).toHaveText('4,977,471')
-    await expect(element(by.id(TEST_ID_STAT_PREFIX_NAME_TOTAL(GLOBAL, DEATHS)))).toHaveText('329,513')
-    await expect(element(by.id(TEST_ID_STAT_PREFIX_NAME_TOTAL(GLOBAL, RECOVERIES)))).toHaveText('1,838,344')
+    await expect(element(by.id(TEST_ID_COUNTRY_NAME(globalSlug)))).toHaveText('🌍 GLOBAL')
+    await expect(element(by.id(TEST_ID_STAT_PREFIX_NAME_TOTAL(globalSlug, CONFIRMED)))).toHaveText('4,977,471')
+    await expect(element(by.id(TEST_ID_STAT_PREFIX_NAME_TOTAL(globalSlug, DEATHS)))).toHaveText('329,513')
+    await expect(element(by.id(TEST_ID_STAT_PREFIX_NAME_TOTAL(globalSlug, RECOVERIES)))).toHaveText('1,838,344')
   })
 
   it('should show countries screen after tapping the Countries tab, have Zimbabwe as the last element fetched', async () => {
