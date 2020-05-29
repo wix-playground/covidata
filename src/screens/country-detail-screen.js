@@ -3,14 +3,17 @@ import PropTypes from 'prop-types'
 import { CountryDetailScreenComp } from '../components/country-detail-screen-comp'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {fetchCountryData} from '../api/fetch-country-data';
+import { fetchCountryData } from '../api/fetch-country-data'
 
 export class CountryDetailScreen extends React.Component {
-
-  state = {
-    country: this.props.country,
-    track: false,
-  };
+  constructor (props) {
+    super(props)
+    this.state = {
+      country: this.props.country,
+      track: false
+    }
+    this.onValueChange = this.onValueChange.bind(this)
+  }
 
   componentDidMount () {
     const countrySlug = this.state.country.Slug
@@ -29,7 +32,6 @@ export class CountryDetailScreen extends React.Component {
   onValueChange (value) {
     this.setState({ track: value })
   }
-
 }
 
 CountryDetailScreen.propTypes = {
