@@ -53,6 +53,20 @@ export const reducer = (state = initialState, action) => {
         pending: true
       }
     }
+    case ACTIONS.SET_COUNTRY_TRACKED: {
+      if (action.payload.value) {
+        return {
+          ...state,
+          tracked: [...state.tracked, action.payload.countrySlug]
+        }
+      } else {
+        return {
+          ...state,
+          tracked: state.tracked.filter(elem =>
+            elem !== action.payload.countrySlug)
+        }
+      }
+    }
     default: {
       return state
     }

@@ -1,19 +1,27 @@
 import { CountryDetailCard } from './country-detail-card'
 import { View } from 'react-native-ui-lib'
-import { ScrollView, StyleSheet } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import React from 'react'
-import { connect } from 'react-redux'
 import { globalDataPropTypes } from '../prop-types'
+import { TEST_ID_HOME_TRACKED_LIST } from '../test-ids'
+import PropTypes from 'prop-types'
 
-export class HomeScreenComp extends React.PureComponent {
+export class HomeScreenComp extends React.Component {
   render () {
     return (
-      <ScrollView flex padding-page>
-        <CountryDetailCard country={this.props.globalData}/>
-        <View>
-          <View style={styles.divider}/>
-        </View>
-      </ScrollView>
+      <View flex padding-page>
+        <FlatList
+          ListHeaderComponent={
+            <View >
+              <CountryDetailCard country={this.props.globalData}/>
+              <View style={styles.divider}/>
+            </View>}
+          testID={TEST_ID_HOME_TRACKED_LIST}
+          data={this.props.countries}
+          renderItem={this.props.renderItem}
+          keyExtractor={this.props.keyExtractor}
+        />
+      </View>
     )
   }
 }
@@ -30,13 +38,8 @@ const styles = StyleSheet.create({
 })
 
 HomeScreenComp.propTypes = {
-  globalData: globalDataPropTypes
+  globalData: globalDataPropTypes,
+  keyExtractor: PropTypes.func,
+  renderItem: PropTypes.func,
+  countries: PropTypes.array
 }
-
-const mapStateToProps = state => {
-  return {
-    globalData: state.globalData
-  }
-}
-
-export default connect(mapStateToProps)(HomeScreenComp)

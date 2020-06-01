@@ -8,3 +8,4 @@ export const TEST_ID_STAT_PREFIX_NAME_TOTAL = (prefix, name) => { return `${pref
 export const TEST_ID_STAT_PREFIX_NAME_NEW = (prefix, name) => { return `${prefix}_${name}_new` }
 export const TEST_ID_COUNTRIES_TAB_BUTTON = 'countries_tab_button'
 export const TEST_ID_HOME_TAB_BUTTON = 'home_tab_button'
+export const TEST_ID_HOME_TRACKED_LIST = 'tracked_list'

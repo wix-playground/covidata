@@ -6,7 +6,15 @@ export const ACTIONS = {
   GET_SUMMARY_FAILURE: 'GET_SUMMARY_FAILURE',
   GET_COUNTRY_STATS_PENDING: 'GET_COUNTRY_STATS_PENDING',
   GET_COUNTRY_STATS_SUCCESS: 'GET_COUNTRY_STATS_SUCCESS',
-  GET_COUNTRY_STATS_FAILURE: 'GET_COUNTRY_STATS_FAILURE'
+  GET_COUNTRY_STATS_FAILURE: 'GET_COUNTRY_STATS_FAILURE',
+  SET_COUNTRY_TRACKED: 'SET_COUNTRY_TRACKED'
+}
+
+export const setCountryTrackedAction = (countrySlug, value) => {
+  return {
+    type: ACTIONS.SET_COUNTRY_TRACKED,
+    payload: { countrySlug, value }
+  }
 }
 
 export function fetchSummaryAction () {

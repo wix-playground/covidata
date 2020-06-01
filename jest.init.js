@@ -10,7 +10,8 @@ jest.mock('react-native', () => {
   return reactNative
 })
 
-jest.mock('react-native-ui-lib', () => mockFull(['Badge', 'Text', 'View', 'Card', 'ListItem']))
+jest.mock('react-native-ui-lib', () =>
+  mockFull(['Badge', 'Text', 'View', 'Card', 'ListItem', 'LoaderScreen', 'Switch']))
 
 jest.mock('react-native-navigation', () => {
   return { Navigation: { push: jest.fn() } }

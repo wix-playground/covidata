@@ -1,6 +1,6 @@
-import { ScrollView, StyleSheet, Switch } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { CountryDetailCard } from './country-detail-card'
-import { Card, Text, View } from 'react-native-ui-lib'
+import { Card, Text, View, Switch } from 'react-native-ui-lib'
 import { CasesChangeGraph } from './cases-change-graph'
 import React from 'react'
 import PropTypes from 'prop-types'
