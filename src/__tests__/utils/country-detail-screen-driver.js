@@ -2,6 +2,8 @@ import { ReduxComponentDriver } from 'redux-component-driver'
 import CountryDetailScreen from '../../screens/country-detail-screen'
 import { TEST_ID_TRACKING_SWITCH } from '../../test-ids'
 import { ACTIONS } from '../../redux/actions'
+import TestRenderer from 'react-test-renderer'
+const { act } = TestRenderer
 
 export class CountryDetailScreenDriver extends ReduxComponentDriver {
   constructor (store, props) {
@@ -17,7 +19,9 @@ export class CountryDetailScreenDriver extends ReduxComponentDriver {
   }
 
   dispatchCountryTrackedState (countrySlug, value) {
-    this.store.dispatch(this.createTrackingDispatchArgument(countrySlug, value))
+    act(() => {
+      this.store.dispatch(this.createTrackingDispatchArgument(countrySlug, value))
+    })
   }
 
   createTrackingDispatchArgument (countrySlug, value) {
