@@ -69,7 +69,7 @@ describe('Country tracking functionality', () => {
       await homeDriver.renderAsync()
     })
 
-    it('should display a list for tracked countries', () => {
+    it('should display a flat list for tracked countries', () => {
       expect(homeDriver.containsTrackedCountryList()).toBeTruthy()
     })
 

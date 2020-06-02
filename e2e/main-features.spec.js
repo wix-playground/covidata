@@ -1,14 +1,14 @@
 import { CONFIRMED, DEATHS, GLOBAL, RECOVERIES } from '../src/strings'
 import {
-  TEST_ID_COUNTRIES_TAB_BUTTON,
   TEST_ID_COUNTRY_NAME,
   TEST_ID_FLAT_LIST,
   TEST_ID_STAT_PREFIX_NAME_TOTAL
 } from '../src/test-ids'
+import { e2eDriver } from './utils/e2e-driver'
 
 describe('Main features', () => {
   beforeEach(async () => {
-    await device.launchApp({ newInstance: true })
+    await e2eDriver.relaunchApp()
   })
 
   it('should fetch and display the global information from the server', async () => {
@@ -25,7 +25,7 @@ describe('Main features', () => {
   })
 
   it('should show countries screen after tapping the Countries tab, have Zimbabwe as the last element fetched', async () => {
-    await element(by.id(TEST_ID_COUNTRIES_TAB_BUTTON)).tap()
+    await e2eDriver.openCountriesTab()
     await
 
     expect(element(by.id(TEST_ID_FLAT_LIST))).toBeVisible()
@@ -36,8 +36,8 @@ describe('Main features', () => {
   })
 
   it('should open Country details screen on country selected', async () => {
-    await element(by.id(TEST_ID_COUNTRIES_TAB_BUTTON)).tap()
-    await element(by.id('afghanistan')).tap()
+    await e2eDriver.openCountriesTab()
+    await e2eDriver.tapOnCountryInList('afghanistan')
     await
 
     expect(element(by.id(TEST_ID_COUNTRY_NAME('afghanistan')))).toHaveText('🇦🇫 AFGHANISTAN')

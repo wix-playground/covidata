@@ -1,25 +1,27 @@
-import {
-  TEST_ID_COUNTRIES_TAB_BUTTON,
-  TEST_ID_COUNTRY_NAME,
-  TEST_ID_HOME_TAB_BUTTON,
-  TEST_ID_TRACKING_SWITCH
-} from '../src/test-ids'
+import { e2eDriver } from './utils/e2e-driver'
 
 describe('Tracking functionality', () => {
   beforeEach(async () => {
-    await device.launchApp({ newInstance: true })
+    await e2eDriver.relaunchApp()
   })
 
-  describe('home screen', () => {
-    it('should show the tracked country on the home screen', async () => {
-      await element(by.id(TEST_ID_COUNTRIES_TAB_BUTTON)).tap()
-      await element(by.id('afghanistan')).tap()
-      const toggleSwitch = element(by.id(TEST_ID_TRACKING_SWITCH))
-      await toggleSwitch.tap()
-      await element(by.id(TEST_ID_HOME_TAB_BUTTON)).tap()
-      await
+  const countrySlug = 'afghanistan'
 
-      expect(element(by.id(TEST_ID_COUNTRY_NAME('afghanistan')))).toBeVisible()
-    })
+  it('should show the tracked country on the home screen', async () => {
+    await e2eDriver.openCountriesTab()
+    await e2eDriver.tapOnCountryInList(countrySlug)
+    await e2eDriver.toggleSwitch()
+    await e2eDriver.openHomeTab()
+    await e2eDriver.expectCountryCardToBeVisible(countrySlug)
+  })
+
+  it('should save the tracked list of items with app relaunch (persistence)', async () => {
+    await e2eDriver.openCountriesTab()
+    await e2eDriver.tapOnCountryInList(countrySlug)
+    await e2eDriver.toggleSwitch()
+    await e2eDriver.openHomeTab()
+    await e2eDriver.expectCountryCardToBeVisible(countrySlug)
+    await e2eDriver.relaunchApp()
+    await e2eDriver.expectCountryCardToBeVisible(countrySlug)
   })
 })
