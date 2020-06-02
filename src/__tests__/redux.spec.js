@@ -73,15 +73,11 @@ const value = true
 const globalData = {
   NewConfirmed: 123
 }
-const countries = [
-  {
-    Country: 'Atlantis'
-  }]
-
-const { labels, data } = {
-  labels: ['06-01', '06-02'],
-  data: [123, 456]
-}
+const countries = [{
+  Country: 'Atlantis'
+}]
+const labels = ['06-01', '06-02']
+const data = [123, 456]
 
 covidApi.getCountryStats = jest.fn().mockResolvedValue({ labels, data })
 covidApi.getSummary = jest.fn().mockResolvedValue({ globalData, countries })
