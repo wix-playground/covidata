@@ -70,15 +70,14 @@ describe('Redux unit tests', () => {
 const tracked = ['test1', 'test2']
 const countrySlug = 'testSlug'
 const value = true
-const { globalData, countries } = {
-  globalData: {
-    NewConfirmed: 123
-  },
-  countries: [
-    {
-      Country: 'Atlantis'
-    }]
+const globalData = {
+  NewConfirmed: 123
 }
+const countries = [
+  {
+    Country: 'Atlantis'
+  }]
+
 const { labels, data } = {
   labels: ['06-01', '06-02'],
   data: [123, 456]
