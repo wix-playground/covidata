@@ -70,6 +70,7 @@
     "prettier": "^2.0.4",
     "react-test-renderer": "16.11.0",
     "react-test-renderer-utils": "^2.1.0",
+    "redux-mock-store": "^1.5.4",
     "typescript": "^3.8.3"
   },
   "babel": {

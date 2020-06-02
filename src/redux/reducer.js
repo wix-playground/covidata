@@ -12,7 +12,7 @@ export const initialState = {
   pending: true
 }
 export const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch (action?.type) {
     case ACTIONS.GET_COUNTRY_STATS_SUCCESS: {
       return {
         ...state,
