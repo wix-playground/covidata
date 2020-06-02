@@ -1,3 +1,5 @@
+import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock'
+
 const detox = require('detox')
 const config = require('../package.json').detox
 const adapter = require('detox/runners/jest/adapter')
@@ -5,6 +7,7 @@ const specReporter = require('detox/runners/jest/specReporter')
 
 // Set the default timeout
 jest.setTimeout(120000)
+jest.mock('@react-native-community/async-storage', () => mockAsyncStorage)
 
 jasmine.getEnv().addReporter(adapter)
 

@@ -11,8 +11,7 @@ class CountryDetailScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      country: this.props.country,
-      track: false
+      country: this.props.country
     }
     this.onValueChange = this.onValueChange.bind(this)
   }
@@ -49,12 +48,14 @@ CountryDetailScreen.propTypes = {
   tracked: PropTypes.array
 }
 
-const mapStateToProps = state => ({
-  data: state.data,
-  labels: state.labels,
-  pending: state.pending,
-  tracked: state.tracked
-})
+const mapStateToProps = state => {
+  return ({
+    data: state.data,
+    labels: state.labels,
+    pending: state.pending,
+    tracked: state.tracked
+  })
+}
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCountryStatsAction: fetchCountryStatsAction,

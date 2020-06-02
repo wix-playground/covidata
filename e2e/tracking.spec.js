@@ -2,6 +2,8 @@ import { e2eDriver } from './utils/e2e-driver'
 
 describe('Tracking functionality', () => {
   beforeEach(async () => {
+    await device.uninstallApp()
+    await device.installApp()
     await e2eDriver.relaunchApp()
   })
 

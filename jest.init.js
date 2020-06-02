@@ -1,5 +1,8 @@
 import { jestHelpers } from 'react-test-renderer-utils'
+import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock'
 const { mockFull } = jestHelpers
+
+jest.mock('@react-native-community/async-storage', () => mockAsyncStorage)
 
 jest.mock('react-native', () => {
   const reactNative = jest.requireActual('react-native')

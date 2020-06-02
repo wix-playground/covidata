@@ -302,6 +302,8 @@ PODS:
     - React-RCTText
   - ReactNativeUiLib (2.0.2):
     - React
+  - RNCAsyncStorage (1.11.0):
+    - React
   - RNDateTimePicker (2.4.0):
     - React
   - RNGestureHandler (1.6.1):
@@ -365,6 +367,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - ReactNativeUiLib (from `../node_modules/react-native-ui-lib/lib`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -443,6 +446,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-navigation"
   ReactNativeUiLib:
     :path: "../node_modules/react-native-ui-lib/lib"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
   RNGestureHandler:
@@ -494,6 +499,7 @@ SPEC CHECKSUMS:
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
   ReactNativeNavigation: 300598ece82d76a35c62786d095b6ebbe454d73b
   ReactNativeUiLib: 9883f80a22b855d4a866ceee433d1e24b1014a2a
+  RNCAsyncStorage: db711e29e5e0500d9bd21aa0c2e397efa45302b1
   RNDateTimePicker: 39a3987baca0848368f71f02c45bf6e1e61041c0
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
@@ -501,6 +507,6 @@ SPEC CHECKSUMS:
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: b5339ca210071eccf4776fe3aefc2e0afdf3ba35
+PODFILE CHECKSUM: 31a5583f123fefbc9e5ecf635acb7fd5c86665dd
 
 COCOAPODS: 1.9.1

@@ -1,4 +1,6 @@
 import covidApi from '../api/covid-api'
+import AsyncStorage from '@react-native-community/async-storage'
+import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
 
 export const ACTIONS = {
   GET_SUMMARY_PENDING: 'GET_SUMMARY_PENDING',
@@ -7,7 +9,8 @@ export const ACTIONS = {
   GET_COUNTRY_STATS_PENDING: 'GET_COUNTRY_STATS_PENDING',
   GET_COUNTRY_STATS_SUCCESS: 'GET_COUNTRY_STATS_SUCCESS',
   GET_COUNTRY_STATS_FAILURE: 'GET_COUNTRY_STATS_FAILURE',
-  SET_COUNTRY_TRACKED: 'SET_COUNTRY_TRACKED'
+  SET_COUNTRY_TRACKED: 'SET_COUNTRY_TRACKED',
+  GET_ASYNC_STORAGE_TRACKED: 'GET_ASYNC_STORAGE_TRACKED'
 }
 
 export const setCountryTrackedAction = (countrySlug, value) => {
@@ -22,6 +25,8 @@ export function fetchSummaryAction () {
     dispatch({ type: ACTIONS.GET_SUMMARY_PENDING })
     try {
       const { countries, globalData } = await covidApi.getSummary()
+      const tracked = JSON.parse(await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
+      dispatch({ type: ACTIONS.GET_ASYNC_STORAGE_TRACKED, payload: { tracked } })
       dispatch({ type: ACTIONS.GET_SUMMARY_SUCCESS, payload: { countries, globalData } })
     } catch (error) {
       dispatch({ type: ACTIONS.GET_SUMMARY_FAILURE, error: { error } })

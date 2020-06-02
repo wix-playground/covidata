@@ -1,4 +1,6 @@
 import { ACTIONS } from './actions'
+import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
+import AsyncStorage from '@react-native-community/async-storage'
 
 export const initialState = {
   countries: [],
@@ -54,17 +56,19 @@ export const reducer = (state = initialState, action) => {
       }
     }
     case ACTIONS.SET_COUNTRY_TRACKED: {
-      if (action.payload.value) {
-        return {
-          ...state,
-          tracked: [...state.tracked, action.payload.countrySlug]
-        }
-      } else {
-        return {
-          ...state,
-          tracked: state.tracked.filter(elem =>
-            elem !== action.payload.countrySlug)
-        }
+      const tracked = action.payload.value
+        ? [...state.tracked, action.payload.countrySlug]
+        : state.tracked.filter(elem => elem !== action.payload.countrySlug)
+      AsyncStorage.setItem(ASYNC_STORAGE_TRACKED_KEY, JSON.stringify(tracked))
+      return {
+        ...state,
+        tracked
+      }
+    }
+    case ACTIONS.GET_ASYNC_STORAGE_TRACKED: {
+      return {
+        ...state,
+        tracked: action.payload.tracked
       }
     }
     default: {

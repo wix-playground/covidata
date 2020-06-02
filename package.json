@@ -13,6 +13,7 @@
     "test-e2e": "detox test --configuration ios.sim.debug"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/datetimepicker": "^2.4.0",
     "@react-native-community/netinfo": "^5.9.2",
