@@ -1,10 +1,9 @@
 # CoviData
-<img style="display: inline-block" src="./screenshots/home_screen.png" width="200"/>
-<img style="display: inline-block" src="./screenshots/countries_screen.png" width="200"/>
-<img style="display: inline-block" src="./screenshots/country_screen.png" width="200"/>
+<img style="display: inline-block" src="./screenshots/animated.gif" width="200" alt="animated screenshot"/>
 
 Test E2E: 
 ```
-RN_SRC_EXT=e2e.js npm start
-detox test --configuration ios.sim.debug
+npm run fake-server
+npm run start-e2e
+npm run test-e2e
 ```
