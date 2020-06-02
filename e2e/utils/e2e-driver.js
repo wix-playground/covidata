@@ -30,7 +30,4 @@ export class e2eDriver {
     await device.launchApp({ newInstance: true })
   }
 
-  static expectElementIdToHaveText = async (elementId, text) => {
-    await expect(element(by.id(elementId))).toHaveText(text)
-  }
 }
