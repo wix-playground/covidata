@@ -5,29 +5,32 @@ import thunk from 'redux-thunk'
 import { HomeScreenDriver } from './utils/home-screen-driver'
 import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
 import AsyncStorage from '@react-native-community/async-storage'
+import covidApi from '../api/covid-api'
+
+const testCountry = {
+  Country: 'Lithuania',
+  CountryCode: 'LT',
+  Slug: 'lithuania',
+  NewConfirmed: 15,
+  TotalConfirmed: 1562,
+  NewDeaths: 1,
+  TotalDeaths: 60,
+  NewRecovered: 28,
+  TotalRecovered: 1025,
+  Date: '2020-05-20T09:10:49Z'
+}
+
+covidApi.getSummary = jest.fn().mockResolvedValue({ globalData: {}, countries: [testCountry] })
 
 describe('Country tracking functionality', () => {
   let driver
   let store
   let storeDispatchSpy
 
-  const country = {
-    Country: 'Lithuania',
-    CountryCode: 'LT',
-    Slug: 'lithuania',
-    NewConfirmed: 15,
-    TotalConfirmed: 1562,
-    NewDeaths: 1,
-    TotalDeaths: 60,
-    NewRecovered: 28,
-    TotalRecovered: 1025,
-    Date: '2020-05-20T09:10:49Z'
-  }
-
   beforeEach(async () => {
     store = createStore(reducer, initialState, applyMiddleware(...[thunk]))
     storeDispatchSpy = jest.spyOn(store, 'dispatch')
-    driver = new CountryDetailScreenDriver(store, { country })
+    driver = new CountryDetailScreenDriver(store, { country: testCountry })
     await driver.renderAsync()
     await AsyncStorage.clear()
   })
@@ -41,28 +44,28 @@ describe('Country tracking functionality', () => {
     })
 
     it('should change global tracking state on action dispatch', () => {
-      driver.dispatchCountryTrackedState(country.Slug, true)
+      driver.dispatchCountryTrackedState(testCountry.Slug, true)
 
-      expect(driver.countryIsTracked(country.Slug)).toBeTruthy()
+      expect(driver.countryIsTracked(testCountry.Slug)).toBeTruthy()
     })
 
     it('should dispatch tracking event on switch toggle', () => {
       driver.tapSwitch() // enable
 
-      const trackCountry = driver.createTrackingDispatchArgument(country.Slug, true)
+      const trackCountry = driver.createTrackingDispatchArgument(testCountry.Slug, true)
 
       expect(storeDispatchSpy).toHaveBeenLastCalledWith(trackCountry)
     })
 
     it('should alter the global list of tracked countries on switch toggle', () => {
-      expect(driver.countryIsTracked(country.Slug)).toBeFalsy()
+      expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
       driver.tapSwitch() // enable
 
-      expect(driver.countryIsTracked(country.Slug)).toBeTruthy()
+      expect(driver.countryIsTracked(testCountry.Slug)).toBeTruthy()
 
       driver.tapSwitch() // disable
 
-      expect(driver.countryIsTracked(country.Slug)).toBeFalsy()
+      expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
     })
 
     describe('integration with home screen', () => {
@@ -78,21 +81,21 @@ describe('Country tracking functionality', () => {
       })
 
       it('should display the country in a list when action dispatched', () => {
-        expect(driver.countryIsTracked(country.Slug)).toBeFalsy()
+        expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
 
-        driver.dispatchCountryTrackedState(country.Slug, true)
+        driver.dispatchCountryTrackedState(testCountry.Slug, true)
 
-        expect(homeDriver.containsCountry(country.Slug)).toBeTruthy()
+        expect(homeDriver.containsCountry(testCountry.Slug)).toBeTruthy()
       })
 
       it('should show a tracked country on the home screen on switch toggle', async () => {
-        expect(driver.countryIsTracked(country.Slug)).toBeFalsy()
+        expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
 
         driver.tapSwitch() // enable
-        const trackCountry = driver.createTrackingDispatchArgument(country.Slug, true)
+        const trackCountry = driver.createTrackingDispatchArgument(testCountry.Slug, true)
 
         expect(storeDispatchSpy).toHaveBeenLastCalledWith(trackCountry)
-        expect(homeDriver.containsCountry(country.Slug)).toBeTruthy()
+        expect(homeDriver.containsCountry(testCountry.Slug)).toBeTruthy()
       })
     })
   })
@@ -100,22 +103,22 @@ describe('Country tracking functionality', () => {
   describe('Testing persistence', () => {
     it('should save data to async storage on state.tracked change', () => {
       const jsonSpy = jest.spyOn(JSON, 'stringify')
-      const expectedSave = [country.Slug]
+      const expectedSave = [testCountry.Slug]
       const expectedJson = JSON.stringify(expectedSave)
 
-      expect(driver.countryIsTracked(country.Slug)).toBeFalsy()
+      expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
 
-      driver.dispatchCountryTrackedState(country.Slug, true)
+      driver.dispatchCountryTrackedState(testCountry.Slug, true)
 
       expect(jsonSpy).toHaveBeenCalledWith(expectedSave)
       expect(AsyncStorage.setItem).toBeCalledWith(ASYNC_STORAGE_TRACKED_KEY, expectedJson)
     })
 
     it('should restore data from async storage on re-render', async () => {
-      expect(driver.countryIsTracked(country.Slug)).toBeFalsy()
+      expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
       driver.tapSwitch()
 
-      expect(driver.countryIsTracked(country.Slug)).toBeTruthy()
+      expect(driver.countryIsTracked(testCountry.Slug)).toBeTruthy()
 
       // Clear existing store
       store = createStore(reducer, initialState, applyMiddleware(...[thunk]))
@@ -124,7 +127,7 @@ describe('Country tracking functionality', () => {
       await new HomeScreenDriver(store).renderAsync()
 
       expect(AsyncStorage.getItem).toHaveBeenCalledWith(ASYNC_STORAGE_TRACKED_KEY)
-      await expect(driver.countryIsTracked(country.Slug)).toBeTruthy()
+      await expect(driver.countryIsTracked(testCountry.Slug)).toBeTruthy()
     })
   })
 })

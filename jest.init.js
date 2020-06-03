@@ -19,9 +19,3 @@ jest.mock('react-native-ui-lib', () =>
 jest.mock('react-native-navigation', () => {
   return { Navigation: { push: jest.fn() } }
 })
-
-fetch = jest.fn().mockResolvedValue({
-  json: () => {
-    return (require('./fake-server/data/summary.json'))
-  }
-})

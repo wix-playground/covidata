@@ -1,13 +1,36 @@
 import { CountryListScreenDriver } from './utils/country-list-screen-driver'
 import covidApi from '../api/covid-api'
 
+const countries = [{
+  Country: 'Lithuania',
+  CountryCode: 'LT',
+  Slug: 'lithuania',
+  NewConfirmed: 15,
+  TotalConfirmed: 1562,
+  NewDeaths: 1,
+  TotalDeaths: 60,
+  NewRecovered: 28,
+  TotalRecovered: 1025,
+  Date: '2020-05-20T09:10:49Z'
+}, {
+  Country: 'Afghanistan',
+  CountryCode: 'AF',
+  Slug: 'afghanistan',
+  NewConfirmed: 581,
+  TotalConfirmed: 7653,
+  NewDeaths: 5,
+  TotalDeaths: 178,
+  NewRecovered: 49,
+  TotalRecovered: 850,
+  Date: '2020-05-20T09:10:49Z'
+}]
+
+covidApi.getSummary = jest.fn().mockResolvedValue({ globalData: {}, countries })
+
 describe('Country list screen', () => {
   let driver
-  let countries
 
   beforeEach(async () => {
-    const data = await covidApi.getSummary()
-    countries = data.countries
     driver = new CountryListScreenDriver()
     driver.setProps({ countries })
     await driver.renderAsync()
@@ -18,7 +41,8 @@ describe('Country list screen', () => {
 
     const countries = driver.getRenderedCountries()
 
-    expect(countries.length).toEqual(10) // 10 initial renders
+    // test fixture length must be under 10, otherwise full render might not happen
+    expect(countries.length).toEqual(countries.length)
 
     expect(driver.containsCountry(countries, countrySlug)).toBeTruthy()
     expect(driver.containsText(countries, '🇦🇫')).toBeTruthy()

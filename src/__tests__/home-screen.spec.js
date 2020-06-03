@@ -1,5 +1,17 @@
 import { store } from '../redux/configure-store'
 import { HomeScreenDriver } from './utils/home-screen-driver'
+import covidApi from '../api/covid-api'
+
+const globalData = {
+  NewConfirmed: 96840,
+  TotalConfirmed: 4977471,
+  NewDeaths: 5089,
+  TotalDeaths: 329513,
+  NewRecovered: 52120,
+  TotalRecovered: 1838344
+}
+
+covidApi.getSummary = jest.fn().mockResolvedValue({ globalData, countries: [] })
 
 describe('Home screen', () => {
   it('should store, process and display global data on fetch', async () => {
