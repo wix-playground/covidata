@@ -1,3 +1,4 @@
+/* all of these imports should be replaced with lazy requires */
 import { Provider } from 'react-redux'
 import React from 'react'
 import { store } from './redux/configure-store'
@@ -18,6 +19,10 @@ export function registerComponents () {
   const CountryListScreen = require('./screens/country-list-screen').default
   const CountryDetailScreen = require('./screens/country-detail-screen').default
   Navigation.registerComponent(HOME_SCREEN, () => (props) => (
+    /*
+      to avoid duplication, you can add method which wraps your component with Provider, e.g.
+      function wrapWithProvider(component) {...}
+    */
     <Provider store={store}>
       <HomeScreen {...props} />
     </Provider>

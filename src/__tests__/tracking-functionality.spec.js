@@ -43,6 +43,7 @@ describe('Country tracking functionality', () => {
       expect(driver.getSwitchValue()).toBeTruthy()
     })
 
+    /* this looks like a fully redux test (does not include any UI) */
     it('should change global tracking state on action dispatch', () => {
       driver.dispatchCountryTrackedState(testCountry.Slug, true)
 

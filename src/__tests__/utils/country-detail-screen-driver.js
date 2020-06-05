@@ -24,6 +24,7 @@ export class CountryDetailScreenDriver extends ReduxComponentDriver {
     })
   }
 
+  /* this is not needed as you can reuse setCountryTrackedAction */
   createTrackingDispatchArgument (countrySlug, value) {
     return { type: ACTIONS.SET_COUNTRY_TRACKED, payload: { countrySlug, value: value } }
   }

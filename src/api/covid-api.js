@@ -8,6 +8,12 @@ export default class covidApi {
   }
 
   static async getCountryStats (countrySlug) {
+    /*
+      you can add a wrapper method for fetch, e.g.
+      async function get(url) {
+        return fetch(url).then(response => response.json())
+      }
+    */
     return await fetch(`${API_ROOT}/total/dayone/country/${countrySlug}`)
       .then(response => response.json())
       .then(json => this.extractCountryDataPoints(json))

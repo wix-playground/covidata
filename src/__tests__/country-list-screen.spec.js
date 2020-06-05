@@ -39,6 +39,7 @@ describe('Country list screen', () => {
   it('should create a list of countries on fetch', async () => {
     const countrySlug = 'afghanistan'
 
+    /* you have two variables with the same name (countries), one global and one local */
     const countries = driver.getRenderedCountries()
 
     // test fixture length must be under 10, otherwise full render might not happen

@@ -57,6 +57,13 @@ const mapStateToProps = state => {
   })
 }
 
+/*
+  FYI: this can be replaced with simple object
+  const mapDispatchToProps = {
+    fetchCountryStatsAction,
+    setCountryTrackedAction
+  }
+*/
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCountryStatsAction: fetchCountryStatsAction,
   setCountryTrackedAction: setCountryTrackedAction

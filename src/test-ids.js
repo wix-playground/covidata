@@ -1,3 +1,7 @@
+/*
+  you can avoid explicit returns here and write
+  export const TEST_ID_COUNTRY_NAME = (slug) => `country_name_${slug || 'global'}`
+*/
 export const TEST_ID_COUNTRY_NAME = (slug) => { return `country_name_${slug || 'global'}` }
 export const TEST_ID_COUNTRY_SLUG = (slug) => { return `${slug || 'global'}` }
 export const TEST_ID_TRACKING_SWITCH = 'tracking_switch'

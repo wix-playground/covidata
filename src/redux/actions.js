@@ -13,6 +13,7 @@ export const ACTIONS = {
   GET_ASYNC_STORAGE_TRACKED: 'GET_ASYNC_STORAGE_TRACKED'
 }
 
+/* "Action" suffix is redundant */
 export const setCountryTrackedAction = (countrySlug, value) => {
   return {
     type: ACTIONS.SET_COUNTRY_TRACKED,

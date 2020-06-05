@@ -59,6 +59,10 @@ export const reducer = (state = initialState, action) => {
       const tracked = action.payload.value
         ? [...state.tracked, action.payload.countrySlug]
         : state.tracked.filter(elem => elem !== action.payload.countrySlug)
+      /*
+        setting to AsyncStorage is a side effect and reducer is not a good place for it
+        this should be moved to thunk action
+      */
       AsyncStorage.setItem(ASYNC_STORAGE_TRACKED_KEY, JSON.stringify(tracked))
       return {
         ...state,

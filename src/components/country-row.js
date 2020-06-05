@@ -26,6 +26,7 @@ export const CountryRow = React.memo(function CountryRow ({ componentId, country
   )
 })
 
+/* would be nice to move it outside of component file */
 const pushCountryDetailScreen = (componentId, country) => {
   Navigation.push(componentId, {
     component: {
