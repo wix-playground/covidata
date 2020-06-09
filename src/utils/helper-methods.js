@@ -1,3 +1,5 @@
+import React from 'react'
+
 const emoji = require('country-to-emoji-flag')
 
 export function sliceToNLast (data, n) {
@@ -20,4 +22,14 @@ export function tryEmoji (code) {
   } catch (e) {
     return '🌍'
   }
+}
+
+export function wrapWithProvider (Component, Provider, store, props) {
+  return <Provider store={store}><Component {...props} /></Provider>
+}
+
+export function computeNewTrackedCountries (tracked, countrySlug, value) {
+  return value
+    ? [...tracked, countrySlug]
+    : tracked.filter(elem => elem !== countrySlug)
 }

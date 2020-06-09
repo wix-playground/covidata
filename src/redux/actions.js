@@ -1,6 +1,7 @@
 import covidApi from '../api/covid-api'
 import AsyncStorage from '@react-native-community/async-storage'
 import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
+import {computeNewTrackedCountries} from '../utils/helper-methods';
 
 export const ACTIONS = {
   GET_SUMMARY_PENDING: 'GET_SUMMARY_PENDING',
@@ -13,14 +14,16 @@ export const ACTIONS = {
   GET_ASYNC_STORAGE_TRACKED: 'GET_ASYNC_STORAGE_TRACKED'
 }
 
-export const setCountryTrackedAction = (countrySlug, value) => {
-  return {
-    type: ACTIONS.SET_COUNTRY_TRACKED,
-    payload: { countrySlug, value }
+export const setCountryTracked = (countrySlug, value) => {
+  return async (dispatch) => {
+    dispatch({type: ACTIONS.SET_COUNTRY_TRACKED, payload: { countrySlug, value }})
+    const oldTracked = JSON.parse(await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
+    const newTracked = computeNewTrackedCountries(oldTracked, countrySlug, value)
+    AsyncStorage.setItem(ASYNC_STORAGE_TRACKED_KEY, JSON.stringify(newTracked))
   }
 }
 
-export function fetchSummaryAction () {
+export function fetchSummary () {
   return async (dispatch) => {
     dispatch({ type: ACTIONS.GET_SUMMARY_PENDING })
     try {
@@ -34,7 +37,7 @@ export function fetchSummaryAction () {
   }
 }
 
-export function fetchCountryStatsAction (countrySlug) {
+export function fetchCountryStats (countrySlug) {
   return async (dispatch) => {
     dispatch({ type: ACTIONS.GET_COUNTRY_STATS_PENDING })
     try {

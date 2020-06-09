@@ -1,12 +1,14 @@
-import { ListItem, View } from 'react-native-ui-lib'
-import { Text } from 'react-native'
-import { ConditionalBadge } from './conditional-badge'
-import React from 'react'
-import PropTypes from 'prop-types'
-import { tryEmoji } from '../utils/helper-methods'
+import {ListItem, View} from 'react-native-ui-lib';
+import {Text} from 'react-native';
+import {ConditionalBadge} from './conditional-badge';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {tryEmoji} from '../utils/helper-methods';
 import {TEST_ID_COUNTRY_ROW, TEST_ID_COUNTRY_SLUG} from '../test-ids';
 import {COUNTRY_DETAIL_SCREEN} from '../strings';
 import {countryPropTypes} from '../prop-types';
+import {pushScreen} from '../navigation';
+
 const { Navigation } = require('react-native-navigation')
 
 export const CountryRow = React.memo(function CountryRow ({ componentId, country }) {
@@ -27,14 +29,7 @@ export const CountryRow = React.memo(function CountryRow ({ componentId, country
 })
 
 const pushCountryDetailScreen = (componentId, country) => {
-  Navigation.push(componentId, {
-    component: {
-      name: COUNTRY_DETAIL_SCREEN,
-      passProps: {
-        country: country
-      }
-    }
-  })
+  pushScreen(componentId, COUNTRY_DETAIL_SCREEN, {country})
 }
 
 CountryRow.propTypes = {

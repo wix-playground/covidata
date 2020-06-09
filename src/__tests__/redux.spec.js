@@ -1,4 +1,4 @@
-import { ACTIONS, fetchCountryStatsAction, fetchSummaryAction, setCountryTrackedAction } from '../redux/actions'
+import { ACTIONS, fetchCountryStats, fetchSummary, setCountryTracked } from '../redux/actions'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
@@ -94,10 +94,17 @@ describe('Redux unit tests', () => {
   })
 
   describe('actions', () => {
-    it('should dispatch expected actions with setCountryTrackedAction', () => {
-      const expectedAction = { type: ACTIONS.SET_COUNTRY_TRACKED, payload: { countrySlug, value } }
+    let store
 
-      expect(setCountryTrackedAction(countrySlug, value)).toEqual(expectedAction)
+    beforeEach(() => {
+      store = configureMockStore([thunk])()
+    })
+
+    it('should dispatch expected actions with setCountryTrackedAction', async () => {
+      const expectedActions = [{ type: ACTIONS.SET_COUNTRY_TRACKED, payload: { countrySlug, value } }]
+      await store.dispatch(setCountryTracked(countrySlug, value))
+
+      expect(store.getActions()).toEqual(expectedActions)
     })
 
     it('should dispatch expected actions with fetchSummaryAction', async () => {
@@ -108,9 +115,7 @@ describe('Redux unit tests', () => {
       ]
 
       await AsyncStorage.setItem(ASYNC_STORAGE_TRACKED_KEY, JSON.stringify(tracked))
-      const store = configureMockStore([thunk])()
-
-      await store.dispatch(fetchSummaryAction())
+      await store.dispatch(fetchSummary())
 
       expect(store.getActions()).toEqual(expectedActions)
     })
@@ -121,8 +126,7 @@ describe('Redux unit tests', () => {
         { type: ACTIONS.GET_COUNTRY_STATS_SUCCESS, payload: { data, labels } }
       ]
 
-      const store = configureMockStore([thunk])()
-      await store.dispatch(fetchCountryStatsAction())
+      await store.dispatch(fetchCountryStats())
 
       expect(store.getActions()).toEqual(expectedActions)
     })

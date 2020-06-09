@@ -4,7 +4,7 @@ import { CountryDetailScreenComp } from '../components/country-detail-screen-com
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { countryPropTypes } from '../prop-types'
-import { fetchCountryStatsAction, setCountryTrackedAction } from '../redux/actions'
+import { fetchCountryStats, setCountryTracked } from '../redux/actions'
 import { LoaderScreen } from 'react-native-ui-lib'
 
 class CountryDetailScreen extends React.Component {
@@ -58,8 +58,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCountryStatsAction: fetchCountryStatsAction,
-  setCountryTrackedAction: setCountryTrackedAction
+  fetchCountryStatsAction: fetchCountryStats,
+  setCountryTrackedAction: setCountryTracked
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryDetailScreen)

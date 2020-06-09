@@ -1,15 +1,17 @@
 import { API_ROOT } from '../../env'
 
 export default class covidApi {
+  static async getJson (url) {
+    return await fetch(url).then(res => res.json())
+  }
+
   static async getSummary () {
-    return await fetch(`${API_ROOT}/summary`)
-      .then(response => response.json())
+    return this.getJson(`${API_ROOT}/summary`)
       .then(json => this.extractCountries(json))
   }
 
   static async getCountryStats (countrySlug) {
-    return await fetch(`${API_ROOT}/total/dayone/country/${countrySlug}`)
-      .then(response => response.json())
+    return await this.getJson(`${API_ROOT}/total/dayone/country/${countrySlug}`)
       .then(json => this.extractCountryDataPoints(json))
   }
 

@@ -6,6 +6,7 @@ import { HomeScreenDriver } from './utils/home-screen-driver'
 import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
 import AsyncStorage from '@react-native-community/async-storage'
 import covidApi from '../api/covid-api'
+import { ACTIONS, setCountryTracked } from '../redux/actions'
 
 const testCountry = {
   Country: 'Lithuania',
@@ -49,14 +50,6 @@ describe('Country tracking functionality', () => {
       expect(driver.countryIsTracked(testCountry.Slug)).toBeTruthy()
     })
 
-    it('should dispatch tracking event on switch toggle', () => {
-      driver.tapSwitch() // enable
-
-      const trackCountry = driver.createTrackingDispatchArgument(testCountry.Slug, true)
-
-      expect(storeDispatchSpy).toHaveBeenLastCalledWith(trackCountry)
-    })
-
     it('should alter the global list of tracked countries on switch toggle', () => {
       expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
       driver.tapSwitch() // enable
@@ -92,9 +85,7 @@ describe('Country tracking functionality', () => {
         expect(driver.countryIsTracked(testCountry.Slug)).toBeFalsy()
 
         driver.tapSwitch() // enable
-        const trackCountry = driver.createTrackingDispatchArgument(testCountry.Slug, true)
 
-        expect(storeDispatchSpy).toHaveBeenLastCalledWith(trackCountry)
         expect(homeDriver.containsCountry(testCountry.Slug)).toBeTruthy()
       })
     })

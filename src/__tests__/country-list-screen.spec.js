@@ -39,15 +39,15 @@ describe('Country list screen', () => {
   it('should create a list of countries on fetch', async () => {
     const countrySlug = 'afghanistan'
 
-    const countries = driver.getRenderedCountries()
+    const renderedCountries = driver.getRenderedCountries()
 
     // test fixture length must be under 10, otherwise full render might not happen
-    expect(countries.length).toEqual(countries.length)
+    expect(renderedCountries.length).toEqual(renderedCountries.length)
 
-    expect(driver.containsCountry(countries, countrySlug)).toBeTruthy()
-    expect(driver.containsText(countries, '🇦🇫')).toBeTruthy()
-    expect(driver.containsText(countries, 'Afghanistan')).toBeTruthy()
-    expect(driver.containsText(countries, '7,653')).toBeTruthy()
+    expect(driver.containsCountry(renderedCountries, countrySlug)).toBeTruthy()
+    expect(driver.containsText(renderedCountries, '🇦🇫')).toBeTruthy()
+    expect(driver.containsText(renderedCountries, 'Afghanistan')).toBeTruthy()
+    expect(driver.containsText(renderedCountries, '7,653')).toBeTruthy()
   })
 
   it('should open the country detail page on flat list item press', async () => {

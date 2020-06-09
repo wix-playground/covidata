@@ -3,7 +3,7 @@ import { HomeScreenComp } from '../components/home-screen-comp'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchSummaryAction } from '../redux/actions'
+import { fetchSummary } from '../redux/actions'
 import { LoaderScreen } from 'react-native-ui-lib'
 import { globalDataPropTypes } from '../prop-types'
 import { CountryDetailCard } from '../components/country-detail-card'
@@ -54,7 +54,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchSummaryAction: fetchSummaryAction
+  fetchSummaryAction: fetchSummary
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
