@@ -17,6 +17,7 @@ export class CountryListScreen extends React.Component {
     />)
   }
 
+  // leaking here as well. should be part of CountryListScreenComp
   renderItem ({ item }) {
     return (<CountryRow componentId={this.props.componentId} country={item}/>)
   }

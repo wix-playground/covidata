@@ -25,6 +25,10 @@ class HomeScreen extends React.Component {
     )
   }
 
+  // renderItem and keyExtractor should probably be part of HomeScreenComp.
+  // implementation details are leaking to the screen component and screen knows
+  // about the deeper components of the component it is rendering. code becomes
+  // confusing as it's description :-)
   renderItem ({ item }) {
     return (this.props.tracked.includes(item.Slug)
       ? <CountryDetailCard country={item}/>

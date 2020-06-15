@@ -24,6 +24,7 @@ describe('Country card views', () => {
       testIdPrefix: testIDPrefix
     }))
 
+    // driver would simplify this test and make it more readable
     expect(filterByTestID(TEST_ID_STAT_PREFIX_NAME(testIDPrefix, statName), row)[0].children[0]).toEqual(statName)
     expect(filterByTestID(TEST_ID_STAT_PREFIX_NAME_TOTAL(testIDPrefix, statName), row)[0].children[0]).toEqual(statTotal.toLocaleString())
     expect(filterByTestID(TEST_ID_STAT_PREFIX_NAME_NEW(testIDPrefix, statName), row)[0].props.label).toEqual('+' + statNew)

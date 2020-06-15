@@ -17,6 +17,13 @@ export const ACTIONS = {
 export const setCountryTracked = (countrySlug, value) => {
   return async (dispatch) => {
     dispatch({type: ACTIONS.SET_COUNTRY_TRACKED, payload: { countrySlug, value }})
+    // 3rd party libraries should be wrapped with your code. Meaning,
+    // storage should be another class/object/function which wraps AsyncStorage,
+    // thus AsyncStorage would be easily replaced with another library
+    // as you would need to adapt to new API only in the wrapper as apposed
+    // to all actions/places scattered around the project. Furthermore,
+    // data manipulations (such as JSON.parse or fallback values) would be
+    // handled in the wrapper, as it is not action's concern to deal with this.
     const oldTracked = JSON.parse(await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
     const newTracked = computeNewTrackedCountries(oldTracked, countrySlug, value)
     AsyncStorage.setItem(ASYNC_STORAGE_TRACKED_KEY, JSON.stringify(newTracked))
@@ -28,6 +35,7 @@ export function fetchSummary () {
     dispatch({ type: ACTIONS.GET_SUMMARY_PENDING })
     try {
       const { countries, globalData } = await covidApi.getSummary()
+      // same as above
       const tracked = JSON.parse(await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
       dispatch({ type: ACTIONS.GET_ASYNC_STORAGE_TRACKED, payload: { tracked } })
       dispatch({ type: ACTIONS.GET_SUMMARY_SUCCESS, payload: { countries, globalData } })

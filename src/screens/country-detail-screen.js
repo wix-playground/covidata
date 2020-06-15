@@ -33,6 +33,9 @@ class CountryDetailScreen extends React.Component {
     )
   }
 
+  // this is ok, as opposed to renderItem. see why?
+  // tip: another option for bind would be onValueChange = (value) => {
+  // this way the function already bound.
   onValueChange (value) {
     this.props.setCountryTrackedAction(this.props.country.Slug, value)
   }
