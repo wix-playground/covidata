@@ -1,7 +1,7 @@
 import { CONFIRMED, DEATHS, GLOBAL, RECOVERIES } from '../src/strings'
 import {
   TEST_ID_COUNTRY_NAME,
-  TEST_ID_FLAT_LIST,
+  TEST_ID_FLAT_COUNTRY_LIST,
   TEST_ID_STAT_PREFIX_NAME_TOTAL
 } from '../src/test-ids'
 import { e2eDriver } from './utils/e2e-driver'
@@ -28,8 +28,8 @@ describe('Main features', () => {
     await e2eDriver.openCountriesTab()
     await
 
-    expect(element(by.id(TEST_ID_FLAT_LIST))).toBeVisible()
-    await element(by.id(TEST_ID_FLAT_LIST)).scrollTo('bottom')
+    expect(element(by.id(TEST_ID_FLAT_COUNTRY_LIST))).toBeVisible()
+    await element(by.id(TEST_ID_FLAT_COUNTRY_LIST)).scrollTo('bottom')
     await
 
     expect(element(by.text('Zimbabwe'))).toBeVisible()

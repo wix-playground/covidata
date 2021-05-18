@@ -1,6 +1,4 @@
 import { ACTIONS } from './actions'
-import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
-import AsyncStorage from '@react-native-community/async-storage'
 import {computeNewTrackedCountries} from '../utils/helper-methods';
 
 export const initialState = {
@@ -22,6 +20,7 @@ export const reducer = (state = initialState, action) => {
         pending: false
       }
     }
+    case ACTIONS.GET_COVID_NEWS_FAILURE:
     case ACTIONS.GET_COUNTRY_STATS_FAILURE: {
       return {
         ...state,
@@ -29,10 +28,18 @@ export const reducer = (state = initialState, action) => {
         pending: false
       }
     }
+    case ACTIONS.GET_COVID_NEWS_PENDING:
     case ACTIONS.GET_COUNTRY_STATS_PENDING: {
       return {
         ...state,
         pending: true
+      }
+    }
+    case ACTIONS.GET_COVID_NEWS_SUCCESS: {
+      return {
+        ...state,
+        articles: action.payload.articles,
+        pending:false
       }
     }
     case ACTIONS.GET_SUMMARY_SUCCESS: {

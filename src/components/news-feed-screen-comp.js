@@ -2,14 +2,12 @@ import { FlatList, StyleSheet } from 'react-native'
 import { View } from 'react-native-ui-lib'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TEST_ID_FLAT_COUNTRY_LIST } from '../test-ids'
 
-export const CountryListScreenComp = React.memo(function CountryListScreenComp ({ countries, renderItem }) {
+export const NewsFeedScreenComp = React.memo(function NewsFeedScreenComp ({ articles, renderItem }) {
   return (
     <View>
       <FlatList
-        testID={TEST_ID_FLAT_COUNTRY_LIST}
-        data={countries}
+        data={articles}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         ItemSeparatorComponent={separator}
@@ -18,8 +16,8 @@ export const CountryListScreenComp = React.memo(function CountryListScreenComp (
   )
 })
 
-const keyExtractor = (item) => {
-  return item.Slug
+const keyExtractor = (item, index) => {
+  return index.toString()
 }
 
 const separator = () => {
@@ -28,13 +26,14 @@ const separator = () => {
 
 const style = StyleSheet.create({
   separator: {
-    height: 1,
-    width: '100%',
-    backgroundColor: '#CEDCCE'
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: '#d1d0d1',
+    height: 1
   }
 })
 
-CountryListScreenComp.propTypes = {
-  countries: PropTypes.array,
+NewsFeedScreenComp.propTypes = {
+  articles: PropTypes.array,
   renderItem: PropTypes.func
 }

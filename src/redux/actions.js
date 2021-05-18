@@ -2,6 +2,7 @@ import covidApi from '../api/covid-api'
 import AsyncStorage from '@react-native-community/async-storage'
 import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
 import {computeNewTrackedCountries} from '../utils/helper-methods';
+import newsApi from '../api/news-api'
 
 export const ACTIONS = {
   GET_SUMMARY_PENDING: 'GET_SUMMARY_PENDING',
@@ -10,6 +11,9 @@ export const ACTIONS = {
   GET_COUNTRY_STATS_PENDING: 'GET_COUNTRY_STATS_PENDING',
   GET_COUNTRY_STATS_SUCCESS: 'GET_COUNTRY_STATS_SUCCESS',
   GET_COUNTRY_STATS_FAILURE: 'GET_COUNTRY_STATS_FAILURE',
+  GET_COVID_NEWS_PENDING: 'GET_COVID_NEWS_PENDING',
+  GET_COVID_NEWS_SUCCESS: 'GET_COVID_NEWS_SUCCESS',
+  GET_COVID_NEWS_FAILURE: 'GET_COVID_NEWS_FAILURE',
   SET_COUNTRY_TRACKED: 'SET_COUNTRY_TRACKED',
   GET_ASYNC_STORAGE_TRACKED: 'GET_ASYNC_STORAGE_TRACKED'
 }
@@ -45,6 +49,19 @@ export function fetchCountryStats (countrySlug) {
       dispatch({ type: ACTIONS.GET_COUNTRY_STATS_SUCCESS, payload: { labels, data } })
     } catch (error) {
       dispatch({ type: ACTIONS.GET_COUNTRY_STATS_FAILURE, error: { error } })
+    }
+  }
+}
+
+export function fetchCovidNews () {
+  return async (dispatch) => {
+    dispatch({ type: ACTIONS.GET_COVID_NEWS_PENDING })
+    try {
+      const { articles } = await newsApi.getTopCovidHeadlines()
+      dispatch({ type: ACTIONS.GET_COVID_NEWS_SUCCESS, payload: { articles } })
+    } catch (error) {
+
+      dispatch({ type: ACTIONS.GET_COVID_NEWS_FAILURE, error: { error } })
     }
   }
 }

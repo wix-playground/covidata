@@ -21,3 +21,17 @@ export const globalDataPropTypes = PropTypes.shape({
   NewRecovered: PropTypes.number,
   TotalRecovered: PropTypes.number
 })
+
+export const articlePropTypes = PropTypes.shape({
+  source: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string
+  }),
+  author: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  url: PropTypes.string,
+  urlToImage: PropTypes.string,
+  publishedAt: PropTypes.string,
+  content: PropTypes.string
+})

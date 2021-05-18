@@ -1,17 +1,14 @@
-import { API_ROOT } from '../../env'
+import { COVID_API_ROOT } from '../../env'
+import Api from './common'
 
 export default class covidApi {
-  static async getJson (url) {
-    return await fetch(url).then(res => res.json())
-  }
-
   static async getSummary () {
-    return this.getJson(`${API_ROOT}/summary`)
+    return Api.fetchJson(`${COVID_API_ROOT}/summary`)
       .then(json => this.extractCountries(json))
   }
 
   static async getCountryStats (countrySlug) {
-    return await this.getJson(`${API_ROOT}/total/dayone/country/${countrySlug}`)
+    return await Api.fetchJson(`${COVID_API_ROOT}/total/dayone/country/${countrySlug}`)
       .then(json => this.extractCountryDataPoints(json))
   }
 

@@ -1,7 +1,7 @@
 import { ComponentDriver, getTextNodes } from 'react-component-driver'
 import { CountryListScreen } from '../../screens/country-list-screen'
 import { Navigation } from 'react-native-navigation'
-import { TEST_ID_COUNTRY_ROW, TEST_ID_FLAT_LIST } from '../../test-ids'
+import { TEST_ID_COUNTRY_ROW, TEST_ID_FLAT_COUNTRY_LIST } from '../../test-ids'
 import { COUNTRY_DETAIL_SCREEN } from '../../strings'
 const { _ } = require('lodash')
 
@@ -16,7 +16,7 @@ export class CountryListScreenDriver extends ComponentDriver {
   }
 
   getListData () {
-    return this.getByID(TEST_ID_FLAT_LIST).props.data
+    return this.getByID(TEST_ID_FLAT_COUNTRY_LIST).props.data
   }
 
   didPushScreenWithProps (screenName, props) {

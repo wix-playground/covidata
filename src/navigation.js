@@ -1,3 +1,6 @@
+import { FEED, NEWS_FEED_SCREEN } from './strings'
+import { TEST_ID_NEWS_FEED_TAB_BUTTON } from './test-ids'
+
 const { Navigation } = require('react-native-navigation')
 
 export function setUpNavigation () {
@@ -11,10 +14,11 @@ export function registerComponents () {
   const HomeScreen = require('./screens/home-screen').default
   const CountryListScreen = require('./screens/country-list-screen').default
   const CountryDetailScreen = require('./screens/country-detail-screen').default
+  const NewsFeedScreen = require('./screens/news-feed-screen').default
   const Provider = require('react-redux').Provider
   const store = require('./redux/configure-store').store
   const wrapWithProvider = require('./utils/helper-methods').wrapWithProvider
-  const { HOME_SCREEN, COUNTRIES_SCREEN, COUNTRY_DETAIL_SCREEN } = require('./strings')
+  const { HOME_SCREEN, COUNTRIES_SCREEN, COUNTRY_DETAIL_SCREEN, NEWS_FEED_SCREEN } = require('./strings')
   Navigation.registerComponent(HOME_SCREEN, () => (props) => (
     wrapWithProvider(HomeScreen, Provider, store, props)
   ), () => HomeScreen)
@@ -24,6 +28,9 @@ export function registerComponents () {
   Navigation.registerComponent(COUNTRY_DETAIL_SCREEN, () => (props) => (
     wrapWithProvider(CountryDetailScreen, Provider, store, props)
   ), () => CountryDetailScreen)
+  Navigation.registerComponent(NEWS_FEED_SCREEN, () => (props) => (
+    wrapWithProvider(NewsFeedScreen, Provider, store, props)
+  ))
 }
 
 function setRoot () {
@@ -77,6 +84,30 @@ function setRoot () {
                 bottomTab: {
                   testID: TEST_ID_COUNTRIES_TAB_BUTTON,
                   text: COUNTRIES
+                }
+              }
+            }
+          },
+          {
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: NEWS_FEED_SCREEN,
+                    options: {
+                      topBar: {
+                        title: {
+                          text: FEED
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              options: {
+                bottomTab: {
+                  testID: TEST_ID_NEWS_FEED_TAB_BUTTON,
+                  text: FEED
                 }
               }
             }
