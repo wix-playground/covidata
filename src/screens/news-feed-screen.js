@@ -5,6 +5,7 @@ import { NewsFeedScreenComp } from '../components/news-feed-screen-comp'
 import { ArticleRow } from '../components/article-row'
 import { fetchCovidNews } from '../redux/actions'
 import { bindActionCreators } from 'redux'
+import { LoaderScreen } from 'react-native-ui-lib'
 
 export class NewsFeedScreen extends React.Component {
   constructor (props) {
@@ -17,10 +18,12 @@ export class NewsFeedScreen extends React.Component {
   }
 
   render () {
-    return (<NewsFeedScreenComp
-      articles={this.props.articles}
-      renderItem={this.renderItem}
-    />)
+    return (this.props.pending
+      ? <LoaderScreen overlay/>
+      : <NewsFeedScreenComp
+        articles={this.props.articles}
+        renderItem={this.renderItem}
+      />)
   }
 
   renderItem ({ item }) {
