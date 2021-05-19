@@ -44,3 +44,11 @@ export interface State {
   pending: boolean,
   articles: Article[]
 }
+
+export interface NewsApiResponse {
+  status: "ok" | "error",
+  totalResults?: number,
+  articles?: Article[],
+  code?: string,
+  message?: string
+}
