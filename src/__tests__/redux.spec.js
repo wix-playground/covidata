@@ -1,10 +1,12 @@
-import { ACTIONS, fetchCountryStats, fetchSummary, setCountryTracked } from '../redux/actions'
+import { ACTIONS, fetchCountryStats, fetchCovidNews, fetchSummary, setCountryTracked } from '../redux/actions'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
 import AsyncStorage from '@react-native-community/async-storage'
 import covidApi from '../api/covid-api'
 import { reducer } from '../redux/reducer'
+import { article } from './news-feed-screen.spec'
+import newsApi from '../api/news-api'
 
 describe('Redux unit tests', () => {
   describe('reducer', () => {
@@ -31,6 +33,30 @@ describe('Redux unit tests', () => {
 
     it('ACTIONS.GET_COUNTRY_STATS_PENDING', () => {
       const action = { type: ACTIONS.GET_COUNTRY_STATS_PENDING }
+      const expected = { ...initialState, pending: true }
+
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+
+    it('ACTIONS.GET_COVID_NEWS_SUCCESS', () => {
+      const action = {
+        type: ACTIONS.GET_COVID_NEWS_SUCCESS,
+        payload: { articles }
+      }
+      const expected = { ...initialState, articles, pending: false }
+
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+
+    it('ACTIONS.GET_COVID_NEWS_FAILURE', () => {
+      const action = { type: ACTIONS.GET_COVID_NEWS_FAILURE, error }
+      const expected = { ...initialState, error, pending: false }
+
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+
+    it('ACTIONS.GET_COVID_NEWS_PENDING', () => {
+      const action = { type: ACTIONS.GET_COVID_NEWS_PENDING }
       const expected = { ...initialState, pending: true }
 
       expect(reducer(undefined, action)).toEqual(expected)
@@ -130,6 +156,17 @@ describe('Redux unit tests', () => {
 
       expect(store.getActions()).toEqual(expectedActions)
     })
+
+    it('should dispatch expected actions with fetchCovidNewsAction', async () => {
+      const expectedActions = [
+        { type: ACTIONS.GET_COVID_NEWS_PENDING },
+        { type: ACTIONS.GET_COVID_NEWS_SUCCESS, payload: { articles } }
+      ]
+
+      await store.dispatch(fetchCovidNews())
+
+      expect(store.getActions()).toEqual(expectedActions)
+    })
   })
 })
 
@@ -144,7 +181,9 @@ const countries = [{
 }]
 const labels = ['06-01', '06-02']
 const data = [123, 456]
+const articles = [article]
 const initialState = {
+  articles: [],
   countries: [],
   tracked: [],
   globalData: {},
@@ -157,3 +196,4 @@ const error = new Error()
 
 covidApi.getCountryStats = jest.fn().mockResolvedValue({ labels, data })
 covidApi.getSummary = jest.fn().mockResolvedValue({ globalData, countries })
+newsApi.getTopCovidHeadlines = jest.fn().mockResolvedValue({ articles })

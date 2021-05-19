@@ -8,7 +8,8 @@ export const initialState = {
   error: null,
   labels: [],
   data: [0],
-  pending: true
+  pending: true,
+  articles: []
 }
 export const reducer = (state = initialState, action) => {
   switch (action?.type) {
@@ -39,7 +40,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         articles: action.payload.articles,
-        pending:false
+        pending: false
       }
     }
     case ACTIONS.GET_SUMMARY_SUCCESS: {
