@@ -6,7 +6,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { TEST_ID_TRACKING_SWITCH } from '../test-ids'
 import { RECENT_DATA, TRACK } from '../strings'
-import { countryPropTypes } from '../prop-types'
 
 export const CountryDetailScreenComp = React.memo(function CountryDetailsScreenComp ({ country, track, onValueChange, labels, data }) {
   return (
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
 })
 
 CountryDetailScreenComp.propTypes = {
-  country: countryPropTypes,
+  country: PropTypes.object,
   track: PropTypes.bool,
   onValueChange: PropTypes.func,
   labels: PropTypes.array,

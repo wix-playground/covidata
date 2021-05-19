@@ -8,7 +8,7 @@ export const newsFeedScreenDriver = () => {
     container () {
       return this.getByID(TEST_ID_FLAT_NEWS_ARTICLE_LIST)
     },
-    articleAtIndex (index) {
+    articleAtIndex (index: number) {
       return articleRowDriver().attachTo(this.filterByID(TEST_ID_ARTICLE_ROW)[index])
     }
   })

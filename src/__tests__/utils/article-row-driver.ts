@@ -9,6 +9,11 @@ import {
 
 export const articleRowDriver = () => {
   return createComponentDriver(ArticleRow, {
+    async tap () {
+      // Not sure how to convince TS that props have onPress?
+      // @ts-ignore
+      await this.props.onPress()
+    },
     title () {
       return this.getText(TEST_ID_ARTICLE_TITLE)
     },
@@ -19,8 +24,8 @@ export const articleRowDriver = () => {
       return this.getText(TEST_ID_ARTICLE_TIMESTAMP)
     },
     imageUri () {
-      const imageProps = this.getByID(TEST_ID_ARTICLE_IMAGE).props
-      return imageProps.source ? imageProps.source.uri : undefined
+      const imageProps = this.getByID(TEST_ID_ARTICLE_IMAGE)?.props
+      return imageProps?.source ? imageProps.source.uri : undefined
     }
   })
 }

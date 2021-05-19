@@ -1,7 +1,9 @@
-import { ACTIONS } from './actions'
+import {ACTIONS} from './actions';
 import {computeNewTrackedCountries} from '../utils/helper-methods';
+import {AnyAction} from 'redux';
+import {State} from '../types';
 
-export const initialState = {
+export const initialState: State = {
   countries: [],
   tracked: [],
   globalData: {},
@@ -11,7 +13,8 @@ export const initialState = {
   pending: true,
   articles: []
 }
-export const reducer = (state = initialState, action) => {
+
+export const reducer = (state: State = initialState, action: AnyAction) => {
   switch (action?.type) {
     case ACTIONS.GET_COUNTRY_STATS_SUCCESS: {
       return {

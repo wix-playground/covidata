@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { CountryDetailScreenComp } from '../components/country-detail-screen-comp'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { countryPropTypes } from '../prop-types'
+import { Country } from '../types'
 import { fetchCountryStats, setCountryTracked } from '../redux/actions'
 import { LoaderScreen } from 'react-native-ui-lib'
 
@@ -39,7 +39,7 @@ class CountryDetailScreen extends React.Component {
 }
 
 CountryDetailScreen.propTypes = {
-  country: countryPropTypes,
+  country: PropTypes.object,
   fetchCountryStatsAction: PropTypes.func,
   labels: PropTypes.array,
   data: PropTypes.array,

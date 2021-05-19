@@ -1,19 +1,29 @@
 import { ListItem, View, Text, AnimatedImage, Assets } from 'react-native-ui-lib'
 import React from 'react'
 import { ActivityIndicator, Linking } from 'react-native'
-import { articlePropTypes } from '../prop-types'
 import {
   TEST_ID_ARTICLE_IMAGE,
   TEST_ID_ARTICLE_ROW, TEST_ID_ARTICLE_SOURCE,
   TEST_ID_ARTICLE_TIMESTAMP,
   TEST_ID_ARTICLE_TITLE
 } from '../test-ids'
+import {Article} from '../types';
 
 const dateFormat = require('dateformat')
 
-export const ArticleRow = React.memo(function ArticleRow ({ article }) {
+export interface ArticleRowProps {
+  article: Article
+}
+
+export const ArticleRow = React.memo(function ArticleRow ({ article }: ArticleRowProps) {
+  const onPress = () => {
+    if (article.url) {
+      return Linking.openURL(article.url)
+    }
+  }
+
   return (
-    <ListItem margin-15 center onPress={ () => Linking.openURL(article.url) } testID={TEST_ID_ARTICLE_ROW}>
+    <ListItem margin-15 center onPress={onPress} testID={TEST_ID_ARTICLE_ROW}>
       <View flex flexDirection={'row'}>
         <AnimatedImage
           source={article.urlToImage ? { uri: article.urlToImage } : Assets.icons.x}
@@ -30,7 +40,3 @@ export const ArticleRow = React.memo(function ArticleRow ({ article }) {
     </ListItem>
   )
 })
-
-ArticleRow.propTypes = {
-  article: articlePropTypes
-}

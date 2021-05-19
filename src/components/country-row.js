@@ -6,10 +6,7 @@ import PropTypes from 'prop-types';
 import {tryEmoji} from '../utils/helper-methods';
 import {TEST_ID_COUNTRY_ROW, TEST_ID_COUNTRY_SLUG} from '../test-ids';
 import {COUNTRY_DETAIL_SCREEN} from '../strings';
-import {countryPropTypes} from '../prop-types';
 import {pushScreen} from '../navigation';
-
-const { Navigation } = require('react-native-navigation')
 
 export const CountryRow = React.memo(function CountryRow ({ componentId, country }) {
   return (
@@ -34,5 +31,5 @@ const pushCountryDetailScreen = (componentId, country) => {
 
 CountryRow.propTypes = {
   componentId: PropTypes.string,
-  country: countryPropTypes
+  country: PropTypes.object
 }

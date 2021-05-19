@@ -2,7 +2,7 @@ import { CountryDetailCard } from './country-detail-card'
 import { View } from 'react-native-ui-lib'
 import { FlatList, StyleSheet } from 'react-native'
 import React from 'react'
-import { globalDataPropTypes } from '../prop-types'
+import { GlobalData } from '../types'
 import { TEST_ID_HOME_TRACKED_LIST } from '../test-ids'
 import PropTypes from 'prop-types'
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 })
 
 HomeScreenComp.propTypes = {
-  globalData: globalDataPropTypes,
+  globalData: PropTypes.object,
   keyExtractor: PropTypes.func,
   renderItem: PropTypes.func,
   countries: PropTypes.array

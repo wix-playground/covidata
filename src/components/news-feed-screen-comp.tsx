@@ -1,10 +1,15 @@
 import { FlatList, StyleSheet } from 'react-native'
 import { View } from 'react-native-ui-lib'
 import React from 'react'
-import PropTypes from 'prop-types'
 import { TEST_ID_FLAT_NEWS_ARTICLE_LIST } from '../test-ids'
+import {Article} from '../types';
 
-export const NewsFeedScreenComp = React.memo(function NewsFeedScreenComp ({ articles, renderItem }) {
+export interface NewsFeedScreenCompProps {
+  articles: Article[],
+  renderItem: ({item}: {item: Article}) => JSX.Element
+}
+
+export const NewsFeedScreenComp = React.memo(function NewsFeedScreenComp ({ articles, renderItem }: NewsFeedScreenCompProps) {
   return (
     <FlatList
       testID={TEST_ID_FLAT_NEWS_ARTICLE_LIST}
@@ -16,7 +21,7 @@ export const NewsFeedScreenComp = React.memo(function NewsFeedScreenComp ({ arti
   )
 })
 
-const keyExtractor = (item, index) => {
+const keyExtractor = (item: Article, index: number) => {
   return index.toString()
 }
 
@@ -32,8 +37,3 @@ const style = StyleSheet.create({
     height: 1
   }
 })
-
-NewsFeedScreenComp.propTypes = {
-  articles: PropTypes.array,
-  renderItem: PropTypes.func
-}

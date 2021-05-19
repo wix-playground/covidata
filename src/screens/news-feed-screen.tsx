@@ -1,51 +1,52 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { NewsFeedScreenComp } from '../components/news-feed-screen-comp'
 import { ArticleRow } from '../components/article-row'
 import { fetchCovidNews } from '../redux/actions'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { LoaderScreen } from 'react-native-ui-lib'
+import {Article, State} from '../types';
 
-export class NewsFeedScreen extends React.Component {
-  constructor (props) {
+export interface NewsFeedScreenProps {
+  componentId: string,
+  articles: Article[],
+  fetchCovidNewsAction: typeof fetchCovidNews,
+  pending: boolean
+}
+
+export class NewsFeedScreen extends React.Component<NewsFeedScreenProps> {
+  constructor(props: NewsFeedScreenProps) {
     super(props)
     this.renderItem = this.renderItem.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchCovidNewsAction()
   }
 
-  render () {
+  render() {
     return (this.props.pending
-      ? <LoaderScreen overlay/>
+      ? <LoaderScreen overlay />
       : <NewsFeedScreenComp
         articles={this.props.articles}
         renderItem={this.renderItem}
       />)
   }
 
-  renderItem ({ item }) {
-    return (<ArticleRow article={item}/>)
+  renderItem({item}: {item: Article}) {
+    return (<ArticleRow article={item} />)
   }
 }
 
-NewsFeedScreen.propTypes = {
-  componentId: PropTypes.string,
-  articles: PropTypes.array,
-  fetchCovidNewsAction: PropTypes.func,
-  pending: PropTypes.bool
-}
-
-const mapStateToProps = state => {
+const mapStateToProps = (state: State) => {
   return {
+    ...state,
     articles: state.articles,
     pending: state.pending
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
   fetchCovidNewsAction: fetchCovidNews
 }, dispatch)
 

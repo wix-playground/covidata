@@ -1,5 +1,6 @@
 import { newsFeedScreenDriver } from './utils/news-feed-screen-driver'
 import { Assets } from 'react-native-ui-lib'
+import { Linking } from 'react-native'
 
 export const article = {
   source: { id: '', name: 'ESPN' },
@@ -45,6 +46,13 @@ describe('News Feed Screen', () => {
 
     it('should render a formatted timestamp', () => {
       expect(driver.articleAtIndex(0).timestamp()).toEqual(formattedTimestamp)
+    })
+
+    it('should open the article URL on tap', () => {
+      const spy = jest.spyOn(Linking, 'openURL')
+      driver.articleAtIndex(0).tap()
+
+      expect(spy).toHaveBeenCalledWith(article.url)
     })
   })
 })

@@ -2,10 +2,10 @@ import { Card, Text, View } from 'react-native-ui-lib'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { StatDetailRow } from './stat-detail-row'
+import PropTypes from 'prop-types'
 import { tryEmoji } from '../utils/helper-methods'
 import { TEST_ID_COUNTRY_NAME, TEST_ID_COUNTRY_SLUG } from '../test-ids'
 import { CONFIRMED, DEATHS, GLOBAL, RECOVERIES } from '../strings'
-import { countryPropTypes } from '../prop-types'
 
 export const CountryDetailCard = React.memo(function CountryDetailCard ({ country }) {
   return (
@@ -43,7 +43,7 @@ export const CountryDetailCard = React.memo(function CountryDetailCard ({ countr
 })
 
 CountryDetailCard.propTypes = {
-  country: countryPropTypes
+  country: PropTypes.object
 }
 
 const styles = StyleSheet.create({

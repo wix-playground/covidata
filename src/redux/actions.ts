@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { ASYNC_STORAGE_TRACKED_KEY } from '../strings'
 import {computeNewTrackedCountries} from '../utils/helper-methods';
 import newsApi from '../api/news-api'
+import {Dispatch} from 'redux';
 
 export const ACTIONS = {
   GET_SUMMARY_PENDING: 'GET_SUMMARY_PENDING',
@@ -18,21 +19,21 @@ export const ACTIONS = {
   GET_ASYNC_STORAGE_TRACKED: 'GET_ASYNC_STORAGE_TRACKED'
 }
 
-export const setCountryTracked = (countrySlug, value) => {
-  return async (dispatch) => {
+export const setCountryTracked = (countrySlug: string, value: boolean) => {
+  return async (dispatch: Dispatch) => {
     dispatch({type: ACTIONS.SET_COUNTRY_TRACKED, payload: { countrySlug, value }})
-    const oldTracked = JSON.parse(await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
+    const oldTracked = JSON.parse(<string>await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
     const newTracked = computeNewTrackedCountries(oldTracked, countrySlug, value)
-    AsyncStorage.setItem(ASYNC_STORAGE_TRACKED_KEY, JSON.stringify(newTracked))
+    await AsyncStorage.setItem(ASYNC_STORAGE_TRACKED_KEY, JSON.stringify(newTracked))
   }
 }
 
 export function fetchSummary () {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch) => {
     dispatch({ type: ACTIONS.GET_SUMMARY_PENDING })
     try {
       const { countries, globalData } = await covidApi.getSummary()
-      const tracked = JSON.parse(await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
+      const tracked = JSON.parse(<string>await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? []
       dispatch({ type: ACTIONS.GET_ASYNC_STORAGE_TRACKED, payload: { tracked } })
       dispatch({ type: ACTIONS.GET_SUMMARY_SUCCESS, payload: { countries, globalData } })
     } catch (error) {
@@ -41,8 +42,8 @@ export function fetchSummary () {
   }
 }
 
-export function fetchCountryStats (countrySlug) {
-  return async (dispatch) => {
+export function fetchCountryStats (countrySlug: string) {
+  return async (dispatch: Dispatch) => {
     dispatch({ type: ACTIONS.GET_COUNTRY_STATS_PENDING })
     try {
       const { labels, data } = await covidApi.getCountryStats(countrySlug)
@@ -54,7 +55,7 @@ export function fetchCountryStats (countrySlug) {
 }
 
 export function fetchCovidNews () {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch) => {
     dispatch({ type: ACTIONS.GET_COVID_NEWS_PENDING })
     try {
       const { articles } = await newsApi.getTopCovidHeadlines()

@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { fetchSummary } from '../redux/actions'
 import { LoaderScreen } from 'react-native-ui-lib'
-import { globalDataPropTypes } from '../prop-types'
 import { CountryDetailCard } from '../components/country-detail-card'
 
 class HomeScreen extends React.Component {
@@ -39,7 +38,7 @@ class HomeScreen extends React.Component {
 HomeScreen.propTypes = {
   fetchSummaryAction: PropTypes.func,
   pending: PropTypes.bool,
-  globalData: globalDataPropTypes,
+  globalData: PropTypes.object,
   countries: PropTypes.array,
   tracked: PropTypes.array
 }
