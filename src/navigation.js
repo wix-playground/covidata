@@ -1,41 +1,59 @@
-import { FEED, NEWS_FEED_SCREEN } from './strings'
-import { TEST_ID_NEWS_FEED_TAB_BUTTON } from './test-ids'
+import {FEED, NEWS_FEED_SCREEN} from './strings';
+import {TEST_ID_NEWS_FEED_TAB_BUTTON} from './test-ids';
 
-const { Navigation } = require('react-native-navigation')
+const {Navigation} = require('react-native-navigation');
 
-export function setUpNavigation () {
+export function setUpNavigation() {
   Navigation.events().registerAppLaunchedListener(async () => {
-    setDefaultNavigationOptions()
-    setRoot()
-  })
+    setDefaultNavigationOptions();
+    setRoot();
+  });
 }
 
-export function registerComponents () {
-  const HomeScreen = require('./screens/home-screen').default
-  const CountryListScreen = require('./screens/country-list-screen').default
-  const CountryDetailScreen = require('./screens/country-detail-screen').default
-  const NewsFeedScreen = require('./screens/news-feed-screen').default
-  const Provider = require('react-redux').Provider
-  const store = require('./redux/configure-store').store
-  const wrapWithProvider = require('./utils/helper-methods').wrapWithProvider
-  const { HOME_SCREEN, COUNTRIES_SCREEN, COUNTRY_DETAIL_SCREEN, NEWS_FEED_SCREEN } = require('./strings')
-  Navigation.registerComponent(HOME_SCREEN, () => (props) => (
-    wrapWithProvider(HomeScreen, Provider, store, props)
-  ), () => HomeScreen)
-  Navigation.registerComponent(COUNTRIES_SCREEN, () => (props) => (
-    wrapWithProvider(CountryListScreen, Provider, store, props)
-  ), () => CountryListScreen)
-  Navigation.registerComponent(COUNTRY_DETAIL_SCREEN, () => (props) => (
-    wrapWithProvider(CountryDetailScreen, Provider, store, props)
-  ), () => CountryDetailScreen)
-  Navigation.registerComponent(NEWS_FEED_SCREEN, () => (props) => (
-    wrapWithProvider(NewsFeedScreen, Provider, store, props)
-  ))
+export function registerComponents() {
+  const HomeScreen = require('./screens/home-screen').default;
+  const CountryListScreen = require('./screens/country-list-screen').default;
+  const CountryDetailScreen =
+    require('./screens/country-detail-screen').default;
+  const NewsFeedScreen = require('./screens/news-feed-screen').default;
+  const Provider = require('react-redux').Provider;
+  const store = require('./redux/configure-store').store;
+  const wrapWithProvider = require('./utils/helper-methods').wrapWithProvider;
+  const {
+    HOME_SCREEN,
+    COUNTRIES_SCREEN,
+    COUNTRY_DETAIL_SCREEN,
+    NEWS_FEED_SCREEN,
+  } = require('./strings');
+  Navigation.registerComponent(
+    HOME_SCREEN,
+    () => (props) => wrapWithProvider(HomeScreen, Provider, store, props),
+    () => HomeScreen,
+  );
+  Navigation.registerComponent(
+    COUNTRIES_SCREEN,
+    () => (props) =>
+      wrapWithProvider(CountryListScreen, Provider, store, props),
+    () => CountryListScreen,
+  );
+  Navigation.registerComponent(
+    COUNTRY_DETAIL_SCREEN,
+    () => (props) =>
+      wrapWithProvider(CountryDetailScreen, Provider, store, props),
+    () => CountryDetailScreen,
+  );
+  Navigation.registerComponent(
+    NEWS_FEED_SCREEN,
+    () => (props) => wrapWithProvider(NewsFeedScreen, Provider, store, props),
+  );
 }
 
-function setRoot () {
-  const { HOME_SCREEN, COUNTRIES_SCREEN, HOME, COUNTRIES } = require('./strings')
-  const { TEST_ID_HOME_TAB_BUTTON, TEST_ID_COUNTRIES_TAB_BUTTON } = require('./test-ids')
+function setRoot() {
+  const {HOME_SCREEN, COUNTRIES_SCREEN, HOME, COUNTRIES} = require('./strings');
+  const {
+    TEST_ID_HOME_TAB_BUTTON,
+    TEST_ID_COUNTRIES_TAB_BUTTON,
+  } = require('./test-ids');
   Navigation.setRoot({
     root: {
       bottomTabs: {
@@ -49,20 +67,20 @@ function setRoot () {
                     options: {
                       topBar: {
                         title: {
-                          text: HOME
-                        }
-                      }
-                    }
-                  }
-                }
+                          text: HOME,
+                        },
+                      },
+                    },
+                  },
+                },
               ],
               options: {
                 bottomTab: {
                   testID: TEST_ID_HOME_TAB_BUTTON,
-                  text: HOME
-                }
-              }
-            }
+                  text: HOME,
+                },
+              },
+            },
           },
           {
             stack: {
@@ -73,20 +91,20 @@ function setRoot () {
                     options: {
                       topBar: {
                         title: {
-                          text: COUNTRIES
-                        }
-                      }
-                    }
-                  }
-                }
+                          text: COUNTRIES,
+                        },
+                      },
+                    },
+                  },
+                },
               ],
               options: {
                 bottomTab: {
                   testID: TEST_ID_COUNTRIES_TAB_BUTTON,
-                  text: COUNTRIES
-                }
-              }
-            }
+                  text: COUNTRIES,
+                },
+              },
+            },
           },
           {
             stack: {
@@ -97,42 +115,42 @@ function setRoot () {
                     options: {
                       topBar: {
                         title: {
-                          text: FEED
-                        }
-                      }
-                    }
-                  }
-                }
+                          text: FEED,
+                        },
+                      },
+                    },
+                  },
+                },
               ],
               options: {
                 bottomTab: {
                   testID: TEST_ID_NEWS_FEED_TAB_BUTTON,
-                  text: FEED
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-  })
+                  text: FEED,
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
 }
 
-function setDefaultNavigationOptions () {
+function setDefaultNavigationOptions() {
   Navigation.setDefaultOptions({
     bottomTab: {
       fontSize: 14,
       selectedTextColor: '#147EFB',
-      fontWeight: 'bold'
-    }
-  })
+      fontWeight: 'bold',
+    },
+  });
 }
 
 export const pushScreen = (componentId, name, passProps) => {
   Navigation.push(componentId, {
     component: {
       name,
-      passProps
-    }
-  })
-}
+      passProps,
+    },
+  });
+};

@@ -5,29 +5,30 @@ import {
   TEST_ID_TRACKING_SWITCH,
 } from '../../src/test-ids';
 
-export class e2eDriver {
+export class E2EDriver {
   static openCountriesTab = async () => {
-    await element(by.id(TEST_ID_COUNTRIES_TAB_BUTTON)).tap()
-  }
+    await element(by.id(TEST_ID_COUNTRIES_TAB_BUTTON)).tap();
+  };
 
   static tapOnCountryInList = async (countrySlug) => {
-    await element(by.id(countrySlug)).tap()
-  }
+    await element(by.id(countrySlug)).tap();
+  };
 
   static openHomeTab = async () => {
-    await element(by.id(TEST_ID_HOME_TAB_BUTTON)).tap()
-  }
+    await element(by.id(TEST_ID_HOME_TAB_BUTTON)).tap();
+  };
 
   static toggleSwitch = async () => {
-    await element(by.id(TEST_ID_TRACKING_SWITCH)).tap()
-  }
+    await element(by.id(TEST_ID_TRACKING_SWITCH)).tap();
+  };
 
   static expectCountryCardToBeVisible = async (countrySlug) => {
-    await expect(element(by.id(TEST_ID_COUNTRY_NAME(countrySlug)))).toBeVisible()
-  }
+    await expect(
+      element(by.id(TEST_ID_COUNTRY_NAME(countrySlug))),
+    ).toBeVisible();
+  };
 
   static relaunchApp = async () => {
-    await device.launchApp({ newInstance: true })
-  }
-
+    await device.launchApp({newInstance: true});
+  };
 }
