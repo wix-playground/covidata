@@ -71,10 +71,6 @@ export default class CovidataModule {
     };
   }
 
-  methods() {
-    return [];
-  }
-
   prefix() {
     return 'covidata';
   }

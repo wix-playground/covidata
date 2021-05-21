@@ -18,12 +18,4 @@ export default class TemplateDemoModule {
         console.warn('Unhandled mock Mode: ' + mockMode);
     }
   }
-
-  components() {
-    return [];
-  }
-
-  methods() {
-    return [];
-  }
 }
