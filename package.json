@@ -5,7 +5,7 @@
   "main": "./src/module.ts",
   "scripts": {
     "clear-cache": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && rm package-lock.json && npm cache verify && npm install && npm start -- --reset-cache",
-    "test": "jest src/__tests__/*.spec.js",
+    "test": "TZ=UTC jest src/__tests__/*.spec.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "pretty": "prettier --write ./src ./demo ./e2e ./fake-server",
     "fake-server": "node fake-server",

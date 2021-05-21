@@ -16,7 +16,7 @@ export const article = {
 };
 const articleNoImage = {...article, urlToImage: undefined};
 const articles = [article, articleNoImage];
-const formattedTimestamp = 'Wed May 19 2021 08:41:55';
+const formattedTimestamp = 'Wed May 19 2021 05:41:55';
 
 Assets.icons = jest.fn().mockResolvedValue({x: undefined});
 
