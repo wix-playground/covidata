@@ -1,5 +1,5 @@
 {
-  "name": "covidata",
+  "name": "@wix/covidata",
   "version": "0.0.1",
   "main": "./src/module.ts",
   "scripts": {
@@ -23,7 +23,7 @@
       "platformModule": "@wix/wix-one-app-platform",
       "modules": [
         "template-demo-module",
-        "covidata",
+        "@wix/covidata",
         "@wix/wix-one-app-platform"
       ]
     },
@@ -31,7 +31,7 @@
       "platformModule": "@wix/wix-owners-app-platform",
       "modules": [
         "template-demo-module",
-        "covidata",
+        "@wix/covidata",
         "@wix/wix-owners-app-platform"
       ],
       "tabs": [
