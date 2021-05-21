@@ -1,4 +1,4 @@
-import {Colors, Typography, Spacings} from 'react-native-ui-lib';
+import {Colors, Typography, Spacings} from '@wix/wix-react-native-ui-lib';
 
 Colors.loadColors({
   primaryColor: '#2364AA',

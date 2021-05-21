@@ -4,7 +4,7 @@ import {CountryDetailScreenComp} from '../components/country-detail-screen-comp'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchCountryStats, setCountryTracked} from '../redux/actions';
-import {LoaderScreen} from 'react-native-ui-lib';
+import {LoaderScreen} from '@wix/wix-react-native-ui-lib';
 
 class CountryDetailScreen extends React.Component {
   constructor(props) {

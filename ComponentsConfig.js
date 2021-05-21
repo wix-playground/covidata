@@ -1,4 +1,4 @@
-import {ThemeManager} from 'react-native-ui-lib';
+import {ThemeManager} from '@wix/wix-react-native-ui-lib';
 
 // with plain object
 ThemeManager.setComponentTheme('Card', {

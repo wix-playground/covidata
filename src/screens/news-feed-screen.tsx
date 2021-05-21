@@ -4,7 +4,7 @@ import {NewsFeedScreenComp} from '../components/news-feed-screen-comp';
 import {ArticleRow} from '../components/article-row';
 import {fetchCovidNews} from '../redux/actions';
 import {bindActionCreators, Dispatch} from 'redux';
-import {LoaderScreen} from 'react-native-ui-lib';
+import {LoaderScreen} from '@wix/wix-react-native-ui-lib';
 import {Article, State} from '../types';
 
 export interface NewsFeedScreenProps {
