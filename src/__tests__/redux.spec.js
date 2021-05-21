@@ -7,12 +7,12 @@ import {
 } from '../redux/actions';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {ASYNC_STORAGE_TRACKED_KEY} from '../strings';
 import AsyncStorage from '@react-native-community/async-storage';
 import CovidApi from '../api/covid-api';
 import {reducer} from '../redux/reducer';
 import {article} from './news-feed-screen.spec';
 import NewsApi from '../api/news-api';
+import {i18n} from '../../strings';
 
 describe('Redux unit tests', () => {
   describe('reducer', () => {
@@ -154,7 +154,7 @@ describe('Redux unit tests', () => {
       ];
 
       await AsyncStorage.setItem(
-        ASYNC_STORAGE_TRACKED_KEY,
+        i18n('ASYNC_STORAGE_TRACKED_KEY'),
         JSON.stringify(tracked),
       );
       await store.dispatch(fetchSummary());

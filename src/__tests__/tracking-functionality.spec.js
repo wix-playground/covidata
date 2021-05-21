@@ -3,9 +3,9 @@ import {initialState, reducer} from '../redux/reducer';
 import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import {HomeScreenDriver} from './utils/home-screen-driver';
-import {ASYNC_STORAGE_TRACKED_KEY} from '../strings';
 import AsyncStorage from '@react-native-community/async-storage';
 import CovidApi from '../api/covid-api';
+import {i18n} from '../../strings';
 
 const testCountry = {
   Country: 'Lithuania',
@@ -104,7 +104,7 @@ describe('Country tracking functionality', () => {
 
       expect(jsonSpy).toHaveBeenCalledWith(expectedSave);
       expect(AsyncStorage.setItem).toBeCalledWith(
-        ASYNC_STORAGE_TRACKED_KEY,
+        i18n('ASYNC_STORAGE_TRACKED_KEY'),
         expectedJson,
       );
     });
@@ -122,7 +122,7 @@ describe('Country tracking functionality', () => {
       await new HomeScreenDriver(store).renderAsync();
 
       expect(AsyncStorage.getItem).toHaveBeenCalledWith(
-        ASYNC_STORAGE_TRACKED_KEY,
+        i18n('ASYNC_STORAGE_TRACKED_KEY'),
       );
       await expect(driver.countryIsTracked(testCountry.Slug)).toBeTruthy();
     });

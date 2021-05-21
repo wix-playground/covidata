@@ -5,8 +5,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {tryEmoji} from '../utils/helper-methods';
 import {TEST_ID_COUNTRY_ROW, TEST_ID_COUNTRY_SLUG} from '../test-ids';
-import {COUNTRY_DETAIL_SCREEN} from '../strings';
 import {pushScreen} from '../navigation';
+import {i18n} from '../../strings';
 
 export const CountryRow = React.memo(function CountryRow({
   componentId,
@@ -35,7 +35,7 @@ export const CountryRow = React.memo(function CountryRow({
 });
 
 const pushCountryDetailScreen = (componentId, country) => {
-  pushScreen(componentId, COUNTRY_DETAIL_SCREEN, {country});
+  pushScreen(componentId, i18n('COUNTRY_DETAIL_SCREEN'), {country});
 };
 
 CountryRow.propTypes = {

@@ -2,7 +2,7 @@ import {ComponentDriver, getTextNodes} from 'react-component-driver';
 import {CountryListScreen} from '../../screens/country-list-screen';
 import {Navigation} from 'react-native-navigation';
 import {TEST_ID_COUNTRY_ROW, TEST_ID_FLAT_COUNTRY_LIST} from '../../test-ids';
-import {COUNTRY_DETAIL_SCREEN} from '../../strings';
+import {i18n} from '../../../strings';
 const {_} = require('lodash');
 
 export class CountryListScreenDriver extends ComponentDriver {
@@ -28,7 +28,7 @@ export class CountryListScreenDriver extends ComponentDriver {
   }
 
   openedCountryScreenWith(countryObj) {
-    return this.didPushScreenWithProps(COUNTRY_DETAIL_SCREEN, {
+    return this.didPushScreenWithProps(i18n('COUNTRY_DETAIL_SCREEN'), {
       country: countryObj,
     });
   }

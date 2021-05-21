@@ -7,7 +7,7 @@ import {
   TEST_ID_STAT_PREFIX_NAME_NEW,
   TEST_ID_STAT_PREFIX_NAME_TOTAL,
 } from '../test-ids';
-import {CONFIRMED, DEATHS, RECOVERIES} from '../strings';
+import {i18n} from '../../strings';
 
 const {
   toJSON,
@@ -71,42 +71,42 @@ describe('Country card views', () => {
 
     expect(
       filterByTestID(
-        TEST_ID_STAT_PREFIX_NAME_TOTAL(country.Slug, CONFIRMED),
+        TEST_ID_STAT_PREFIX_NAME_TOTAL(country.Slug, i18n('CONFIRMED')),
         card,
       )[0].children[0],
     ).toEqual('1');
 
     expect(
       filterByTestID(
-        TEST_ID_STAT_PREFIX_NAME_NEW(country.Slug, CONFIRMED),
+        TEST_ID_STAT_PREFIX_NAME_NEW(country.Slug, i18n('CONFIRMED')),
         card,
       )[0].props.label,
     ).toEqual('+2');
 
     expect(
       filterByTestID(
-        TEST_ID_STAT_PREFIX_NAME_TOTAL(country.Slug, DEATHS),
+        TEST_ID_STAT_PREFIX_NAME_TOTAL(country.Slug, i18n('DEATHS')),
         card,
       )[0].children[0],
     ).toEqual('3');
 
     expect(
       filterByTestID(
-        TEST_ID_STAT_PREFIX_NAME_NEW(country.Slug, DEATHS),
+        TEST_ID_STAT_PREFIX_NAME_NEW(country.Slug, i18n('DEATHS')),
         card,
       )[0].props.label,
     ).toEqual('+4');
 
     expect(
       filterByTestID(
-        TEST_ID_STAT_PREFIX_NAME_TOTAL(country.Slug, RECOVERIES),
+        TEST_ID_STAT_PREFIX_NAME_TOTAL(country.Slug, i18n('RECOVERIES')),
         card,
       )[0].children[0],
     ).toEqual('5');
 
     expect(
       filterByTestID(
-        TEST_ID_STAT_PREFIX_NAME_NEW(country.Slug, RECOVERIES),
+        TEST_ID_STAT_PREFIX_NAME_NEW(country.Slug, i18n('RECOVERIES')),
         card,
       )[0].props.label,
     ).toEqual('+6');

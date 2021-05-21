@@ -1,6 +1,3 @@
-import {FEED, NEWS_FEED_SCREEN} from './strings';
-import {TEST_ID_NEWS_FEED_TAB_BUTTON} from './test-ids';
-
 const {Navigation} = require('react-native-navigation');
 
 export function setUpNavigation() {
@@ -19,40 +16,36 @@ export function registerComponents() {
   const Provider = require('react-redux').Provider;
   const store = require('./redux/configure-store').store;
   const wrapWithProvider = require('./utils/helper-methods').wrapWithProvider;
-  const {
-    HOME_SCREEN,
-    COUNTRIES_SCREEN,
-    COUNTRY_DETAIL_SCREEN,
-    NEWS_FEED_SCREEN,
-  } = require('./strings');
+  const {i18n} = require('../strings/index').i18n;
   Navigation.registerComponent(
-    HOME_SCREEN,
+    i18n('HOME_SCREEN'),
     () => (props) => wrapWithProvider(HomeScreen, Provider, store, props),
     () => HomeScreen,
   );
   Navigation.registerComponent(
-    COUNTRIES_SCREEN,
+    i18n('COUNTRIES_SCREEN'),
     () => (props) =>
       wrapWithProvider(CountryListScreen, Provider, store, props),
     () => CountryListScreen,
   );
   Navigation.registerComponent(
-    COUNTRY_DETAIL_SCREEN,
+    i18n('COUNTRY_DETAIL_SCREEN'),
     () => (props) =>
       wrapWithProvider(CountryDetailScreen, Provider, store, props),
     () => CountryDetailScreen,
   );
   Navigation.registerComponent(
-    NEWS_FEED_SCREEN,
+    i18n('NEWS_FEED_SCREEN'),
     () => (props) => wrapWithProvider(NewsFeedScreen, Provider, store, props),
   );
 }
 
 function setRoot() {
-  const {HOME_SCREEN, COUNTRIES_SCREEN, HOME, COUNTRIES} = require('./strings');
+  const {i18n} = require('../strings/index').i18n;
   const {
     TEST_ID_HOME_TAB_BUTTON,
     TEST_ID_COUNTRIES_TAB_BUTTON,
+    TEST_ID_NEWS_FEED_TAB_BUTTON,
   } = require('./test-ids');
   Navigation.setRoot({
     root: {
@@ -63,11 +56,11 @@ function setRoot() {
               children: [
                 {
                   component: {
-                    name: HOME_SCREEN,
+                    name: i18n('HOME_SCREEN'),
                     options: {
                       topBar: {
                         title: {
-                          text: HOME,
+                          text: i18n('HOME'),
                         },
                       },
                     },
@@ -77,7 +70,7 @@ function setRoot() {
               options: {
                 bottomTab: {
                   testID: TEST_ID_HOME_TAB_BUTTON,
-                  text: HOME,
+                  text: i18n('HOME'),
                 },
               },
             },
@@ -87,11 +80,11 @@ function setRoot() {
               children: [
                 {
                   component: {
-                    name: COUNTRIES_SCREEN,
+                    name: i18n('COUNTRIES_SCREEN'),
                     options: {
                       topBar: {
                         title: {
-                          text: COUNTRIES,
+                          text: i18n('COUNTRIES'),
                         },
                       },
                     },
@@ -101,7 +94,7 @@ function setRoot() {
               options: {
                 bottomTab: {
                   testID: TEST_ID_COUNTRIES_TAB_BUTTON,
-                  text: COUNTRIES,
+                  text: i18n('COUNTRIES'),
                 },
               },
             },
@@ -111,11 +104,11 @@ function setRoot() {
               children: [
                 {
                   component: {
-                    name: NEWS_FEED_SCREEN,
+                    name: i18n('NEWS_FEED_SCREEN'),
                     options: {
                       topBar: {
                         title: {
-                          text: FEED,
+                          text: i18n('FEED'),
                         },
                       },
                     },
@@ -125,7 +118,7 @@ function setRoot() {
               options: {
                 bottomTab: {
                   testID: TEST_ID_NEWS_FEED_TAB_BUTTON,
-                  text: FEED,
+                  text: i18n('FEED'),
                 },
               },
             },
