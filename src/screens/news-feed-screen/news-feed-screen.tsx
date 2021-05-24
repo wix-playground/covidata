@@ -1,18 +1,16 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {NewsFeedScreenComponent} from '../../components/news-feed-screen-component/news-feed-screen-component';
 import {ArticleRow} from '../../components/article-row/article-row';
 import {fetchCovidNews} from '../../redux/actions';
-import {bindActionCreators, Dispatch} from 'redux';
 import {LoaderScreen} from 'react-native-ui-lib';
-import {Article, State} from '../../types';
+import {Article} from '../../types';
 
-interface NewsFeedScreenStateProps {
+export interface NewsFeedScreenStateProps {
   articles: Article[];
   pending: boolean;
 }
 
-interface NewsFeedScreenDispatchProps {
+export interface NewsFeedScreenDispatchProps {
   fetchCovidNewsAction: typeof fetchCovidNews;
 }
 
@@ -40,23 +38,3 @@ export class NewsFeedScreen extends React.PureComponent<NewsFeedScreenProps> {
     return <ArticleRow article={item} />;
   };
 }
-
-const mapStateToProps = (state: State) => {
-  return {
-    articles: state.articles,
-    pending: state.pending,
-  };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(
-    {
-      fetchCovidNewsAction: fetchCovidNews,
-    },
-    dispatch,
-  );
-
-export default connect<NewsFeedScreenStateProps, NewsFeedScreenDispatchProps>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(NewsFeedScreen);

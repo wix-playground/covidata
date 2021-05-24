@@ -17,7 +17,7 @@ export function registerComponents() {
   const CountryDetailScreen =
     require('./screens/country-detail-screen/country-detail-screen').default;
   const NewsFeedScreen =
-    require('./screens/news-feed-screen/news-feed-screen').default;
+    require('./screens/news-feed-screen/index').NewsFeedScreen;
   const Provider = require('react-redux').Provider;
   const store = require('./redux/configure-store').store;
   const wrapWithProvider = require('./utils/helper-methods').wrapWithProvider;

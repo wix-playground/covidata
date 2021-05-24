@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList} from 'react-native';
 import {View} from 'react-native-ui-lib';
 import React from 'react';
 import {FLAT_NEWS_ARTICLE_LIST} from '../../test-ids';
