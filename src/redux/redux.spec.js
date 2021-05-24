@@ -20,7 +20,7 @@ describe('Redux unit tests', () => {
       expect(reducer()).toEqual(initialState);
     });
 
-    it('ACTIONS.GET_COUNTRY_STATS_SUCCESS', () => {
+    it('sets the historical data with date labels for a chosen country on ACTIONS.GET_COUNTRY_STATS_SUCCESS', () => {
       const action = {
         type: ACTIONS.GET_COUNTRY_STATS_SUCCESS,
         payload: {data, labels},
@@ -30,21 +30,21 @@ describe('Redux unit tests', () => {
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_COUNTRY_STATS_FAILURE', () => {
+    it('sets the error on ACTIONS.GET_COUNTRY_STATS_FAILURE', () => {
       const action = {type: ACTIONS.GET_COUNTRY_STATS_FAILURE, error};
       const expected = {...initialState, error, pending: false};
 
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_COUNTRY_STATS_PENDING', () => {
+    it('starts country data fetch with ACTIONS.GET_COUNTRY_STATS_PENDING', () => {
       const action = {type: ACTIONS.GET_COUNTRY_STATS_PENDING};
       const expected = {...initialState, pending: true};
 
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_COVID_NEWS_SUCCESS', () => {
+    it('sets fetched articles for related news on ACTIONS.GET_COVID_NEWS_SUCCESS', () => {
       const action = {
         type: ACTIONS.GET_COVID_NEWS_SUCCESS,
         payload: {articles},
@@ -54,21 +54,21 @@ describe('Redux unit tests', () => {
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_COVID_NEWS_FAILURE', () => {
+    it('sets error object after article fetch failure on ACTIONS.GET_COVID_NEWS_FAILURE', () => {
       const action = {type: ACTIONS.GET_COVID_NEWS_FAILURE, error};
       const expected = {...initialState, error, pending: false};
 
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_COVID_NEWS_PENDING', () => {
+    it('starts fetching news feed articles with ACTIONS.GET_COVID_NEWS_PENDING', () => {
       const action = {type: ACTIONS.GET_COVID_NEWS_PENDING};
       const expected = {...initialState, pending: true};
 
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_SUMMARY_SUCCESS', () => {
+    it('sets fetched global data on ACTIONS.GET_SUMMARY_SUCCESS', () => {
       const action = {
         type: ACTIONS.GET_SUMMARY_SUCCESS,
         payload: {countries, globalData},
@@ -78,21 +78,21 @@ describe('Redux unit tests', () => {
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_SUMMARY_FAILURE', () => {
+    it('sets error object after failing to fetch global data with ACTIONS.GET_SUMMARY_FAILURE', () => {
       const action = {type: ACTIONS.GET_SUMMARY_FAILURE, error};
       const expected = {...initialState, error, pending: false};
 
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    it('ACTIONS.GET_SUMMARY_PENDING', () => {
+    it('starts fetching global data on ACTIONS.GET_SUMMARY_PENDING', () => {
       const action = {type: ACTIONS.GET_SUMMARY_PENDING};
       const expected = {...initialState, pending: true};
 
       expect(reducer(undefined, action)).toEqual(expected);
     });
 
-    describe('ACTIONS.SET_COUNTRY_TRACKED', () => {
+    describe('sets a country as being (un)tracked with ACTIONS.SET_COUNTRY_TRACKED', () => {
       it('works correctly with value=true', () => {
         const actionTrackedTrue = {
           type: ACTIONS.SET_COUNTRY_TRACKED,
@@ -119,7 +119,7 @@ describe('Redux unit tests', () => {
       });
     });
 
-    it('ACTIONS.GET_ASYNC_STORAGE_TRACKED', () => {
+    it('gets tracked country list from async storage on ACTIONS.GET_ASYNC_STORAGE_TRACKED', () => {
       const action = {
         type: ACTIONS.GET_ASYNC_STORAGE_TRACKED,
         payload: {tracked},

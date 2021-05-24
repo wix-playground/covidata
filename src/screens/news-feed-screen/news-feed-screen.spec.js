@@ -15,7 +15,8 @@ export const article = {
   content: '',
 };
 const articleNoImage = {...article, urlToImage: undefined};
-const articles = [article, articleNoImage];
+const articleNoUrl = {...article, url: undefined};
+const articles = [article, articleNoImage, articleNoUrl];
 const formattedTimestamp = 'Wed May 19 2021 05:41:55';
 
 Assets.icons = jest.fn().mockResolvedValue({x: undefined});
@@ -52,11 +53,22 @@ describe('News Feed Screen', () => {
       expect(driver.articleAtIndex(0).timestamp()).toEqual(formattedTimestamp);
     });
 
-    it('should open the article URL on tap', () => {
-      const openUrlSpy = jest.spyOn(Linking, 'openURL');
-      driver.articleAtIndex(0).tap();
+    describe('article URL on press', () => {
+      const openURLSpy = jest.spyOn(Linking, 'openURL');
 
-      expect(openUrlSpy).toHaveBeenCalledWith(article.url);
+      beforeEach(() => {
+        openURLSpy.mockClear();
+      });
+
+      it('should open the article URL on tap', () => {
+        driver.articleAtIndex(0).tap();
+        expect(openURLSpy).toHaveBeenCalledWith(article.url);
+      });
+
+      it('should not call openURL if no URL is given', () => {
+        driver.articleAtIndex(2).tap();
+        expect(openURLSpy).not.toHaveBeenCalled();
+      });
     });
   });
 });

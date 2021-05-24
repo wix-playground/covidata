@@ -27,14 +27,5 @@ const keyExtractor = (item: Article, index: number) => {
 };
 
 const separator = () => {
-  return <View style={style.separator} />;
+  return <View marginV-10 background-grey50 height={1} />;
 };
-
-const style = StyleSheet.create({
-  separator: {
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#d1d0d1',
-    height: 1,
-  },
-});
