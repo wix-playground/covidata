@@ -46,49 +46,49 @@ describe('Country card views', () => {
 
   it('correctly passes data to a card and constructs the necessary views', () => {
     const country = {
-      Country: 'Lithuania',
-      CountryCode: 'LT',
-      Slug: 'lithuania',
-      TotalConfirmed: 1,
-      NewConfirmed: 2,
-      TotalDeaths: 3,
-      NewDeaths: 4,
-      TotalRecovered: 5,
-      NewRecovered: 6,
+      country: 'Lithuania',
+      countryCode: 'LT',
+      slug: 'lithuania',
+      totalConfirmed: 1,
+      newConfirmed: 2,
+      totalDeaths: 3,
+      newDeaths: 4,
+      totalRecovered: 5,
+      newRecovered: 6,
     };
 
     const card = toJSON(renderComponent(CountryDetailCard, {country}));
 
     expect(
-      filterByTestID(GET_COUNTRY_NAME(country.Slug), card)[0].children[0],
+      filterByTestID(GET_COUNTRY_NAME(country.slug), card)[0].children[0],
     ).toEqual('🇱🇹 Lithuania');
     expect(
       filterByTestID(
-        GET_STAT_PREFIX_NAME_TOTAL(country.Slug, CONFIRMED),
+        GET_STAT_PREFIX_NAME_TOTAL(country.slug, CONFIRMED),
         card,
       )[0].children[0],
     ).toEqual('1');
     expect(
-      filterByTestID(GET_STAT_PREFIX_NAME_NEW(country.Slug, CONFIRMED), card)[0]
+      filterByTestID(GET_STAT_PREFIX_NAME_NEW(country.slug, CONFIRMED), card)[0]
         .props.label,
     ).toEqual('+2');
     expect(
-      filterByTestID(GET_STAT_PREFIX_NAME_TOTAL(country.Slug, DEATHS), card)[0]
+      filterByTestID(GET_STAT_PREFIX_NAME_TOTAL(country.slug, DEATHS), card)[0]
         .children[0],
     ).toEqual('3');
     expect(
-      filterByTestID(GET_STAT_PREFIX_NAME_NEW(country.Slug, DEATHS), card)[0]
+      filterByTestID(GET_STAT_PREFIX_NAME_NEW(country.slug, DEATHS), card)[0]
         .props.label,
     ).toEqual('+4');
     expect(
       filterByTestID(
-        GET_STAT_PREFIX_NAME_TOTAL(country.Slug, RECOVERIES),
+        GET_STAT_PREFIX_NAME_TOTAL(country.slug, RECOVERIES),
         card,
       )[0].children[0],
     ).toEqual('5');
     expect(
       filterByTestID(
-        GET_STAT_PREFIX_NAME_NEW(country.Slug, RECOVERIES),
+        GET_STAT_PREFIX_NAME_NEW(country.slug, RECOVERIES),
         card,
       )[0].props.label,
     ).toEqual('+6');

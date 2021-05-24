@@ -16,7 +16,7 @@ class CountryDetailScreen extends React.Component {
   }
 
   componentDidMount() {
-    const countrySlug = this.props.country.Slug;
+    const countrySlug = this.props.country.slug;
     this.props.fetchCountryStatsAction(countrySlug);
   }
 
@@ -26,7 +26,7 @@ class CountryDetailScreen extends React.Component {
     ) : (
       <CountryDetailScreenComponent
         country={this.state.country}
-        track={this.props.tracked.includes(this.props.country.Slug)}
+        track={this.props.tracked.includes(this.props.country.slug)}
         onValueChange={this.onValueChange}
         labels={this.props.labels}
         data={this.props.data}
@@ -35,7 +35,7 @@ class CountryDetailScreen extends React.Component {
   }
 
   onValueChange(value) {
-    this.props.setCountryTrackedAction(this.props.country.Slug, value);
+    this.props.setCountryTrackedAction(this.props.country.slug, value);
   }
 }
 

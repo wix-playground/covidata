@@ -22,7 +22,7 @@ export class HomeScreenDriver extends ReduxComponentDriver {
   containsCountry(countrySlug) {
     return (
       this.getTrackedCountryList().filter(
-        (node) => node.Slug === countrySlug,
+        (node) => node.slug === countrySlug,
       )[0] || false
     );
   }

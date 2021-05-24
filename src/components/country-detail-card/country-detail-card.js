@@ -13,28 +13,28 @@ export const CountryDetailCard = React.memo(function CountryDetailCard({
   return (
     <Card padding={10} margin={10} style={styles.align}>
       <View margin={10}>
-        <Text uppercase text30H testID={GET_COUNTRY_NAME(country.Slug)}>
-          {`${tryEmoji(country.CountryCode)} ${country.Country || GLOBAL}`}
+        <Text uppercase text30H testID={GET_COUNTRY_NAME(country.slug)}>
+          {`${tryEmoji(country.countryCode)} ${country.country || GLOBAL}`}
         </Text>
       </View>
       <StatDetailRow
         statName={CONFIRMED}
-        statTotal={country.TotalConfirmed}
-        statNew={country.NewConfirmed}
-        testIdPrefix={GET_COUNTRY_SLUG(country.Slug)}
+        statTotal={country.totalConfirmed}
+        statNew={country.newConfirmed}
+        testIdPrefix={GET_COUNTRY_SLUG(country.slug)}
       />
       <StatDetailRow
         statName={DEATHS}
-        statTotal={country.TotalDeaths}
-        statNew={country.NewDeaths}
-        testIdPrefix={GET_COUNTRY_SLUG(country.Slug)}
+        statTotal={country.totalDeaths}
+        statNew={country.newDeaths}
+        testIdPrefix={GET_COUNTRY_SLUG(country.slug)}
       />
       <StatDetailRow
         statName={RECOVERIES}
-        statTotal={country.TotalRecovered}
-        statNew={country.NewRecovered}
+        statTotal={country.totalRecovered}
+        statNew={country.newRecovered}
         recoveries={true}
-        testIdPrefix={GET_COUNTRY_SLUG(country.Slug)}
+        testIdPrefix={GET_COUNTRY_SLUG(country.slug)}
       />
     </Card>
   );

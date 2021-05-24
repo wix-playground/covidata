@@ -16,19 +16,19 @@ export const CountryRow = React.memo(function CountryRow({
     <ListItem
       paddingL-15
       paddingR-15
-      testID={GET_COUNTRY_ROW(country.Slug)}
+      testID={GET_COUNTRY_ROW(country.slug)}
       onPress={() => pushCountryDetailScreen(componentId, country)}>
       <View
         centerH
         flex
         flexDirection={'row'}
-        testID={GET_COUNTRY_SLUG(country.Slug)}>
-        <Text>{tryEmoji(country.CountryCode)} </Text>
-        <Text>{country.Country}</Text>
+        testID={GET_COUNTRY_SLUG(country.slug)}>
+        <Text>{tryEmoji(country.countryCode)} </Text>
+        <Text>{country.country}</Text>
       </View>
       <View centerH flexDirection={'row'}>
-        <Text>{country.TotalConfirmed?.toLocaleString()} </Text>
-        <ConditionalBadge newConfirmed={country.NewConfirmed} />
+        <Text>{country.totalConfirmed?.toLocaleString()} </Text>
+        <ConditionalBadge newConfirmed={country.newConfirmed} />
       </View>
     </ListItem>
   );

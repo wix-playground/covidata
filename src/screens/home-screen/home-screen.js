@@ -27,13 +27,13 @@ class HomeScreen extends React.Component {
   }
 
   renderItem({item}) {
-    return this.props.tracked.includes(item.Slug) ? (
+    return this.props.tracked.includes(item.slug) ? (
       <CountryDetailCard country={item} />
     ) : null;
   }
 
   keyExtractor(item) {
-    return item.Slug;
+    return item.slug;
   }
 }
 

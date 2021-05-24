@@ -1,5 +1,6 @@
 import {COVID_API_URL} from '../../env';
 import {Api} from './common';
+import {_} from 'lodash';
 
 export class CovidApi {
   static async getSummary() {
@@ -26,8 +27,17 @@ export class CovidApi {
   }
 
   static extractCountries(json) {
-    const countries = json.Countries;
-    const globalData = json.Global;
+    const countries = json.Countries.map((key) => this.caseCountryData(key));
+    const globalData = this.caseCountryData(json.Global);
     return {countries, globalData};
+  }
+
+  static caseCountryData(countryObject) {
+    return Object.fromEntries(
+      Object.entries(countryObject).map(([key, value]) => [
+        _.camelCase(key),
+        value,
+      ]),
+    );
   }
 }

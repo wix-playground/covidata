@@ -12,7 +12,7 @@ export class CountryListScreenDriver extends ComponentDriver {
 
   getCountryData(countrySlug) {
     const allCountryData = this.getListData();
-    return allCountryData.filter((node) => node.Slug === countrySlug)[0];
+    return allCountryData.filter((node) => node.slug === countrySlug)[0];
   }
 
   getListData() {

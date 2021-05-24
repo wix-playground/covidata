@@ -3,12 +3,12 @@ import {HomeScreenDriver} from './home-screen.driver';
 import {CovidApi} from '../../api/covid-api';
 
 const globalData = {
-  NewConfirmed: 96840,
-  TotalConfirmed: 4977471,
-  NewDeaths: 5089,
-  TotalDeaths: 329513,
-  NewRecovered: 52120,
-  TotalRecovered: 1838344,
+  newConfirmed: 96840,
+  totalConfirmed: 4977471,
+  newDeaths: 5089,
+  totalDeaths: 329513,
+  newRecovered: 52120,
+  totalRecovered: 1838344,
 };
 
 CovidApi.getSummary = jest.fn().mockResolvedValue({globalData, countries: []});

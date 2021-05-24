@@ -21,7 +21,7 @@ export const CountryListScreenComponent = React.memo(
 );
 
 const keyExtractor = (item) => {
-  return item.Slug;
+  return item.slug;
 };
 
 const separator = () => {
