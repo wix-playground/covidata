@@ -1,5 +1,5 @@
-export default class Api {
-  static async fetchJson (url: string) {
-    return await fetch(url).then(res => res.json())
+export class Api {
+  static async fetchJson(url: string) {
+    return await fetch(url).then((res) => res.json());
   }
 }

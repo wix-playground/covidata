@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "clear-cache": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && rm package-lock.json && npm cache verify && npm install && npm start -- --reset-cache",
+    "test": "TZ=UTC jest src/**",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "pretty": "prettier --write ./src ./demo ./e2e ./fake-server",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest src/__tests__/*.spec.js",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "fake-server": "node fake-server",
     "start-e2e": "RN_SRC_EXT=e2e.js react-native start",
     "test-e2e": "detox test --configuration ios.sim.debug"
@@ -62,6 +64,7 @@
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jasmine": "^4.1.1",
+    "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.0",
