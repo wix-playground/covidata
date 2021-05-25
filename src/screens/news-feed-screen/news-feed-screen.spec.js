@@ -3,6 +3,7 @@ import {Linking} from 'react-native';
 import {UNKNOWN} from '../../strings';
 import dateFormat from 'dateformat';
 import Chance from 'chance';
+import {buildArticle} from '../../utils/builders';
 
 const chance = Chance();
 
@@ -42,9 +43,9 @@ describe('News Feed Screen', () => {
   });
 
   it('renders multiple different articles retrieved in order', () => {
-    const articles = Array.from(
-      {length: chance.natural({min: 2, max: 10})},
-      () => buildArticle(),
+    const articles = chance.unique(
+      buildArticle,
+      chance.integer({min: 2, max: 10}),
     );
     driver.setProps({...defaultProps, articles});
 
@@ -56,7 +57,7 @@ describe('News Feed Screen', () => {
     );
   });
 
-  it('renders an article with fallbacks if properties not present', () => {
+  it('should render an article with  default (fallback) values when properties are not present', () => {
     const articles = [buildArticle({source: null, urlToImage: null})];
     driver.setProps({...defaultProps, articles});
 
@@ -76,6 +77,7 @@ describe('News Feed Screen', () => {
       driver.setProps({...defaultProps, articles});
       driver.articleAtIndex(0).tap();
 
+      expect(openURLSpy).toHaveBeenCalledTimes(1);
       expect(openURLSpy).toHaveBeenCalledWith(articles[0].url);
     });
 
@@ -89,23 +91,3 @@ describe('News Feed Screen', () => {
   });
 });
 
-const buildArticle = (props = {}) => {
-  const article = {
-    source: {
-      id: chance.guid(),
-      name: chance.company(),
-    },
-    author: chance.name(),
-    title: chance.sentence(),
-    description: chance.sentence(),
-    url: chance.url(),
-    urlToImage: chance.url(),
-    publishedAt: chance.date().toISOString(),
-    content: chance.sentence(),
-  };
-
-  return {
-    ...article,
-    ...props,
-  };
-};
