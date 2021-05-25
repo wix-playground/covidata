@@ -13,3 +13,4 @@ export const COVID = 'COVID';
 export const TRACK = '⭐️  Track';
 export const RECENT_DATA = '🗓️  Recent data';
 export const ASYNC_STORAGE_TRACKED_KEY = 'tracked';
+export const UNKNOWN = 'Unknown';

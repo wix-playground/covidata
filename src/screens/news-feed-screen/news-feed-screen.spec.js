@@ -1,23 +1,12 @@
 import {newsFeedScreenDriver} from './news-feed-screen.driver';
 import {Assets} from 'react-native-ui-lib';
 import {Linking} from 'react-native';
+import {buildArticle} from '../../utils/article-builder';
+import {UNKNOWN} from '../../strings';
+import dateFormat from 'dateformat';
+import Chance from 'chance';
 
-export const article = {
-  source: {id: '', name: 'ESPN'},
-  author: '',
-  title:
-    'Jayson Tatum explodes for 50 as Boston Celtics claim 7th seed in NBA playoffs - ESPN',
-  description: '',
-  url: 'https://www.espn.com/mlb/story/_/id/31469676/jayson-tatum-explodes-50-boston-celtics-claim-7th-seed-nba-playoffs',
-  urlToImage:
-    'https://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2021%2F0519%2Fr855919_1296x729_16%2D9.jpg',
-  publishedAt: '2021-05-19T05:41:55Z',
-  content: '',
-};
-const articleNoImage = {...article, urlToImage: undefined};
-const articleNoUrl = {...article, url: undefined};
-const articles = [article, articleNoImage, articleNoUrl];
-const formattedTimestamp = 'Wed May 19 2021 05:41:55';
+const chance = Chance();
 
 Assets.icons = jest.fn().mockResolvedValue({x: undefined});
 
@@ -26,49 +15,80 @@ describe('News Feed Screen', () => {
 
   beforeEach(() => {
     driver = newsFeedScreenDriver();
-    driver.setProps({articles, fetchCovidNewsAction: () => {}});
   });
 
-  it('renders the container', () => {
+  const defaultProps = {
+    fetchCovidNewsAction: () => {},
+    articles: [],
+  };
+
+  it('renders an empty container when articles could not be fetched', () => {
+    driver.setProps(defaultProps);
+
     expect(driver.container()).toBeDefined();
+    expect(driver.articles().length).toEqual(0);
   });
 
-  describe('Article Row', () => {
-    it('should render the title and source', () => {
-      expect(driver.articleAtIndex(0).title()).toEqual(article.title);
-      expect(driver.articleAtIndex(0).sourceName()).toEqual(
-        article.source.name,
-      );
+  it('renders a single article along with all data associated correctly', () => {
+    const article = buildArticle();
+    const articles = [article];
+    const expectedTitle = article.title;
+    const expectedSourceName = article.source.name;
+    const expectedDate = dateFormat(article.publishedAt);
+    const expectedImageUrl = article.urlToImage ?? undefined;
+    driver.setProps({...defaultProps, articles});
+
+    expect(driver.articles().length).toEqual(1);
+    expect(driver.articleAtIndex(0).title()).toEqual(expectedTitle);
+    expect(driver.articleAtIndex(0).sourceName()).toEqual(expectedSourceName);
+    expect(driver.articleAtIndex(0).timestamp()).toEqual(expectedDate);
+    expect(driver.articleAtIndex(0).imageUri()).toEqual(expectedImageUrl);
+  });
+
+  it('renders multiple different articles retrieved in order', () => {
+    const articles = Array.from(
+      {length: chance.natural({min: 2, max: 10})},
+      () => buildArticle(),
+    );
+    driver.setProps({...defaultProps, articles});
+
+    expect(driver.articles().length).toEqual(articles.length);
+    expect(driver.articleAtIndex(0).title()).toEqual(articles[0].title);
+    expect(driver.articleAtIndex(1).title()).toEqual(articles[1].title);
+    expect(driver.articleAtIndex(0).title()).not.toEqual(
+      driver.articleAtIndex(1).title(),
+    );
+  });
+
+  it('renders an article with fallbacks if properties not present', () => {
+    const articles = [buildArticle({source: null, urlToImage: null})];
+    driver.setProps({...defaultProps, articles});
+
+    expect(driver.articleAtIndex(0).sourceName()).toEqual(UNKNOWN);
+    expect(driver.articleAtIndex(0).imageUri()).toEqual(undefined);
+  });
+
+  describe('article URL on press', () => {
+    const openURLSpy = jest.spyOn(Linking, 'openURL');
+
+    beforeEach(() => {
+      openURLSpy.mockClear();
     });
 
-    it('should render the image if url is present', () => {
-      expect(driver.articleAtIndex(0).imageUri()).toEqual(article.urlToImage);
+    it('should open the article URL on tap', () => {
+      const articles = [buildArticle()];
+      driver.setProps({...defaultProps, articles});
+      driver.articleAtIndex(0).tap();
+
+      expect(openURLSpy).toHaveBeenCalledWith(articles[0].url);
     });
 
-    it('should render a default icon if no image url given', () => {
-      expect(driver.articleAtIndex(1).imageUri()).toEqual(undefined);
-    });
+    it('should not call openURL if no URL is given', () => {
+      const articles = [buildArticle({url: null})];
+      driver.setProps({...defaultProps, articles});
+      driver.articleAtIndex(0).tap();
 
-    it('should render a formatted timestamp', () => {
-      expect(driver.articleAtIndex(0).timestamp()).toEqual(formattedTimestamp);
-    });
-
-    describe('article URL on press', () => {
-      const openURLSpy = jest.spyOn(Linking, 'openURL');
-
-      beforeEach(() => {
-        openURLSpy.mockClear();
-      });
-
-      it('should open the article URL on tap', () => {
-        driver.articleAtIndex(0).tap();
-        expect(openURLSpy).toHaveBeenCalledWith(article.url);
-      });
-
-      it('should not call openURL if no URL is given', () => {
-        driver.articleAtIndex(2).tap();
-        expect(openURLSpy).not.toHaveBeenCalled();
-      });
+      expect(openURLSpy).not.toHaveBeenCalled();
     });
   });
 });

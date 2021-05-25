@@ -8,6 +8,9 @@ export const newsFeedScreenDriver = () => {
     container() {
       return this.getByID(FLAT_NEWS_ARTICLE_LIST);
     },
+    articles() {
+      return this.filterByID(ARTICLE_ROW);
+    },
     articleAtIndex(index: number) {
       return articleRowDriver().attachTo(this.filterByID(ARTICLE_ROW)[index]);
     },

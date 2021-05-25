@@ -8,6 +8,7 @@ import {
   ARTICLE_TIMESTAMP,
   ARTICLE_TITLE,
 } from '../../test-ids';
+import {UNKNOWN} from '../../strings';
 import {Article} from '../../types';
 import dateFormat from 'dateformat';
 
@@ -36,7 +37,7 @@ export const ArticleRow: React.FC<ArticleRowProps> = React.memo(
           />
           <View marginL-15 marginB-15 flex>
             <Text uppercase text90H testID={ARTICLE_SOURCE}>
-              {article.source ? article.source.name : null}
+              {article.source ? article.source.name : UNKNOWN}
             </Text>
             <Text text80L marginV-10 numberOfLines={1} testID={ARTICLE_TITLE}>
               {article.title}
