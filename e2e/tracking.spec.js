@@ -1,29 +1,29 @@
-import { e2eDriver } from './utils/e2e-driver'
+import {E2EDriver} from './utils/e2e-driver';
 
 describe('Tracking functionality', () => {
   beforeEach(async () => {
-    await device.uninstallApp()
-    await device.installApp()
-    await e2eDriver.relaunchApp()
-  })
+    await device.uninstallApp();
+    await device.installApp();
+    await E2EDriver.relaunchApp();
+  });
 
-  const countrySlug = 'afghanistan'
+  const countrySlug = 'afghanistan';
 
   it('should show the tracked country on the home screen', async () => {
-    await e2eDriver.openCountriesTab()
-    await e2eDriver.tapOnCountryInList(countrySlug)
-    await e2eDriver.toggleSwitch()
-    await e2eDriver.openHomeTab()
-    await e2eDriver.expectCountryCardToBeVisible(countrySlug)
-  })
+    await E2EDriver.openCountriesTab();
+    await E2EDriver.tapOnCountryInList(countrySlug);
+    await E2EDriver.toggleSwitch();
+    await E2EDriver.openHomeTab();
+    await E2EDriver.expectCountryCardToBeVisible(countrySlug);
+  });
 
   it('should save the tracked list of items with app relaunch (persistence)', async () => {
-    await e2eDriver.openCountriesTab()
-    await e2eDriver.tapOnCountryInList(countrySlug)
-    await e2eDriver.toggleSwitch()
-    await e2eDriver.openHomeTab()
-    await e2eDriver.expectCountryCardToBeVisible(countrySlug)
-    await e2eDriver.relaunchApp()
-    await e2eDriver.expectCountryCardToBeVisible(countrySlug)
-  })
-})
+    await E2EDriver.openCountriesTab();
+    await E2EDriver.tapOnCountryInList(countrySlug);
+    await E2EDriver.toggleSwitch();
+    await E2EDriver.openHomeTab();
+    await E2EDriver.expectCountryCardToBeVisible(countrySlug);
+    await E2EDriver.relaunchApp();
+    await E2EDriver.expectCountryCardToBeVisible(countrySlug);
+  });
+});

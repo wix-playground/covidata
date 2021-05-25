@@ -235,8 +235,8 @@ PODS:
   - React-jsinspector (0.62.2)
   - react-native-blur (0.8.0):
     - React
-  - react-native-netinfo (5.9.2):
-    - React
+  - react-native-netinfo (5.9.10):
+    - React-Core
   - React-RCTActionSheet (0.62.2):
     - React-Core/RCTActionSheetHeaders (= 0.62.2)
   - React-RCTAnimation (0.62.2):
@@ -296,21 +296,26 @@ PODS:
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
     - ReactCommon/callinvoker (= 0.62.2)
-  - ReactNativeNavigation (6.7.0):
+  - ReactNativeNavigation (6.12.2):
     - React
     - React-RCTImage
     - React-RCTText
-  - ReactNativeUiLib (2.0.2):
+    - ReactNativeNavigation/Core (= 6.12.2)
+  - ReactNativeNavigation/Core (6.12.2):
     - React
-  - RNCAsyncStorage (1.11.0):
+    - React-RCTImage
+    - React-RCTText
+  - ReactNativeUiLib (3.0.4):
     - React
-  - RNDateTimePicker (2.4.0):
+  - RNCAsyncStorage (1.12.1):
+    - React-Core
+  - RNDateTimePicker (2.6.2):
     - React
-  - RNGestureHandler (1.6.1):
-    - React
-  - RNReanimated (1.9.0):
-    - React
-  - RNSVG (12.1.0):
+  - RNGestureHandler (1.10.3):
+    - React-Core
+  - RNReanimated (1.13.3):
+    - React-Core
+  - RNSVG (12.1.1):
     - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -486,7 +491,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
-  react-native-netinfo: 9b9929fcfa4aabe92f49a9fb3f25394cc8721e87
+  react-native-netinfo: 52cf0ee8342548a485e28f4b09e56b477567244d
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
   React-RCTBlob: a332773f0ebc413a0ce85942a55b064471587a71
@@ -497,16 +502,16 @@ SPEC CHECKSUMS:
   React-RCTText: fae545b10cfdb3d247c36c56f61a94cfd6dba41d
   React-RCTVibration: 4356114dbcba4ce66991096e51a66e61eda51256
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
-  ReactNativeNavigation: 300598ece82d76a35c62786d095b6ebbe454d73b
-  ReactNativeUiLib: 9883f80a22b855d4a866ceee433d1e24b1014a2a
-  RNCAsyncStorage: db711e29e5e0500d9bd21aa0c2e397efa45302b1
-  RNDateTimePicker: 39a3987baca0848368f71f02c45bf6e1e61041c0
-  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
-  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  ReactNativeNavigation: aefc8debafb4a374575adafb44a3352b9d5b618a
+  ReactNativeUiLib: cde7263a7d308b60161cd286f95c9433e79f2f7d
+  RNCAsyncStorage: cb9a623793918c6699586281f0b51cbc38f046f9
+  RNDateTimePicker: dc9dab744823a2c734dbc7362cdf57a3adba3c43
+  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
+  RNReanimated: 514a11da3a2bcc6c3dfd9de32b38e2b9bf101926
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: 31a5583f123fefbc9e5ecf635acb7fd5c86665dd
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.1
