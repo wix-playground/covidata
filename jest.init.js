@@ -20,6 +20,7 @@ jest.mock('react-native', () => {
 jest.mock('@wix/wix-react-native-ui-lib', () =>
   mockFull([
     'Badge',
+    'Button',
     'Text',
     'View',
     'Card',
