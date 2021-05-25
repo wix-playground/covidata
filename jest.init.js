@@ -13,20 +13,24 @@ jest.mock('react-native', () => {
   return reactNative;
 });
 
-jest.mock('react-native-ui-lib', () =>
-  mockFull([
-    'Badge',
-    'Text',
-    'View',
-    'Card',
-    'ListItem',
-    'LoaderScreen',
-    'Switch',
-    'ListItem',
-    'AnimatedImage',
-    'Assets',
-  ]),
-);
+jest.mock('react-native-ui-lib', () => {
+  return {
+    ...mockFull([
+      'Badge',
+      'Text',
+      'View',
+      'Card',
+      'ListItem',
+      'LoaderScreen',
+      'Switch',
+      'ListItem',
+      'AnimatedImage',
+    ]),
+    Assets: {
+      icons: jest.fn().mockResolvedValue({x: undefined}),
+    },
+  };
+});
 
 jest.mock('react-native-navigation', () => {
   return {Navigation: {push: jest.fn()}};

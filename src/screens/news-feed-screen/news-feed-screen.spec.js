@@ -1,14 +1,11 @@
 import {newsFeedScreenDriver} from './news-feed-screen.driver';
-import {Assets} from 'react-native-ui-lib';
 import {Linking} from 'react-native';
-import {buildArticle} from '../../utils/article-builder';
 import {UNKNOWN} from '../../strings';
 import dateFormat from 'dateformat';
 import Chance from 'chance';
+import {Article} from '../../types';
 
 const chance = Chance();
-
-Assets.icons = jest.fn().mockResolvedValue({x: undefined});
 
 describe('News Feed Screen', () => {
   let driver;
@@ -92,3 +89,24 @@ describe('News Feed Screen', () => {
     });
   });
 });
+
+const buildArticle = (props = {}) => {
+  const article = {
+    source: {
+      id: chance.guid(),
+      name: chance.company(),
+    },
+    author: chance.name(),
+    title: chance.sentence(),
+    description: chance.sentence(),
+    url: chance.url(),
+    urlToImage: chance.url(),
+    publishedAt: chance.date().toISOString(),
+    content: chance.sentence(),
+  };
+
+  return {
+    ...article,
+    ...props,
+  };
+};
