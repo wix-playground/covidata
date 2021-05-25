@@ -1,4 +1,4 @@
-import {Colors, Typography, Spacings} from 'react-native-ui-lib';
+import { Colors, Typography, Spacings } from 'react-native-ui-lib'
 
 Colors.loadColors({
   primaryColor: '#2364AA',
@@ -6,17 +6,17 @@ Colors.loadColors({
   textColor: '##221D23',
   errorColor: '#E63B2E',
   successColor: '#ADC76F',
-  warnColor: '##FF963C',
-});
+  warnColor: '##FF963C'
+})
 
 Typography.loadTypographies({
-  heading: {fontSize: 36, fontWeight: '600'},
-  subheading: {fontSize: 28, fontWeight: '500'},
-  body: {fontSize: 18, fontWeight: '400'},
-});
+  heading: { fontSize: 36, fontWeight: '600' },
+  subheading: { fontSize: 28, fontWeight: '500' },
+  body: { fontSize: 18, fontWeight: '400' }
+})
 
 Spacings.loadSpacings({
   page: 20,
   card: 12,
-  gridGutter: 16,
-});
+  gridGutter: 16
+})

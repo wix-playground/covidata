@@ -1,8 +1,8 @@
-import {registerComponents, setUpNavigation} from './src/navigation';
+import { registerComponents, setUpNavigation } from './src/navigation'
 
 const launch = () => {
-  registerComponents();
-  setUpNavigation();
-};
+  registerComponents()
+  setUpNavigation()
+}
 
-launch();
+launch()

@@ -3,7 +3,6 @@ import {Linking} from 'react-native';
 import {UNKNOWN} from '../../strings';
 import dateFormat from 'dateformat';
 import Chance from 'chance';
-import {Article} from '../../types';
 
 const chance = Chance();
 
