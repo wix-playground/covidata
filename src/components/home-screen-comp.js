@@ -19,9 +19,17 @@ export class HomeScreenComp extends React.Component {
   render() {
     return (
       <View flex padding-page>
-        <View flex row>
-          <Button onPress={() => this.openCountryList()}>{'B1'}</Button>
-          <Button onPress={() => this.openNewsFeed()}>{'B2'}</Button>
+        <View row center marginV-5>
+          <Button
+            onPress={() => this.openCountryList()}
+            label={'Countries'}
+            marginH-5
+          />
+          <Button
+            onPress={() => this.openNewsFeed()}
+            label={'Feed'}
+            marginH-5
+          />
         </View>
         <FlatList
           ListHeaderComponent={

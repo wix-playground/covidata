@@ -5,7 +5,7 @@
   "GLOBAL": "Global",
   "COUNTRY_DETAIL_SCREEN": "covidata.CountryDetailScreen",
   "NEWS_FEED_SCREEN": "covidata.NewsFeedScreen",
-  "COUNTRIES_SCREEN": "covidata.CountriesScreen",
+  "COUNTRIES_SCREEN": "covidata.CountryListScreen",
   "HOME_SCREEN": "covidata.HomeScreen",
   "HOME": "Home",
   "COUNTRIES": "Countries",

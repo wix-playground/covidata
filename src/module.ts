@@ -20,19 +20,37 @@ export default class CovidataModule {
       {
         id: 'covidata.CountryListScreen',
         generator: () =>
-          asWixScreen(require('./screens/country-list-screen').default),
+          asWixScreen(() =>
+            wrapWithProvider(
+              require('./screens/country-list-screen').default,
+              Provider,
+              store,
+            ),
+          ),
         description: '',
       },
       {
         id: 'covidata.CountryDetailScreen',
         generator: () =>
-          asWixScreen(require('./screens/country-detail-screen').default),
+          asWixScreen(() =>
+            wrapWithProvider(
+              require('./screens/country-detail-screen').default,
+              Provider,
+              store,
+            ),
+          ),
         description: '',
       },
       {
         id: 'covidata.NewsFeedScreen',
         generator: () =>
-          asWixScreen(require('./screens/news-feed-screen').default),
+          asWixScreen(
+            wrapWithProvider(
+              require('./screens/news-feed-screen').default,
+              Provider,
+              store,
+            ),
+          ),
         description: '',
       },
       {
