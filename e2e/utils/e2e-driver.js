@@ -1,13 +1,13 @@
 import {
-  TEST_ID_COUNTRIES_TAB_BUTTON,
-  TEST_ID_COUNTRY_NAME,
-  TEST_ID_HOME_TAB_BUTTON,
-  TEST_ID_TRACKING_SWITCH,
+  COUNTRIES_TAB_BUTTON,
+  GET_COUNTRY_NAME,
+  HOME_TAB_BUTTON,
+  TRACKING_SWITCH,
 } from '../../src/test-ids';
 
 export class E2EDriver {
   static openCountriesTab = async () => {
-    await element(by.id(TEST_ID_COUNTRIES_TAB_BUTTON)).tap();
+    await element(by.id(COUNTRIES_TAB_BUTTON)).tap();
   };
 
   static tapOnCountryInList = async (countrySlug) => {
@@ -15,17 +15,15 @@ export class E2EDriver {
   };
 
   static openHomeTab = async () => {
-    await element(by.id(TEST_ID_HOME_TAB_BUTTON)).tap();
+    await element(by.id(HOME_TAB_BUTTON)).tap();
   };
 
   static toggleSwitch = async () => {
-    await element(by.id(TEST_ID_TRACKING_SWITCH)).tap();
+    await element(by.id(TRACKING_SWITCH)).tap();
   };
 
   static expectCountryCardToBeVisible = async (countrySlug) => {
-    await expect(
-      element(by.id(TEST_ID_COUNTRY_NAME(countrySlug))),
-    ).toBeVisible();
+    await expect(element(by.id(GET_COUNTRY_NAME(countrySlug)))).toBeVisible();
   };
 
   static relaunchApp = async () => {

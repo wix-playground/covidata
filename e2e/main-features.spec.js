@@ -1,7 +1,8 @@
+import {CONFIRMED, DEATHS, GLOBAL, RECOVERIES} from '../src/strings';
 import {
-  TEST_ID_COUNTRY_NAME,
-  TEST_ID_FLAT_COUNTRY_LIST,
-  TEST_ID_STAT_PREFIX_NAME_TOTAL,
+  GET_COUNTRY_NAME,
+  FLAT_COUNTRY_LIST,
+  GET_STAT_PREFIX_NAME_TOTAL,
 } from '../src/test-ids';
 import {E2EDriver} from './utils/e2e-driver';
 import {i18n} from '../strings';

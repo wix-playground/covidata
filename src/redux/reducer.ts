@@ -6,7 +6,14 @@ import {State} from '../types';
 export const initialState: State = {
   countries: [],
   tracked: [],
-  globalData: {},
+  globalData: {
+    newConfirmed: 0,
+    totalConfirmed: 0,
+    newDeaths: 0,
+    totalDeaths: 0,
+    newRecovered: 0,
+    totalRecovered: 0,
+  },
   error: null,
   labels: [],
   data: [0],

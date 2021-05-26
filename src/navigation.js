@@ -1,3 +1,6 @@
+import {FEED, NEWS_FEED_SCREEN} from './strings';
+import {NEWS_FEED_TAB_BUTTON} from './test-ids';
+
 const {Navigation} = require('react-native-navigation');
 
 export function setUpNavigation() {
@@ -8,45 +11,49 @@ export function setUpNavigation() {
 }
 
 export function registerComponents() {
-  const HomeScreen = require('./screens/home-screen').default;
-  const CountryListScreen = require('./screens/country-list-screen').default;
+  const HomeScreen = require('./screens/home-screen/home-screen').default;
+  const CountryListScreen =
+    require('./screens/country-list-screen/country-list-screen').default;
   const CountryDetailScreen =
-    require('./screens/country-detail-screen').default;
-  const NewsFeedScreen = require('./screens/news-feed-screen').default;
+    require('./screens/country-detail-screen/country-detail-screen').default;
+  const NewsFeedScreen =
+    require('./screens/news-feed-screen/index').NewsFeedScreen;
   const Provider = require('react-redux').Provider;
   const store = require('./redux/configure-store').store;
   const wrapWithProvider = require('./utils/helper-methods').wrapWithProvider;
-  const {i18n} = require('../strings/index').i18n;
+  const {
+    HOME_SCREEN,
+    COUNTRIES_SCREEN,
+    COUNTRY_DETAIL_SCREEN,
+    NEWS_FEED_SCREEN,
+  } = require('./strings');
   Navigation.registerComponent(
-    i18n('HOME_SCREEN'),
+    HOME_SCREEN,
     () => (props) => wrapWithProvider(HomeScreen, Provider, store, props),
     () => HomeScreen,
   );
   Navigation.registerComponent(
-    i18n('COUNTRIES_SCREEN'),
+    COUNTRIES_SCREEN,
     () => (props) =>
       wrapWithProvider(CountryListScreen, Provider, store, props),
     () => CountryListScreen,
   );
   Navigation.registerComponent(
-    i18n('COUNTRY_DETAIL_SCREEN'),
+    COUNTRY_DETAIL_SCREEN,
     () => (props) =>
       wrapWithProvider(CountryDetailScreen, Provider, store, props),
     () => CountryDetailScreen,
   );
   Navigation.registerComponent(
-    i18n('NEWS_FEED_SCREEN'),
+    NEWS_FEED_SCREEN,
     () => (props) => wrapWithProvider(NewsFeedScreen, Provider, store, props),
   );
 }
 
 function setRoot() {
   const {i18n} = require('../strings/index').i18n;
-  const {
-    TEST_ID_HOME_TAB_BUTTON,
-    TEST_ID_COUNTRIES_TAB_BUTTON,
-    TEST_ID_NEWS_FEED_TAB_BUTTON,
-  } = require('./test-ids');
+  const {HOME_SCREEN, COUNTRIES_SCREEN, HOME, COUNTRIES} = require('./strings');
+  const {HOME_TAB_BUTTON, COUNTRIES_TAB_BUTTON} = require('./test-ids');
   Navigation.setRoot({
     root: {
       bottomTabs: {
@@ -69,7 +76,7 @@ function setRoot() {
               ],
               options: {
                 bottomTab: {
-                  testID: TEST_ID_HOME_TAB_BUTTON,
+                  testID: HOME_TAB_BUTTON,
                   text: i18n('HOME'),
                 },
               },
@@ -93,7 +100,7 @@ function setRoot() {
               ],
               options: {
                 bottomTab: {
-                  testID: TEST_ID_COUNTRIES_TAB_BUTTON,
+                  testID: COUNTRIES_TAB_BUTTON,
                   text: i18n('COUNTRIES'),
                 },
               },
@@ -117,7 +124,7 @@ function setRoot() {
               ],
               options: {
                 bottomTab: {
-                  testID: TEST_ID_NEWS_FEED_TAB_BUTTON,
+                  testID: NEWS_FEED_TAB_BUTTON,
                   text: i18n('FEED'),
                 },
               },

@@ -1,7 +1,8 @@
-import CovidApi from '../api/covid-api';
+import {CovidApi} from '../api/covid-api';
 import AsyncStorage from '@react-native-community/async-storage';
+import {ASYNC_STORAGE_TRACKED_KEY} from '../strings';
 import {computeNewTrackedCountries} from '../utils/helper-methods';
-import NewsApi from '../api/news-api';
+import {NewsApi} from '../api/news-api';
 import {Dispatch} from 'redux';
 import {i18n} from '../../strings';
 
@@ -25,19 +26,16 @@ export const setCountryTracked = (countrySlug: string, value: boolean) => {
       type: ACTIONS.SET_COUNTRY_TRACKED,
       payload: {countrySlug, value},
     });
-    const oldTracked =
-      JSON.parse(
-        (await AsyncStorage.getItem(
-          i18n('ASYNC_STORAGE_TRACKED_KEY'),
-        )) as string,
-      ) ?? [];
+    const oldTracked = JSON.parse(
+      (await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? '[]',
+    );
     const newTracked = computeNewTrackedCountries(
       oldTracked,
       countrySlug,
       value,
     );
     await AsyncStorage.setItem(
-      i18n('ASYNC_STORAGE_TRACKED_KEY'),
+      ASYNC_STORAGE_TRACKED_KEY,
       JSON.stringify(newTracked),
     );
   };
@@ -48,12 +46,9 @@ export function fetchSummary() {
     dispatch({type: ACTIONS.GET_SUMMARY_PENDING});
     try {
       const {countries, globalData} = await CovidApi.getSummary();
-      const tracked =
-        JSON.parse(
-          (await AsyncStorage.getItem(
-            i18n('ASYNC_STORAGE_TRACKED_KEY'),
-          )) as string,
-        ) ?? [];
+      const tracked = JSON.parse(
+        (await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? '[]',
+      );
       dispatch({type: ACTIONS.GET_ASYNC_STORAGE_TRACKED, payload: {tracked}});
       dispatch({
         type: ACTIONS.GET_SUMMARY_SUCCESS,
