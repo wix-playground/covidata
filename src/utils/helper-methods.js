@@ -1,5 +1,5 @@
-import React from 'react'
-import emoji from 'country-to-emoji-flag'
+import React from 'react';
+import emoji from 'country-to-emoji-flag';
 
 export function sliceToNLast(data, n) {
   return data ? data.slice(Math.max(data.length - n, 0)) : [];

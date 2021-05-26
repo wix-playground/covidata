@@ -17,7 +17,7 @@ jest.mock('react-native', () => {
   return reactNative;
 });
 
-jest.mock('react-native-ui-lib', () => {
+jest.mock('@wix/wix-react-native-ui-lib', () => {
   return {
     ...mockFull([
       'Badge',
@@ -28,12 +28,20 @@ jest.mock('react-native-ui-lib', () => {
       'LoaderScreen',
       'Switch',
       'ListItem',
-      'AnimatedImage',
+      'Button',
     ]),
     Assets: {
       icons: jest.fn().mockResolvedValue({x: undefined}),
     },
   };
+});
+
+jest.mock('react-native-ui-lib', () => {
+  return mockFull(['AnimatedImage']);
+});
+
+jest.mock('react-native-chart-kit', () => {
+  return mockFull(['LineChart']);
 });
 
 jest.mock('react-native-navigation', () => {

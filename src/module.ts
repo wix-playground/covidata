@@ -8,11 +8,12 @@ export default class CovidataModule {
       {
         id: 'covidata.HomeScreen',
         generator: () =>
-          asWixScreen(() =>
+          asWixScreen((props) =>
             wrapWithProvider(
-              require('./screens/home-screen').default,
+              require('./screens/home-screen/home-screen').default,
               Provider,
               store,
+              props,
             ),
           ),
         description: '',
@@ -20,11 +21,13 @@ export default class CovidataModule {
       {
         id: 'covidata.CountryListScreen',
         generator: () =>
-          asWixScreen(() =>
+          asWixScreen((props) =>
             wrapWithProvider(
-              require('./screens/country-list-screen').default,
+              require('./screens/country-list-screen/country-list-screen')
+                .default,
               Provider,
               store,
+              props,
             ),
           ),
         description: '',
@@ -32,11 +35,13 @@ export default class CovidataModule {
       {
         id: 'covidata.CountryDetailScreen',
         generator: () =>
-          asWixScreen(() =>
+          asWixScreen((props) =>
             wrapWithProvider(
-              require('./screens/country-detail-screen').default,
+              require('./screens/country-detail-screen/country-detail-screen')
+                .default,
               Provider,
               store,
+              props,
             ),
           ),
         description: '',
@@ -44,11 +49,12 @@ export default class CovidataModule {
       {
         id: 'covidata.NewsFeedScreen',
         generator: () =>
-          asWixScreen(
+          asWixScreen((props) =>
             wrapWithProvider(
-              require('./screens/news-feed-screen').default,
+              require('./screens/news-feed-screen/index').NewsFeedScreen,
               Provider,
               store,
+              props,
             ),
           ),
         description: '',

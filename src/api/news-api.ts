@@ -1,10 +1,9 @@
 import {Api} from './common';
 import {NEWS_API_KEY, NEWS_API_URL} from '../../env';
-import {COVID} from '../strings';
 import {NewsApiResponse} from '../types';
 import {i18n} from '../../strings';
 
-export default class NewsApi {
+export class NewsApi {
   static async getTopCovidHeadlines() {
     return await this.getTopHeadlines(i18n('COVID'));
   }

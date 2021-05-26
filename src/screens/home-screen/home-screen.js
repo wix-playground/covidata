@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {fetchSummary} from '../../redux/actions';
-import {LoaderScreen} from 'react-native-ui-lib';
+import {LoaderScreen} from '@wix/wix-react-native-ui-lib';
 import {CountryDetailCard} from '../../components/country-detail-card/country-detail-card';
 
 class HomeScreen extends React.Component {
@@ -22,12 +22,13 @@ class HomeScreen extends React.Component {
         countries={this.props.countries}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
+        componentId={this.props.componentId}
       />
     );
   }
 
   renderItem({item}) {
-    return this.props.tracked.includes(item.slug) ? (
+    return this.props?.tracked.includes(item.slug) ? (
       <CountryDetailCard country={item} />
     ) : null;
   }
@@ -43,6 +44,7 @@ HomeScreen.propTypes = {
   globalData: PropTypes.object,
   countries: PropTypes.array,
   tracked: PropTypes.array,
+  componentId: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {

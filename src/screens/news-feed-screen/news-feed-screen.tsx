@@ -2,7 +2,7 @@ import React from 'react';
 import {NewsFeedScreenComponent} from '../../components/news-feed-screen-component/news-feed-screen-component';
 import {ArticleRow} from '../../components/article-row/article-row';
 import {fetchCovidNews} from '../../redux/actions';
-import {LoaderScreen} from 'react-native-ui-lib';
+import {LoaderScreen} from '@wix/wix-react-native-ui-lib';
 import {Article} from '../../types';
 
 export interface NewsFeedScreenStateProps {
@@ -14,7 +14,7 @@ export interface NewsFeedScreenDispatchProps {
   fetchCovidNewsAction: typeof fetchCovidNews;
 }
 
-interface NewsFeedScreenProps
+export interface NewsFeedScreenProps
   extends NewsFeedScreenDispatchProps,
     NewsFeedScreenStateProps {}
 

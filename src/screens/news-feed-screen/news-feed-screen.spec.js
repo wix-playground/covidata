@@ -1,9 +1,9 @@
 import {newsFeedScreenDriver} from './news-feed-screen.driver';
 import {Linking} from 'react-native';
-import {UNKNOWN} from '../../strings';
 import dateFormat from 'dateformat';
 import Chance from 'chance';
 import {buildArticle} from '../../utils/builders';
+import {i18n} from '../../../strings';
 
 const chance = Chance();
 
@@ -61,7 +61,7 @@ describe('News Feed Screen', () => {
     const articles = [buildArticle({source: null, urlToImage: null})];
     driver.setProps({...defaultProps, articles});
 
-    expect(driver.articleAtIndex(0).sourceName()).toEqual(UNKNOWN);
+    expect(driver.articleAtIndex(0).sourceName()).toEqual(i18n('UNKNOWN'));
     expect(driver.articleAtIndex(0).imageUri()).toEqual(undefined);
   });
 
@@ -90,4 +90,3 @@ describe('News Feed Screen', () => {
     });
   });
 });
-

@@ -1,11 +1,11 @@
 import {FlatList, StyleSheet} from 'react-native';
-import {View} from 'react-native-ui-lib';
+import {View} from '@wix/wix-react-native-ui-lib';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {FLAT_COUNTRY_LIST} from '../../test-ids';
 
 export const CountryListScreenComponent = React.memo(
-  function CountryListScreenComp({countries, renderItem}) {
+  function CountryListScreenComponent({countries, renderItem}) {
     return (
       <View>
         <FlatList

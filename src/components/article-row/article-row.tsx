@@ -1,4 +1,5 @@
-import {ListItem, View, Text, AnimatedImage, Assets} from 'react-native-ui-lib';
+import {ListItem, View, Text, Assets} from '@wix/wix-react-native-ui-lib';
+import {AnimatedImage} from 'react-native-ui-lib';
 import React from 'react';
 import {ActivityIndicator, Linking} from 'react-native';
 import {
@@ -8,9 +9,9 @@ import {
   ARTICLE_TIMESTAMP,
   ARTICLE_TITLE,
 } from '../../test-ids';
-import {UNKNOWN} from '../../strings';
 import {Article} from '../../types';
 import dateFormat from 'dateformat';
+import {i18n} from '../../../strings';
 
 interface ArticleRowProps {
   article: Article;
@@ -37,7 +38,7 @@ export const ArticleRow: React.FC<ArticleRowProps> = React.memo(
           />
           <View marginL-15 marginB-15 flex>
             <Text uppercase text90H testID={ARTICLE_SOURCE}>
-              {article.source ? article.source.name : UNKNOWN}
+              {article.source ? article.source.name : i18n('UNKNOWN')}
             </Text>
             <Text text80L marginV-10 numberOfLines={1} testID={ARTICLE_TITLE}>
               {article.title}

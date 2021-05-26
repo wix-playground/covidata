@@ -1,6 +1,5 @@
 import {CovidApi} from '../api/covid-api';
 import AsyncStorage from '@react-native-community/async-storage';
-import {ASYNC_STORAGE_TRACKED_KEY} from '../strings';
 import {computeNewTrackedCountries} from '../utils/helper-methods';
 import {NewsApi} from '../api/news-api';
 import {Dispatch} from 'redux';
@@ -27,7 +26,7 @@ export const setCountryTracked = (countrySlug: string, value: boolean) => {
       payload: {countrySlug, value},
     });
     const oldTracked = JSON.parse(
-      (await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? '[]',
+      (await AsyncStorage.getItem(i18n('ASYNC_STORAGE_TRACKED_KEY'))) ?? '[]',
     );
     const newTracked = computeNewTrackedCountries(
       oldTracked,
@@ -35,7 +34,7 @@ export const setCountryTracked = (countrySlug: string, value: boolean) => {
       value,
     );
     await AsyncStorage.setItem(
-      ASYNC_STORAGE_TRACKED_KEY,
+      i18n('ASYNC_STORAGE_TRACKED_KEY'),
       JSON.stringify(newTracked),
     );
   };
@@ -47,7 +46,7 @@ export function fetchSummary() {
     try {
       const {countries, globalData} = await CovidApi.getSummary();
       const tracked = JSON.parse(
-        (await AsyncStorage.getItem(ASYNC_STORAGE_TRACKED_KEY)) ?? '[]',
+        (await AsyncStorage.getItem(i18n('ASYNC_STORAGE_TRACKED_KEY'))) ?? '[]',
       );
       dispatch({type: ACTIONS.GET_ASYNC_STORAGE_TRACKED, payload: {tracked}});
       dispatch({

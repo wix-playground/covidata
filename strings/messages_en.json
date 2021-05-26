@@ -13,5 +13,6 @@
   "COVID": "COVID",
   "TRACK": "⭐️  Track",
   "RECENT_DATA": "🗓️  Recent data",
-  "ASYNC_STORAGE_TRACKED_KEY": "tracked"
+  "ASYNC_STORAGE_TRACKED_KEY": "tracked",
+  "UNKNOWN": "Unknown"
 }
