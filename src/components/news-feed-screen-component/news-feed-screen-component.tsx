@@ -1,5 +1,5 @@
 import {FlatList} from 'react-native';
-import {View} from 'react-native-ui-lib';
+import {View} from '@wix/wix-react-native-ui-lib';
 import React from 'react';
 import {FLAT_NEWS_ARTICLE_LIST} from '../../test-ids';
 import {Article} from '../../types';
@@ -10,7 +10,7 @@ interface NewsFeedScreenComponentProps {
 }
 
 export const NewsFeedScreenComponent: React.FC<NewsFeedScreenComponentProps> =
-  React.memo(function NewsFeedScreenComp({articles, renderItem}) {
+  React.memo(function NewsFeedScreenComponent({articles, renderItem}) {
     return (
       <FlatList
         testID={FLAT_NEWS_ARTICLE_LIST}

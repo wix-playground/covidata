@@ -1,4 +1,4 @@
-import {Badge} from 'react-native-ui-lib';
+import {Badge} from '@wix/wix-react-native-ui-lib';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getBadgeColor} from '../../utils/helper-methods';

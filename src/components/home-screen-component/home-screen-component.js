@@ -1,14 +1,36 @@
 import {CountryDetailCard} from '../country-detail-card/country-detail-card';
-import {View} from 'react-native-ui-lib';
+import {View, Button} from '@wix/wix-react-native-ui-lib';
 import {FlatList, StyleSheet} from 'react-native';
 import React from 'react';
 import {HOME_TRACKED_LIST} from '../../test-ids';
 import PropTypes from 'prop-types';
+import {pushScreen} from '../../navigation';
+import {i18n} from '../../../strings';
 
 export class HomeScreenComponent extends React.Component {
+  openCountryList() {
+    pushScreen(this.props.componentId, i18n('COUNTRIES_SCREEN'), {});
+  }
+
+  openNewsFeed() {
+    pushScreen(this.props.componentId, i18n('NEWS_FEED_SCREEN'), {});
+  }
+
   render() {
     return (
       <View flex padding-page>
+        <View row center marginV-5>
+          <Button
+            onPress={() => this.openCountryList()}
+            label={'Countries'}
+            marginH-5
+          />
+          <Button
+            onPress={() => this.openNewsFeed()}
+            label={'Feed'}
+            marginH-5
+          />
+        </View>
         <FlatList
           ListHeaderComponent={
             <View>
@@ -42,4 +64,5 @@ HomeScreenComponent.propTypes = {
   keyExtractor: PropTypes.func,
   renderItem: PropTypes.func,
   countries: PropTypes.array,
+  componentId: PropTypes.string,
 };

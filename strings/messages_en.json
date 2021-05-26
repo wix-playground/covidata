@@ -1,0 +1,18 @@
+{
+  "CONFIRMED": "Confirmed",
+  "DEATHS": "Deaths",
+  "RECOVERIES": "Recoveries",
+  "GLOBAL": "Global",
+  "COUNTRY_DETAIL_SCREEN": "covidata.CountryDetailScreen",
+  "NEWS_FEED_SCREEN": "covidata.NewsFeedScreen",
+  "COUNTRIES_SCREEN": "covidata.CountryListScreen",
+  "HOME_SCREEN": "covidata.HomeScreen",
+  "HOME": "Home",
+  "COUNTRIES": "Countries",
+  "FEED": "Feed",
+  "COVID": "COVID",
+  "TRACK": "⭐️  Track",
+  "RECENT_DATA": "🗓️  Recent data",
+  "ASYNC_STORAGE_TRACKED_KEY": "tracked",
+  "UNKNOWN": "Unknown"
+}

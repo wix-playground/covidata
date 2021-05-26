@@ -8,7 +8,6 @@ import {
   setCountryTracked,
 } from './actions';
 import AsyncStorage from '@react-native-community/async-storage';
-import {ASYNC_STORAGE_TRACKED_KEY} from '../strings';
 import {
   articles,
   countries,
@@ -20,6 +19,7 @@ import {
 } from './reducer.spec';
 import {CovidApi} from '../api/covid-api';
 import {NewsApi} from '../api/news-api';
+import {i18n} from '../../strings';
 
 const value = true;
 
@@ -57,7 +57,7 @@ describe('actions', () => {
     ];
 
     await AsyncStorage.setItem(
-      ASYNC_STORAGE_TRACKED_KEY,
+      i18n('ASYNC_STORAGE_TRACKED_KEY'),
       JSON.stringify(tracked),
     );
     await store.dispatch(fetchSummary());

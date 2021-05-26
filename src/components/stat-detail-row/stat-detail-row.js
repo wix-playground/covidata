@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native-ui-lib';
+import {Text, View} from '@wix/wix-react-native-ui-lib';
 import {ConditionalBadge} from '../conditional-badge/conditional-badge';
 import React from 'react';
 import PropTypes from 'prop-types';

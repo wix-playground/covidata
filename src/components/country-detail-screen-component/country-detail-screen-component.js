@@ -1,14 +1,14 @@
 import {ScrollView, StyleSheet} from 'react-native';
 import {CountryDetailCard} from '../country-detail-card/country-detail-card';
-import {Card, Text, View, Switch} from 'react-native-ui-lib';
+import {Card, Text, View, Switch} from '@wix/wix-react-native-ui-lib';
 import {CasesChangeGraph} from '../cases-change-graph/cases-change-graph';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {TRACKING_SWITCH} from '../../test-ids';
-import {RECENT_DATA, TRACK} from '../../strings';
+import {i18n} from '../../../strings';
 
 export const CountryDetailScreenComponent = React.memo(
-  function CountryDetailsScreenComp({
+  function CountryDetailsScreenComponent({
     country,
     track,
     onValueChange,
@@ -24,7 +24,7 @@ export const CountryDetailScreenComponent = React.memo(
           padding={20}
           margin={10}>
           <Text flex text60BO>
-            {TRACK}
+            {i18n('TRACK')}
           </Text>
           <Switch
             testID={TRACKING_SWITCH}
@@ -35,7 +35,7 @@ export const CountryDetailScreenComponent = React.memo(
         <Card padding={20} margin={10} flexDirection={'column'}>
           <View>
             <Text text60M style={styles.cardTitle}>
-              {RECENT_DATA}
+              {i18n('RECENT_DATA')}
             </Text>
           </View>
           <View>

@@ -4,6 +4,10 @@ const {mockFull} = jestHelpers;
 
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
+jest.mock('react-native-reanimated', () =>
+  require('react-native-reanimated/mock'),
+);
+
 jest.mock('react-native', () => {
   const reactNative = jest.requireActual('react-native');
   reactNative.NativeModules.StatusBarManager.getHeight = jest.fn();
@@ -13,7 +17,7 @@ jest.mock('react-native', () => {
   return reactNative;
 });
 
-jest.mock('react-native-ui-lib', () => {
+jest.mock('@wix/wix-react-native-ui-lib', () => {
   return {
     ...mockFull([
       'Badge',
@@ -24,12 +28,20 @@ jest.mock('react-native-ui-lib', () => {
       'LoaderScreen',
       'Switch',
       'ListItem',
-      'AnimatedImage',
+      'Button',
     ]),
     Assets: {
       icons: jest.fn().mockResolvedValue({x: undefined}),
     },
   };
+});
+
+jest.mock('react-native-ui-lib', () => {
+  return mockFull(['AnimatedImage']);
+});
+
+jest.mock('react-native-chart-kit', () => {
+  return mockFull(['LineChart']);
 });
 
 jest.mock('react-native-navigation', () => {
